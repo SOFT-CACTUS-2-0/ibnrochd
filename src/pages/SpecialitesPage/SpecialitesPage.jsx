@@ -16,9 +16,12 @@ const SpecialitesPage = () => {
             <ContactInfo />
             <Header>
                 <div className="title__title__container">
-                    <Title title="NOS" subtitle="Spécialités" />
+                    <Title title="NOS" subtitle="Spécialités" style={{
+                        title: {fontSize: '57.71px'},
+                        subtitle: {fontSize: '57.71px'}
+                    }} />
                 </div>
-                <div style={{width:'902px',margin:'auto'}}>
+                <div style={{width:'902px',margin:'auto', marginTop: '4rem'}}>
                     <div className="back__next__container" style={{width:'100%'}}>
                         <div className="current__item__container">
                             <div className="current__item__indicator"></div>

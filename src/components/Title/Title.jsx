@@ -31,12 +31,14 @@ const Title = ({
         >
           {subtitle}
         </h1>
-        <p 
-          className="title__description" 
-          style={descriptionStyle}
-        >
+        {description && (
+          <p 
+            className="title__description" 
+            style={descriptionStyle}
+          >
           {description}
-        </p>
+          </p>
+        )}
     </div>
   )
 }
