@@ -1,0 +1,99 @@
+.navbar__container{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    padding: 1rem 0;
+    z-index: 1000;
+}
+
+.navbar__logo__img{
+    width: 238.66px;
+    height: 65.67px;
+    object-fit: cover;
+}
+
+.navbar__navigation, .navbar__contact{
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.navbar__navigation .navbar__navigation__item, .navbar__contact .navbar__contact__item{
+    width: 91.67px;
+    height: 43.26px;
+    border: 0.4px solid #515151;
+    border-radius: 43.26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #5C5C5C;
+}
+
+.navbar__navigation__item{
+    font-size: 14.19px;
+}
+
+.navbar__navigation{
+    flex: 3;
+    align-items: flex-start;
+    margin-top: -1rem;
+}
+
+.navbar__contact{
+    flex: 2;
+}
+
+.navbar__logo{
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar__navigation__item.active, .navbar__contact__item.active{
+    background-color: #4EADB4;
+    color: white;
+    border: none;
+}
+
+.navbar__contact .navbar__contact__item{
+    border-color: #4EADB4;
+    width: 128.69px;
+    cursor: pointer;
+}
+
+.navbar__navigation__item{
+    cursor: pointer;
+}
+
+.navbar__contact__list{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.navbar__contact__item__arrow{
+    width: 14.27px;
+    height: 14.27px;
+    border-radius: 50%;
+    border: 0.84px solid #5C5C5C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    margin-inline: .5rem;
+}
+
+.navbar__contact__item {
+    font-family: Manrope;
+    font-size: 15.2px;
+    font-weight: 400;
+    line-height: 16.89px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}

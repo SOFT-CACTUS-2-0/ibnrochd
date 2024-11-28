@@ -1,0 +1,35 @@
+.contact__info__container {
+    width: 1098.88px;
+    background-color: #4EADB4;
+    height: 46.39px;
+    margin: 10px auto;
+    margin-bottom: 3rem;
+    border-radius: 90.97px;
+    display: flex;
+    justify-content: space-between; /* Center items horizontally */
+    padding: 0 2rem; /* Use shorthand for horizontal padding */
+    align-items: center; /* Center items vertically */
+    color: white;
+    list-style: none;
+}
+
+.separator {
+    width: 1px;
+    height: 40%;
+    background-color: white;
+    margin: 0 1rem;
+}
+
+.contact__info__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-family: Manrope;
+    font-size: 16.47px;
+    font-weight: 600;
+    line-height: 22.5px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}

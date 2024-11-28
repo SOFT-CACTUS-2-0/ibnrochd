@@ -1,0 +1,12 @@
+.header__container {
+    width: 1102.01px;
+    height: 581px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    position: relative;
+    background: transparent;
+}

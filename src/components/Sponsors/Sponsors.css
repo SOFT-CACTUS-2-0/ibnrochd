@@ -1,0 +1,126 @@
+.sponsors__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 650px;
+    position: relative;
+}
+
+.sponsors__container::before{
+    position: absolute;
+    content: '';
+    top: 20%;
+    right: 0;
+    width: 252px;
+    height: 252px;
+    transform: translateX(50%);
+    border-radius: 50%;
+    border: 40px solid #4CB9C1
+}
+
+.sponsors__header {
+    width: 78px;
+    height: 78px;
+    border: 2px solid #4CB9C1;
+    padding: 10px;
+    border-radius: 50%;
+    position: relative;
+    background: white;
+    margin-block: 2rem;
+}
+
+.sponsors__header::before {
+    content: '';
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    height: 4px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0.45%, #4CB9C1 33.63%, #4CB9C1 66.82%, rgba(0, 0, 0, 0) 100%);
+    width: 1164px;
+    z-index: -1;
+}
+
+.sponsors__header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sponsors__title h1 {
+    font-family: Manrope;
+    font-size: 30.29px;
+    font-weight: 700;
+    line-height: 45.44px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #18466F;
+    text-transform: uppercase;
+}
+
+.sponsors__content {
+    width: 755px;
+    font-family: Manrope;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.59px;
+    letter-spacing: -0.015em;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #18466F;
+}
+
+.sponsors__dots{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-block: 1rem;
+    gap: 1rem;
+}
+
+.sponsors__dot{
+    width: 11.47px;
+    height: 11.47px;
+    border-radius: 50%;
+    background: #4CB9C1;
+}
+
+.sponsors__list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 525.8px;
+    height: 146.29px;
+    margin-block: 2rem;
+}
+
+.sponsors__list-item{
+    width: 156.67px;
+    height: 156.67px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #C6C6C6;
+    border-radius: 15px;
+}
+
+.back__to__top{
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    width: 64.88px;
+    height: 64.88px;
+    border-radius: 50%;
+    background: #4CB9C1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    font-size: 1.5rem;
+}
