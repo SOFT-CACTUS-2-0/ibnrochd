@@ -1,0 +1,1 @@
+import{j as r}from"./index-BMhbg3dc.js";const s=()=>r.jsx("div",{className:"card__board",children:r.jsx("div",{className:"card__board__title",children:"Your Health, Our Personal Care"})});export{s as C};
