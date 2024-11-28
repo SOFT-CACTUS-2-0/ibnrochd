@@ -1,0 +1,1 @@
+import{j as r}from"./index-lplyQ1Cs.js";const s=()=>r.jsx("div",{className:"card__board",children:r.jsx("div",{className:"card__board__title",children:"Your Health, Our Personal Care"})});export{s as C};

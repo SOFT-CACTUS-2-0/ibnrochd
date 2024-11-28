@@ -77,15 +77,15 @@ const Contact = () => {
             </div>
         </div>
         <div className="social__links" style={{ display: "flex", gap: "10px", marginBlock: "1rem" }}>
-          <Link to="/instagram" style={{ color: "#4CB9C1", textDecoration: "none", width:'38px', height:'38px', background:'white', borderRadius: '50%', display: 'flex', justifyContent:'center', alignItems:'center' }}>
+          <a target='_blank' href="https://www.instagram.com/cliniqueibnrochd_berkane" style={{ color: "#4CB9C1", textDecoration: "none", width:'38px', height:'38px', background:'white', borderRadius: '50%', display: 'flex', justifyContent:'center', alignItems:'center' }}>
             <FontAwesomeIcon icon={faInstagram} style={{fontSize:'1.5rem'}} />
-          </Link>
-          <Link to="/facebook" style={{ color: "#4CB9C1", textDecoration: "none", width:'38px', height:'38px', background:'white', borderRadius: '50%', display: 'flex', justifyContent:'center', alignItems:'center' }}>
+          </a>
+          <a target='_blank' href="https://facebook.com/profile.php?id=61554170039546" style={{ color: "#4CB9C1", textDecoration: "none", width:'38px', height:'38px', background:'white', borderRadius: '50%', display: 'flex', justifyContent:'center', alignItems:'center' }}>
             <FontAwesomeIcon icon={faFacebookF} style={{fontSize:'1.5rem'}} />
-          </Link>
-          <Link to="/linkedin" style={{ color: "#4CB9C1", textDecoration: "none", width:'38px', height:'38px', background:'white', borderRadius: '50%', display: 'flex', justifyContent:'center', alignItems:'center' }}>
+          </a>
+          <a target='_blank' href="https://www.linkedin.com/company/cliniqueibnrochdberkane" style={{ color: "#4CB9C1", textDecoration: "none", width:'38px', height:'38px', background:'white', borderRadius: '50%', display: 'flex', justifyContent:'center', alignItems:'center' }}>
             <FontAwesomeIcon icon={faLinkedinIn} style={{fontSize:'1.5rem'}} />
-          </Link>
+          </a>
         </div>
       </div>
       <div className="copyright" style={{ position: "absolute", bottom: "1rem", width: "100%", textAlign: "center", color: "white", fontSize: "15px" }}>
