@@ -68,7 +68,6 @@
       "item3 item3 item4 item4 item4 item4 item4 item4"
       "item5 item5 item5 item6 item6 item6 item6 item6";
     gap: var(--spacing-sm);
-    padding: var(--spacing-sm);
 }
   
 .image__galerie__item {

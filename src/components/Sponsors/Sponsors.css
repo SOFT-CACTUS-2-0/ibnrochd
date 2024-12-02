@@ -124,3 +124,46 @@
     color: white;
     font-size: 1.5rem;
 }
+
+@media screen and (max-width: 1164px) {
+    .sponsors__container{
+        height: 750px;
+    }
+
+    .sponsors__container::before{
+        content: unset;
+    }
+
+    .sponsors__header::before{
+        width: 100vw;
+    }
+
+    .sponsors__title h1{
+        font-size: 20px;
+    }
+
+    .sponsors__content{
+        width: 100%;
+        text-align: justify;
+    }
+
+    .sponsors__list{
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .sponsors__list-item{
+        flex: 1;
+    }
+
+    .sponsors__list-item img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .back__to__top{
+        bottom: 2rem;
+    }
+
+}
