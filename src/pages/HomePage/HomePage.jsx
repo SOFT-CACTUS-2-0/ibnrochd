@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Header from '@components/Header/Header';
 import ContactInfo from '@components/ContactInfo/ContactInfo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -222,45 +222,63 @@ const FeatureItem = ({ icon, title, description }) => (
   </div>
 );
 
-// Specialties Component
-const Specialties = () => (
-  <>
-    <div className="home__specialites">
-      <div className="specialties__title">
-        <FontAwesomeIcon icon={faChevronRight} className="arrow" />
-        <FontAwesomeIcon icon={faChevronRight} className="arrow" />
-        <h2>Spécialités</h2>
-      </div>
-      <hr className="specialties__divider" />
-      <p className="specialties__description">
-        À la Clinique Ibn Rochd, notre engagement se traduit par une approche
-        centrée sur la qualité des soins de gynécologie et de pédiatrie ainsi
-        que sur le bien-être de nos patientes.
-      </p>
-    </div>
-    <SpecialtyButtons />
-    <NavigationControls />
-  </>
-);
-
-// SpecialtyButtons Component
-const SpecialtyButtons = () => {
+const Specialties = () => {
   const specialties = [
     'Gynécologie obstétricale',
     'Pédiatrie et néonatalogie',
     'Ophtalmologie',
   ];
-  // Assuming 'Pédiatrie et néonatalogie' is the active specialty
+
+  // State to keep track of the active specialty index
+  const [activeIndex, setActiveIndex] = useState(1);
+
+  // Handlers to navigate between specialties
+  const handleNext = () => {
+    setActiveIndex((prevIndex) => (prevIndex + 1) % specialties.length);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prevIndex) =>
+      prevIndex === 0 ? specialties.length - 1 : prevIndex - 1
+    );
+  };
+
+  return (
+    <>
+      <div className="home__specialites">
+        <div className="specialties__title">
+          <FontAwesomeIcon icon={faChevronRight} className="arrow" />
+          <FontAwesomeIcon icon={faChevronRight} className="arrow" />
+          <h2>Spécialités</h2>
+        </div>
+        <hr className="specialties__divider" />
+        <p className="specialties__description">
+          À la Clinique Ibn Rochd, notre engagement se traduit par une approche
+          centrée sur la qualité des soins de gynécologie et de pédiatrie ainsi
+          que sur le bien-être de nos patientes.
+        </p>
+      </div>
+      {/* Pass specialties, activeIndex, and setActiveIndex to SpecialtyButtons */}
+      <SpecialtyButtons
+        specialties={specialties}
+        activeIndex={activeIndex}
+      />
+      {/* Pass handlers to NavigationControls */}
+      <NavigationControls onNext={handleNext} onPrev={handlePrev} activeIndex={activeIndex} totalButtons={specialties.length} />
+    </>
+  );
+};
+
+// SpecialtyButtons Component
+const SpecialtyButtons = ({ specialties, activeIndex }) => {
   return (
     <div className="button__group">
       {specialties.map((specialty, index) => (
         <div
           key={index}
-          className={`button__item ${
-            specialty === 'Pédiatrie et néonatalogie' ? 'active' : ''
-          }`}
+          className={`button__item ${index === activeIndex ? 'active' : ''}`}
         >
-          {specialty === 'Pédiatrie et néonatalogie' && (
+          {index === activeIndex && (
             <div className="button__item__arrow">
               <FontAwesomeIcon
                 icon={faArrowRight}
@@ -276,16 +294,16 @@ const SpecialtyButtons = () => {
 };
 
 // NavigationControls Component
-const NavigationControls = () => (
+const NavigationControls = ({ onNext, onPrev, activeIndex, totalButtons }) => (
   <div className="back__next__container">
-    <div className="current__item__container">
-      <div className="current__item__indicator"></div>
+    <div className="current__item__container" style={{position: 'relative'}}>
+      <div className="current__item__indicator" style={{width:'33%',transform: `translateX(calc(100% * ${((activeIndex + totalButtons) % totalButtons)}))`, position: 'absolute'}}></div>
     </div>
     <div className="back__next__item">
-      <div className="back__next__item__arrow">
+      <div className="back__next__item__arrow" onClick={onPrev}>
         <FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: '1rem' }} />
       </div>
-      <div className="back__next__item__arrow active">
+      <div className="back__next__item__arrow active" onClick={onNext}>
         <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: '1rem' }} />
       </div>
     </div>
@@ -293,135 +311,324 @@ const NavigationControls = () => (
 );
 
 // ClinicWings Component
-const ClinicWings = () => (
-  <>
-    <Title
-      title="Les ailes de"
-      subtitle="La clinique"
-      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore aliqua."
-      style={{
-        title: {fontSize: '57.71px'},
-        subtitle: {fontSize: '57.71px'}
-      }}
-    />
-    <div className="stages__container">
-      <ClinicWing
-        number="01"
-        title="Premier étage"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        images={[
-          '/b8dabe7f11276a7a5a058c97166b0c15.webp',
-          '/f800cfb2aa8238b84077530434eb11c5.webp',
-          '/300726901718ac044bf52aa78933c642.webp',
-        ]}
-      />
-    </div>
-  </>
-);
+const ClinicWings = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-// ClinicWing Component
-// Add an opacity to images that goes like 100% 80% 60% 40% 20% 0%
-const ClinicWing = ({ number, title, description, images }) => (
-  <>
-    <div className="header-section">
-      <div className="header-section__number">{number}</div>
-      <div className="header-section__content">
-        <h1 className="header-section__title">{title}</h1>
-        <hr style={{ width: '300.5px' }} />
-        <p className="header-section__description">{description}</p>
+  const clinicWingData = [
+    {
+      number: "01",
+      title: "Premier étage",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      images: [
+        '/b8dabe7f11276a7a5a058c97166b0c15.webp',
+        '/f800cfb2aa8238b84077530434eb11c5.webp',
+        '/300726901718ac044bf52aa78933c642.webp',
+      ]
+    },
+    // You can add more clinic wing data here if needed
+  ];
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex < clinicWingData[0].images.length ? prevIndex + 1 : prevIndex
+    );
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex > -1 ? prevIndex - 1 : -1
+    );
+  };
+
+  const currentWing = clinicWingData[0];
+
+  return (
+    <>
+      <Title
+        title="Les ailes de"
+        subtitle="La clinique"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore aliqua."
+        style={{
+          title: {fontSize: '57.71px'},
+          subtitle: {fontSize: '57.71px'}
+        }}
+      />
+      <div className="stages__container">
+        <ClinicWing
+          number={currentWing.number}
+          title={currentWing.title}
+          description={currentWing.description}
+          images={currentWing.images}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+          onNext={handleNext}
+          onPrev={handlePrev}
+        />
       </div>
-    </div>
-    <div className="image-carousel__container">
-      <div className="image-carousel">
-        {images.map((src, index) => {
-          // Calculate opacity based on index
-          const opacity = 1 - (index * 0.2); // 100%, 80%, 60%, 40%, 20%, 0%
-          return (
-            <div key={index} className="image-carousel__card" style={{ opacity }}>
-              <img loading="lazy" src={src} alt={`Image ${index + 1}`} />
-              {index === 0 && (
+    </>
+  );
+};
+
+const ClinicWing = ({
+  number,
+  title,
+  description,
+  images,
+  currentIndex,
+  setCurrentIndex,
+  onNext,
+  onPrev,
+}) => {
+  const imageWidth = 253; // Width of each image card
+  const gap = 20; // Gap between image cards
+  const slideWidth = imageWidth + gap;
+  const totalSlides = images.length;
+
+  // Clone first and last images
+  const extendedImages = [images[images.length - 1], ...images, ...images];
+  const trackRef = useRef(null);
+
+  // Calculate the translation amount
+  const translateX = -((currentIndex + 1) * slideWidth);
+
+  // Apply translation with transition when currentIndex changes
+  useEffect(() => {
+    const track = trackRef.current;
+  
+    const handleTransitionEnd = () => {
+      if (currentIndex === -1) {
+        // Move to the last real slide without transition
+        track.style.transition = 'none';
+        track.style.transform = `translateX(-${slideWidth * totalSlides}px)`;
+        setCurrentIndex(totalSlides - 1);
+      } else if (currentIndex === totalSlides) {
+        // Move to the first real slide without transition
+        track.style.transition = 'none';
+        track.style.transform = `translateX(-${slideWidth}px)`;
+        setCurrentIndex(0);
+      }
+    };
+  
+    // Apply the transform with transition
+    track.style.transition = 'transform 0.5s ease';
+    track.style.transform = `translateX(${translateX}px)`;
+  
+    // Add the transitionend event listener
+    track.addEventListener('transitionend', handleTransitionEnd);
+  
+    // Cleanup event listener on unmount or when dependencies change
+    return () => {
+      track.removeEventListener('transitionend', handleTransitionEnd);
+    };
+  }, [translateX, currentIndex, totalSlides, slideWidth]);
+
+  const handleNext = () => {
+    onNext(currentIndex + 1);
+  };
+
+  const handlePrev = () => {
+    onPrev(currentIndex - 1);
+  };
+
+  return (
+    <>
+      <div className="header-section">
+        <div className="header-section__number">{number}</div>
+        <div className="header-section__content">
+          <h1 className="header-section__title">{title}</h1>
+          <hr style={{ width: '300.5px' }} />
+          <p className="header-section__description">{description}</p>
+        </div>
+      </div>
+      <div className="image-carousel__container">
+        <div className="image-carousel" style={{ overflow: 'hidden' }}>
+          <div
+            className="image-carousel__track"
+            ref={trackRef}
+            style={{
+              display: 'flex',
+            }}
+          >
+            {extendedImages.map((src, index) => (
+              <div
+                key={index}
+                className="image-carousel__card"
+                style={{
+                  flex: '0 0 auto',
+                  width: `${imageWidth}px`,
+                  marginRight: `${gap}px`,
+                }}
+              >
+                <img
+                  loading="lazy"
+                  src={src}
+                  alt={`Image ${index}`}
+                  style={{ width: '100%' }}
+                />
                 <div className="play-icon">
                   <FontAwesomeIcon icon={faPlay} />
                 </div>
-              )}
-            </div>
-        )})}
+              </div>
+            ))}
+          </div>
+        </div>
+        <ImageNavigation
+          currentIndex={currentIndex}
+          totalImages={totalSlides}
+          onNext={handleNext}
+          onPrev={handlePrev}
+        />
       </div>
-      <ImageNavigation />
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 // ImageNavigation Component
-const ImageNavigation = () => (
+const ImageNavigation = ({ currentIndex, totalImages, onNext, onPrev }) => (
   <div className="navigation-controls">
     <div className="arrows">
-      <div className="icon__arrow left">
+      <div className="icon__arrow left" onClick={onPrev}>
         <FontAwesomeIcon icon={faArrowLeft} className="navigation-controls__arrow" />
       </div>
-      <div className="icon__arrow right">
+      <div className="icon__arrow right" onClick={onNext}>
         <FontAwesomeIcon icon={faArrowRight} className="navigation-controls__arrow" />
       </div>
     </div>
     <div className="numbers">
-      <span className="navigation-controls__number">01</span>
-      <div className="indicator__container">
-        <div className="indicator"></div>
+      <span className="navigation-controls__number">
+        {
+          String(((currentIndex + totalImages) % totalImages) + 1).padStart(2, '0')
+        }
+      </span>
+      <div className="indicator__container" style={{position: 'relative'}}>
+        <div className="indicator" style={{width:'33%',transform: `translateX(calc(100% * ${((currentIndex + totalImages) % totalImages)}))`, position: 'absolute'}}></div>
       </div>
-      <span className="navigation-controls__number">04</span>
+      <span className="navigation-controls__number">
+        {String(totalImages).padStart(2, '0')}
+      </span>
     </div>
   </div>
 );
 
 // Team Component
-const Team = () => (
-  <>
-    <div className="team__container">
-      {teamMembers.map((member, index) => (
-        <TeamMember key={index} {...member} />
-      ))}
-    </div>
-    <div className="back__next__container">
-      <div className="current__item__container">
-        <div className="current__item__indicator"></div>
-      </div>
-      <div className="back__next__item">
-        <div className="back__next__item__arrow">
-          <FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: '1rem' }} />
+const Team = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const teamContainerRef = useRef(null);
+  const memberWidth = 230; // Width of each team member card
+  const gap = 20; // Gap between team member cards
+  const slideWidth = memberWidth + gap;
+  const totalMembers = teamMembers.length;
+
+  // Clone first and last members for infinite looping
+  const extendedMembers = [teamMembers[totalMembers - 1], ...teamMembers, ...teamMembers];
+
+  // Calculate the translation amount
+  const translateX = -((currentIndex + 1) * slideWidth);
+
+  useEffect(() => {
+    const teamContainer = teamContainerRef.current;
+  
+    const handleTransitionEnd = () => {
+      if (currentIndex === -1) {
+        // Move to the last real slide without transition
+        teamContainer.style.transition = 'none';
+        teamContainer.style.transform = `translateX(-${slideWidth * totalMembers}px)`;
+        setCurrentIndex(totalMembers - 1);
+      } else if (currentIndex === totalMembers) {
+        // Move to the first real slide without transition
+        teamContainer.style.transition = 'none';
+        teamContainer.style.transform = `translateX(-${slideWidth}px)`;
+        setCurrentIndex(0);
+      }
+    };
+  
+    // Apply the transform with transition
+    teamContainer.style.transition = 'transform 0.5s ease';
+    teamContainer.style.transform = `translateX(${translateX}px)`;
+  
+    // Add the transitionend event listener
+    teamContainer.addEventListener('transitionend', handleTransitionEnd);
+  
+    // Cleanup event listener on unmount or when dependencies change
+    return () => {
+      teamContainer.removeEventListener('transitionend', handleTransitionEnd);
+    };
+  }, [translateX, currentIndex, totalMembers, slideWidth]);
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex < totalMembers ? prevIndex + 1 : prevIndex
+    );
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex > -1 ? prevIndex - 1 : -1
+    );
+  };
+
+  return (
+    <>
+    <div className="team__carousel__container" style={{
+      width: '995px',
+      margin: 'auto',
+      overflow: 'hidden'
+    }}>
+      <div className="team__container" ref={teamContainerRef}>
+      <div
+          className="team__track"
+            style={{
+              display: 'flex'
+            }}
+          >
+        {extendedMembers.map((member, index) => (
+          <TeamMember key={index} {...member} memberWidth={`${memberWidth}px`} gap={`${gap}px`}/>
+        ))}
         </div>
-        <div className="back__next__item__arrow active">
-          <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: '1rem' }} />
+      </div>
+        <div className="back__next__container">
+          <div className="current__item__container">
+            <div className="current__item__indicator"></div>
+          </div>
+          <div className="back__next__item">
+            <div className={`back__next__item__arrow active`} onClick={handlePrev}>
+              <FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: '1rem' }} />
+            </div>
+            <div className={`back__next__item__arrow`} onClick={handleNext}>
+              <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: '1rem' }} />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 const teamMembers = [
-  {
-    name: 'Hajar BADAOUI',
-    specialty: 'Traumatologie',
-    image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp',
-  },
-  {
-    name: 'Hajar BADAOUI',
-    specialty: 'Traumatologie',
-    image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp',
-  },
-  {
-    name: 'Hajar BADAOUI',
-    specialty: 'Traumatologie',
-    image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp',
-  },
-  {
-    name: 'Hajar BADAOUI',
-    specialty: 'Traumatologie',
-    image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp',
-  },
-];
+    {
+      name: 'Hajar BADAOUI',
+      specialty: 'Traumatologie',
+      image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp',
+    },
+    {
+      name: 'Hajar BADAOUI',
+      specialty: 'Traumatologie',
+      image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp',
+    },
+    {
+      name: 'Hajar BADAOUI',
+      specialty: 'Traumatologie',
+      image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp',
+    },
+    {
+      name: 'Hajar BADAOUI',
+      specialty: 'Traumatologie',
+      image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp',
+    },
+  ];
 
 // TeamMember Component
-const TeamMember = ({ name, specialty, image }) => {
+const TeamMember = ({ name, specialty, image, memberWidth, gap }) => {
   function degreesToRadians(degrees) {
     return degrees * Math.PI / 180;
   }
@@ -437,7 +644,11 @@ const TeamMember = ({ name, specialty, image }) => {
   const angles = calculateAngles(-45);
 
   return (
-    <div className="team__item">
+    <div className="team__item"  style={{
+      flex: '0 0 auto',
+      width: memberWidth,
+      marginRight: gap,
+    }}>
       <div className="team__item__image">
         <img loading="lazy" src={image} alt={name} />
         <div
