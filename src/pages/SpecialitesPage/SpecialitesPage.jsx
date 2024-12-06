@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '@components/Header/Header'
 import ContactInfo from '@components/ContactInfo/ContactInfo'
 import Title from '@components/Title/Title'
@@ -10,6 +10,7 @@ import CardBoard from '@components/CardBoard/CardBoard'
 import './SpecialitesPage.css'
 
 const SpecialitesPage = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
   return (
     <>
         <div className='specialites__page'>
@@ -21,26 +22,31 @@ const SpecialitesPage = () => {
                         subtitle: {fontSize: '57.71px'}
                     }} />
                 </div>
-                <div style={{width:'902px',margin:'auto', marginTop: '4rem'}}>
-                    <div className="back__next__container" style={{width:'100%'}}>
+                <div style={{width:'100%',margin:'auto', marginTop: '4rem',paddingInline: '4rem'}}>
+                    <div className="back__next__container" style={{width:'100%',paddingInline: '0rem'}}>
                         <div className="current__item__container">
                             <div className="current__item__indicator"></div>
                         </div>
                         <div className="back__next__item">
-                            <div className="back__next__item__arrow">
+                            <div className="back__next__item__arrow" onClick={() => setCurrentIndex(prev => {
+                                if(prev === 0) return 4;
+                                return prev - 1
+                            })}>
                             <FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: "1rem" }} />
                             </div>
-                            <div className="back__next__item__arrow active">
+                            <div className="back__next__item__arrow active" onClick={() =>setCurrentIndex(prev => {
+                                return (prev + 1) % 5
+                            })}>
                             <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: "1rem" }} />
                             </div>
                         </div>
                     </div>
                     <div className="specialites__button__group">
-                        <button className="specialites__button__item active">Pédiatrie et néonatalogie</button>
-                        <button className="specialites__button__item">Gynécologie obstétricale</button>
-                        <button className="specialites__button__item">Pédiatrie et néonatalogie</button>
-                        <button className="specialites__button__item">ophtalmologie</button>
-                        <button className="specialites__button__item">Pédiatrie et néonatalogie</button>
+                        <button className={`specialites__button__item ${currentIndex === 0 ? 'active' : ''}`}>Pédiatrie et néonatalogie</button>
+                        <button className={`specialites__button__item ${currentIndex === 1 ? 'active' : ''}`}>Gynécologie obstétricale</button>
+                        <button className={`specialites__button__item ${currentIndex === 2 ? 'active' : ''}`}>Pédiatrie et néonatalogie</button>
+                        <button className={`specialites__button__item ${currentIndex === 3 ? 'active' : ''}`}>ophtalmologie</button>
+                        <button className={`specialites__button__item ${currentIndex === 4 ? 'active' : ''}`}>Pédiatrie et néonatalogie</button>
                     </div>
                     <hr style={{width:'100%'}} />
                     <div className="specialites__content">
@@ -65,9 +71,9 @@ const SpecialitesPage = () => {
                     </div>
                 </div>
                 <CardBoard />
-                <div className="specialite__video__container" style={{width:'925px'}}>
+                <div className="specialite__video__container" style={{height:'90vh',width:'auto'}}>
                     <img loading="lazy" src='/5b1f53d6487884b0e49356f74c483a3e.webp' alt="Home Video" />
-                    <div className="play-icon">
+                    <div className="play-icon" style={{zIndex: '1000'}}>
                         <FontAwesomeIcon icon={faPlay} />
                     </div>
                     <div className="border__top"></div>

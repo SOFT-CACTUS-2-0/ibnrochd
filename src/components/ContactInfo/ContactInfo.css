@@ -1,12 +1,12 @@
 .contact__info__container {
-    width: 1098.88px;
+    width: 100%;
     background-color: #4EADB4;
     height: 46.39px;
     margin: 10px auto;
     margin-bottom: 3rem;
     border-radius: 90.97px;
     display: flex;
-    justify-content: space-between; /* Center items horizontally */
+    justify-content: space-around; /* Center items horizontally */
     padding: 0 2rem; /* Use shorthand for horizontal padding */
     align-items: center; /* Center items vertically */
     color: white;

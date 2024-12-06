@@ -5,6 +5,7 @@
     align-items: stretch;
     padding: 1rem 0;
     z-index: 1000;
+    padding-inline: 2rem;
 }
 
 .navbar__logo__img{
@@ -39,17 +40,7 @@
 .navbar__navigation{
     flex: 3;
     align-items: flex-start;
-    margin-top: -1rem;
-}
-
-.navbar__contact{
-    flex: 2;
-}
-
-.navbar__logo{
-    flex: 2;
-    display: flex;
-    justify-content: center;
+    margin-top: -1.5rem;
 }
 
 .navbar__navigation__item.active, .navbar__contact__item.active{

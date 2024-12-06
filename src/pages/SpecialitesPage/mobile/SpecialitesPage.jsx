@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../SpecialitesPage.css';
 import './SpecialitesPage.css'
 import Navbar from '@components/Navbar/mobile/Navbar'
@@ -10,6 +10,7 @@ import Title from '@components/Title/Title';
 import CardBoard from '@components/CardBoard/mobile/CardBoard'
 
 const MobileSpecialitesPage = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
   return (
     <div className='specialites__page__mobile'>
         <Navbar />
@@ -24,25 +25,30 @@ const MobileSpecialitesPage = () => {
                     container: {marginBlock: '1rem',width:'100%'}
                 }}
             />
-            <div className="back__next__container" style={{width:'100%'}}>
+            <div className="back__next__container" style={{width:'100%',paddingInline:'0'}}>
                 <div className="current__item__container">
                     <div className="current__item__indicator"></div>
                 </div>
                 <div className="back__next__item">
-                    <div className="back__next__item__arrow">
+                    <div className="back__next__item__arrow" onClick={() => setCurrentIndex(prev => {
+                        if(prev === 0) return 4;
+                        return prev - 1
+                    })}>
                         <FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: '1rem' }} />
                     </div>
-                    <div className="back__next__item__arrow active">
+                    <div className="back__next__item__arrow active" onClick={() =>setCurrentIndex(prev => {
+                        return (prev + 1) % 5
+                    })}>
                         <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: '1rem' }} />
                     </div>
                 </div>
             </div>
             <div className="specialites__button__group" style={{width:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'1rem'}}>
-                <button className="specialites__button__item active" style={{width:'100%'}}>Pédiatrie et néonatalogie</button>
-                <button className="specialites__button__item" style={{width:'100%'}}>Gynécologie obstétricale</button>
-                <button className="specialites__button__item" style={{width:'100%'}}>Pédiatrie et néonatalogie</button>
-                <button className="specialites__button__item" style={{width:'100%'}}>ophtalmologie</button>
-                <button className="specialites__button__item" style={{width:'100%'}}>Pédiatrie et néonatalogie</button>
+                <button className={`specialites__button__item ${currentIndex === 0 ? 'active' : ''}`} style={{width:'100%'}}>Pédiatrie et néonatalogie</button>
+                <button className={`specialites__button__item ${currentIndex === 1 ? 'active' : ''}`} style={{width:'100%'}}>Gynécologie obstétricale</button>
+                <button className={`specialites__button__item ${currentIndex === 2 ? 'active' : ''}`} style={{width:'100%'}}>Pédiatrie et néonatalogie</button>
+                <button className={`specialites__button__item ${currentIndex === 3 ? 'active' : ''}`} style={{width:'100%'}}>ophtalmologie</button>
+                <button className={`specialites__button__item ${currentIndex === 4 ? 'active' : ''}`} style={{width:'100%'}}>Pédiatrie et néonatalogie</button>
             </div>
             <hr style={{width:'100%'}} />
             <div className="specialites__content" style={{width:'100%',height:'fit-content',gap:'2rem',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}>

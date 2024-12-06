@@ -40,9 +40,9 @@
 
 .title__container{
     position: relative;
-    width: 1000px;
+    width: 100%;
     margin: 3rem auto;
-    padding-left: 2rem;
+    padding-inline: 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -53,10 +53,16 @@
     width: 7px;
     height: 85%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) translateX(-2rem);
     border-radius: 15px;
     background-color: white;
     position: absolute;
-    left: 0;
     background-color: #4CB9C1;
+}
+
+@media screen and (max-width: 1164px) {
+    .title__container{
+        padding-inline: 0;
+        padding-left: 2rem;
+    }
 }

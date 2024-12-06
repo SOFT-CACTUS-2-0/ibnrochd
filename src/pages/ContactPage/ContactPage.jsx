@@ -139,7 +139,7 @@ const ContactPage = () => {
             ))}
           </div>
         </div>
-      <div className="back__to__top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+      <div className="back__to__top" style={{bottom:'0'}} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
         <FontAwesomeIcon icon={faArrowUp} size="lg" />
       </div>
       </Header>

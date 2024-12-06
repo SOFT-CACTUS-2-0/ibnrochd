@@ -252,7 +252,7 @@ const Specialties = () => {
           <h2>Spécialités</h2>
         </div>
         <hr className="specialties__divider" />
-        <p className="specialties__description">
+        <p className="specialties__description" style={{fontSize:'18px'}}>
           À la Clinique Ibn Rochd, notre engagement se traduit par une approche
           centrée sur la qualité des soins de gynécologie et de pédiatrie ainsi
           que sur le bien-être de nos patientes.
@@ -379,8 +379,8 @@ const ClinicWing = ({
   onNext,
   onPrev,
 }) => {
-  const imageWidth = 253; // Width of each image card
-  const gap = 20; // Gap between image cards
+  const imageWidth = 40; // Width of each image card
+  const gap = 1; // Gap between image cards
   const slideWidth = imageWidth + gap;
   const totalSlides = images.length;
 
@@ -399,19 +399,19 @@ const ClinicWing = ({
       if (currentIndex === -1) {
         // Move to the last real slide without transition
         track.style.transition = 'none';
-        track.style.transform = `translateX(-${slideWidth * totalSlides}px)`;
+        track.style.transform = `translateX(-${slideWidth * totalSlides}%)`;
         setCurrentIndex(totalSlides - 1);
       } else if (currentIndex === totalSlides) {
         // Move to the first real slide without transition
         track.style.transition = 'none';
-        track.style.transform = `translateX(-${slideWidth}px)`;
+        track.style.transform = `translateX(-${slideWidth}%)`;
         setCurrentIndex(0);
       }
     };
   
     // Apply the transform with transition
     track.style.transition = 'transform 0.5s ease';
-    track.style.transform = `translateX(${translateX}px)`;
+    track.style.transform = `translateX(${translateX}%)`;
   
     // Add the transitionend event listener
     track.addEventListener('transitionend', handleTransitionEnd);
@@ -454,9 +454,10 @@ const ClinicWing = ({
                 key={index}
                 className="image-carousel__card"
                 style={{
-                  flex: '0 0 auto',
-                  width: `${imageWidth}px`,
-                  marginRight: `${gap}px`,
+                  width: `${imageWidth}%`,
+                  aspectRatio: '253 / 359',
+                  height: 'auto',
+                  marginRight: `${gap}vw`,
                 }}
               >
                 <img
@@ -465,9 +466,20 @@ const ClinicWing = ({
                   alt={`Image ${index}`}
                   style={{ width: '100%' }}
                 />
-                <div className="play-icon">
-                  <FontAwesomeIcon icon={faPlay} />
-                </div>
+                {
+                  index - 1 === currentIndex && (
+                    <div className="play-icon">
+                      <FontAwesomeIcon icon={faPlay} />
+                    </div>
+                  )
+                }
+                {
+                  index + 2 === currentIndex && (
+                    <div className="play-icon">
+                      <FontAwesomeIcon icon={faPlay} />
+                    </div>
+                  )
+                }
               </div>
             ))}
           </div>
@@ -515,7 +527,7 @@ const Team = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const teamContainerRef = useRef(null);
   const memberWidth = 230; // Width of each team member card
-  const gap = 20; // Gap between team member cards
+  const gap = 25; // Gap between team member cards
   const slideWidth = memberWidth + gap;
   const totalMembers = teamMembers.length;
 
@@ -586,7 +598,7 @@ const Team = () => {
         ))}
         </div>
       </div>
-        <div className="back__next__container">
+        <div className="back__next__container" style={{paddingInline:'0rem'}}>
           <div className="current__item__container">
             <div className="current__item__indicator"></div>
           </div>
@@ -611,8 +623,8 @@ const teamMembers = [
       image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp',
     },
     {
-      name: 'Hajar BADAOUI',
-      specialty: 'Traumatologie',
+      name: 'Mohammed RSN',
+      specialty: 'Urologie',
       image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp',
     },
     {
@@ -621,8 +633,8 @@ const teamMembers = [
       image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp',
     },
     {
-      name: 'Hajar BADAOUI',
-      specialty: 'Traumatologie',
+      name: 'Mohammed RSN',
+      specialty: 'Urologie',
       image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp',
     },
   ];

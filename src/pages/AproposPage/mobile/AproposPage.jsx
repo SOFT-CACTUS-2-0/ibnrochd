@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../AproposPage.css';
 import './AproposPage.css'
 import Navbar from '@components/Navbar/mobile/Navbar'
@@ -114,11 +114,50 @@ const MobileAproposPage = () => {
                         container: {marginBlock: '1rem',width:'100%'}
                     }}
                 />
-                <div className="apropos__doctor__team" style={{width:'100%',height:'fit-content',gap:'2rem',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+                <DoctorTeam />
+            </div>
+            <Sponsors />
+        </div>
+        <Contact />
+    </div>
+  )
+}
+
+const DOCTORS = [
+    {
+      name: 'Mohammed RSN',
+      speciality: 'Urologie',
+      image: '/b9e277e296051862983be9a23fd769b7.webp',
+    },
+    {
+      name: 'Mohammed Likan',
+      speciality: 'Urologie',
+      image: '/b9e277e296051862983be9a23fd769b7.webp',
+    },
+  ]
+
+  const DoctorTeam = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const handleNext = () => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex < DOCTORS.length - 1 ? (prevIndex + 1) % DOCTORS.length : 0
+      );
+    };
+  
+    const handlePrev = () => {
+      setCurrentIndex((prevIndex) => {
+        if (prevIndex === -1){
+          return DOCTORS.length - 2
+        }
+        return prevIndex - 1
+      });
+    };
+    return (
+        <div className="apropos__doctor__team" style={{width:'100%',height:'fit-content',gap:'2rem',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
                   <div className="doctor__team__item doctor__team__content" style={{width:'100%'}}>
                     <div className="doctor__cardboard">
-                      <div className="doctor__name" style={{fontSize:'1.5rem'}}>Mohammed RSN</div>
-                      <div className="doctor__speciality" style={{fontSize:'1rem'}}>Urologie</div>
+                      <div className="doctor__name" style={{fontSize:'1.5rem'}}>{DOCTORS.at(currentIndex).name}</div>
+                      <div className="doctor__speciality" style={{fontSize:'1rem'}}>{DOCTORS.at(currentIndex).speciality}</div>
                     </div>
                     <div className="doctor__team__title" style={{fontSize:'1.5rem'}}>
                       Meet Our Expert  Doctor
@@ -130,28 +169,23 @@ const MobileAproposPage = () => {
                     </div>
                     <div className="doctor__team__cta" style={{justifyContent:'space-between'}}>
                       <div className="back__next__item">
-                          <div className="back__next__item__arrow active">
+                          <div className="back__next__item__arrow active" onClick={handlePrev}>
                           <FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: "1rem" }} />
                           </div>
-                          <div className="back__next__item__arrow">
+                          <div className="back__next__item__arrow" onClick={handleNext}>
                           <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: "1rem" }} />
                           </div>
                       </div>
                       <div className="doctor__team__separator"></div>
-                      <div className="doctor__team__contact__us">Contact us</div>
+                      <div className="doctor__team__contact__us" onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}>Contact us</div>
                     </div>
                   </div>
                   <div className="doctor__team__item doctor__team__image" style={{width:'100%'}}>
-                    <img style={{width:'100%',height:'100%',objectFit:'contain'}} loading="lazy" src='/b9e277e296051862983be9a23fd769b7.webp' alt="Image" />
+                    <img style={{width:'100%',height:'100%',objectFit:'contain'}} loading="lazy" src={DOCTORS.at(currentIndex).image} alt="Image" />
                     <div className="background" style={{width:'100%',height:'100%',right:'unset', transform:'translate(-50%,-50%)',left:'50%',bottom:'0',top:'50%'}}></div>
                   </div>
                 </div>
-            </div>
-            <Sponsors />
-        </div>
-        <Contact />
-    </div>
-  )
+    )
 }
 
 export default MobileAproposPage

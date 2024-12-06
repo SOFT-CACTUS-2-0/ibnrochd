@@ -6,6 +6,7 @@
     width: 100%;
     height: 650px;
     position: relative;
+    margin-top: 2rem;
 }
 
 .sponsors__container::before{
@@ -39,7 +40,7 @@
     transform: translate(-50%, -50%);
     height: 4px;
     background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0.45%, #4CB9C1 33.63%, #4CB9C1 66.82%, rgba(0, 0, 0, 0) 100%);
-    width: 1164px;
+    width: 100vw;
     z-index: -1;
 }
 

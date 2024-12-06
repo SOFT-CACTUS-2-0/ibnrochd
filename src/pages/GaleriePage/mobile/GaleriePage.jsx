@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '@components/Navbar/mobile/Navbar';
 import Title from '@components/Title/Title';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -42,6 +42,7 @@ const images = [
 const paginationItems = [1, 2, 3];
 
 const MobileGaleriePage = () => {
+const [currentIndex, setCurrentIndex] = useState(1);
   return (
     <div className='galerie__page__mobile'>
         <Navbar />
@@ -100,8 +101,9 @@ const MobileGaleriePage = () => {
                     <div
                         key={item}
                         className={`image__galerie__pagination__item ${
-                        item === 1 ? 'active' : ''
+                        item === currentIndex ? 'active' : ''
                         }`}
+                        onClick={() => setCurrentIndex(item)}
                     >
                         {`0${item}`}
                     </div>

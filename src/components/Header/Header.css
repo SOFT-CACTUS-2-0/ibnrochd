@@ -1,6 +1,6 @@
 .header__container {
-    width: 1102.01px;
-    height: 581px;
+    width: 100%;
+    aspect-ratio: 1098 / 575;
     margin: auto;
     display: flex;
     align-items: center;

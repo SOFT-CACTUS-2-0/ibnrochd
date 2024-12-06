@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ContactInfo from '@components/ContactInfo/ContactInfo';
 import Header from '@components/Header/Header';
 import Sponsors from '@components/Sponsors/Sponsors';
@@ -99,43 +99,77 @@ const AproposPage = () => {
                 <div className="title__title__container">
                   <Title title="NOS" subtitle="MEDECINS" />
                 </div>
-                <div className="apropos__doctor__team">
-                  <div className="doctor__team__item doctor__team__content">
-                    <div className="doctor__cardboard">
-                      <div className="doctor__name">Mohammed RSN</div>
-                      <div className="doctor__speciality">Urologie</div>
-                    </div>
-                    <div className="doctor__team__title">
-                      Meet Our Expert  Doctor
-                    </div>
-                    <div className="doctor__team__description">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                      eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      Lorem ipsum dolor sit amet, consectetur adipiscing.
-                    </div>
-                    <div className="doctor__team__cta">
-                      <div className="back__next__item">
-                          <div className="back__next__item__arrow active">
-                          <FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: "1rem" }} />
-                          </div>
-                          <div className="back__next__item__arrow">
-                          <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: "1rem" }} />
-                          </div>
-                      </div>
-                      <div className="doctor__team__separator"></div>
-                      <div className="doctor__team__contact__us">Contact us</div>
-                    </div>
-                  </div>
-                  <div className="doctor__team__item doctor__team__image">
-                    <img loading="lazy" src='/b9e277e296051862983be9a23fd769b7.webp' alt="Image" />
-                    <div className="background"></div>
-                  </div>
-                </div>
+                <DoctorTeam />
             </Header>
             <Sponsors />
         </div>
         <Contact />
     </>
+  )
+}
+
+const DOCTORS = [
+  {
+    name: 'Mohammed RSN',
+    speciality: 'Urologie',
+    image: '/b9e277e296051862983be9a23fd769b7.webp',
+  },
+  {
+    name: 'Mohammed Likan',
+    speciality: 'Urologie',
+    image: '/b9e277e296051862983be9a23fd769b7.webp',
+  },
+]
+
+const DoctorTeam = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex < DOCTORS.length - 1 ? (prevIndex + 1) % DOCTORS.length : 0
+    );
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => {
+      if (prevIndex === -1){
+        return DOCTORS.length - 2
+      }
+      return prevIndex - 1
+    });
+  };
+  return (
+    <div className="apropos__doctor__team">
+      <div className="doctor__team__item doctor__team__content">
+        <div className="doctor__cardboard">
+          <div className="doctor__name">{DOCTORS.at(currentIndex).name}</div>
+          <div className="doctor__speciality">{DOCTORS.at(currentIndex).speciality}</div>
+        </div>
+        <div className="doctor__team__title">
+          Meet Our Expert  Doctor
+        </div>
+        <div className="doctor__team__description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipiscing.
+        </div>
+        <div className="doctor__team__cta">
+          <div className="back__next__item">
+              <div className="back__next__item__arrow active" onClick={handlePrev}>
+              <FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: "1rem" }} />
+              </div>
+              <div className="back__next__item__arrow" onClick={handleNext}>
+              <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: "1rem" }} />
+              </div>
+          </div>
+          <div className="doctor__team__separator"></div>
+          <div className="doctor__team__contact__us" style={{cursor:'pointer'}} onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}>Contact us</div>
+        </div>
+      </div>
+      <div className="doctor__team__item doctor__team__image">
+        <img loading="lazy" src={DOCTORS.at(currentIndex).image} alt="Doctor Image" />
+        <div className="background"></div>
+      </div>
+    </div>
   )
 }
 

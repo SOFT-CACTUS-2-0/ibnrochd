@@ -5,16 +5,17 @@ body {
 }
   
 .home__page {
-    width: 1164px;
+    width: 100%;
     margin: auto;
     padding: 1rem;
+    padding-inline: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .home__page .header__container {
-    background: linear-gradient(180deg, transparent 9.91%, transparent 24.67%, rgba(76, 185, 193) 82.33%, #4CB9C1 100.9%), url(/header.svg);
+    background: linear-gradient(180deg, transparent 9.91%, transparent 24.67%, rgba(76, 185, 193) 82.33%, #4CB9C1 100.9%);
     /* background: linear-gradient(to bottom, transparent 0%, #4CB9C1), url(/header.svg); */
     background-repeat: no-repeat;
     background-size: contain;
@@ -23,7 +24,8 @@ body {
 /* Hero Section */
 .hero__container {
     flex: 1;
-    width: 900px;
+    width: 100%;
+    padding-left: 8vw;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -95,7 +97,7 @@ body {
   
 /* Quote Section */
 .hero__quote {
-    width: 1055px;
+    width: calc(100% - 45px);
     height: 70px;
     margin: 20px 0;
     padding: 7.5px 0;
@@ -127,14 +129,14 @@ body {
     position: absolute;
     right: -7rem;
     bottom: 0;
-    width: 804px;
+    width: 70%;
     height: auto;
     object-fit: contain;
 }
   
 /* Form Section */
 .render__vous__form {
-    width: 1098px;
+    width: 100%;
     margin: 2rem auto;
     padding: 0 2rem;
 }
@@ -190,11 +192,12 @@ body {
 /* Video Container */
 .home__video__container {
     position: relative;
-    width: 994.72px;
-    height: 400.69px;
+    width: calc(100% - 4rem);
+    aspect-ratio: 994.72 / 400.69;
     margin: auto;
     border-radius: 33.89px;
     overflow: hidden;
+    margin-inline: 2rem;
 }
   
 .home__video__container::before {
@@ -217,9 +220,9 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 1164px;
+    width: 100%;
     object-fit: cover;
-    transform: translate(-50%, -55%);
+    transform: translate(-50%, -50%);
 }
   
 /* Features Section */
@@ -270,10 +273,10 @@ body {
   
 /* Specialties Section */
 .home__specialites {
-    width: 994px;
+    width: 100%;
     height: 205px;
     margin: 20px auto;
-    padding: 2rem;
+    padding: 4rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -314,15 +317,15 @@ body {
   
 /* Button Group */
 .button__group {
-    width: 994px;
+    width: 100%;
     margin: 2rem auto;
+    padding-inline: 4rem;
     display: flex;
 }
   
 .button__item {
     flex: 1;
     height: 104px;
-    margin: 0 0.5rem;
     border-radius: 8px;
     color: rgba(139, 139, 139, 0.8);
     font-size: 17.2px;
@@ -461,10 +464,10 @@ body {
 /* Stages Section */
 .stages__container {
     width: 100%;
-    padding-left: 3rem;
     display: flex;
     overflow-x: hidden;
-    margin-left: 1rem;
+    margin: auto;
+    margin-inline: 2rem;
 }
   
 .header-section {
@@ -526,8 +529,7 @@ body {
 }
   
 .image-carousel__card {
-    width: 254px;
-    height: 359px;
+    flex-shrink: 0;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: -8px 7px 8px var(--shadow-color);
@@ -542,7 +544,7 @@ body {
   
 /* Navigation Controls */
 .navigation-controls {
-    width: 650px;
+    width: 100%;
     padding: 2rem 0 2rem;
     padding-right: 4rem;
     display: flex;

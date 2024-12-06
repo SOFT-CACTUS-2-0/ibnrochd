@@ -45,7 +45,8 @@ body{
 }
 
 .back__next__container{
-    width: 994px;
+    width: 100%;
+    padding-inline: 4rem;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -65,6 +66,7 @@ body{
     align-items: center;
     color: #4CB9C1;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .back__next__item__arrow.active{

@@ -1,12 +1,12 @@
 /* Galerie Page Styles */
 .galerie__page {
-    max-width: 1164px;
     width: 100%;
-    margin: 0 auto;
-    padding: var(--spacing-sm);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 1rem;
+    padding-inline: 2rem;
+    margin: auto;
 }
 
 .galerie__page .header__container{
@@ -14,17 +14,18 @@
 }
   
 .video__galerie {
-    max-width: 982px;
+    max-width: 100%;
     width: 100%;
     margin: 0 auto;
+    padding-inline: 2rem;
     display: flex;
     gap: var(--spacing-sm);
+    aspect-ratio: 990 / 470;
 }
   
 .video__item {
     flex: 1;
     position: relative;
-    height: 470px;
 }
   
 .video__item.active {
@@ -57,8 +58,9 @@
 }
   
 .image__galerie__grid {
-    max-width: 982px;
+    max-width: 100%;
     width: 100%;
+    padding-inline: 2rem;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(8, 1fr);

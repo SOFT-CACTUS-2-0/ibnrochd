@@ -97,7 +97,7 @@ form {
     display: flex;
     flex-direction: column;
     gap: 16px; /* Adds space between form fields */
-    padding: 16px;
+    padding-block: 16px;
     width: 100%;
   }
   
