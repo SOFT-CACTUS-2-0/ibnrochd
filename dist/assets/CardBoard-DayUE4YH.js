@@ -1,0 +1,1 @@
+import{j as r}from"./index-B31PVcCW.js";const e=()=>r.jsx("div",{className:"card__board__mobile",children:r.jsx("div",{className:"card__board__mobile__title",children:"Your Health, Our Personal Care"})});export{e as C};
