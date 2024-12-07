@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { LanguageProvider } from './contexts/LanguageContext';
 import './App.css';
-
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'))
 const ContactPage = lazy(() => import('./pages/ContactPage/ContactPage'))
@@ -34,15 +34,17 @@ function App() {
   }, []);
   return (
     <Router>
-      <Suspense fallback={<div></div>}>
-        <Routes>
-          <Route path="/" element={isMobile ? <MobileHomePage /> : <HomePage />} />
-          <Route path="/contact" element={isMobile ? <MobileContactPage /> : <ContactPage />} />
-          <Route path="/galerie" element={isMobile ? <MobileGaleriePage /> : <GaleriePage />} />
-          <Route path="/specialites" element={isMobile ? <MobileSpecialitesPage /> : <SpecialitesPage />} />
-          <Route path="/apropos" element={isMobile ? <MobileAproposPage /> : <AproposPage />} />
-        </Routes>
-      </Suspense>
+      <LanguageProvider>
+        <Suspense fallback={<div></div>}>
+          <Routes>
+            <Route path="/" element={isMobile ? <MobileHomePage /> : <HomePage />} />
+            <Route path="/contact" element={isMobile ? <MobileContactPage /> : <ContactPage />} />
+            <Route path="/galerie" element={isMobile ? <MobileGaleriePage /> : <GaleriePage />} />
+            <Route path="/specialites" element={isMobile ? <MobileSpecialitesPage /> : <SpecialitesPage />} />
+            <Route path="/apropos" element={isMobile ? <MobileAproposPage /> : <AproposPage />} />
+          </Routes>
+        </Suspense>
+      </LanguageProvider>
     </Router>
   )
 }

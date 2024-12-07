@@ -1,14 +1,30 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faLanguage } from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useLanguage } from '../../../contexts/LanguageContext';
 import './Navbar.css';
+
+const languageOptions = [
+  { code: 'FR', name: 'Français', flagCode: 'FR' },
+  { code: 'MA', name: 'Arabe', flagCode: 'MA' },
+  { code: 'GB', name: 'Anglais', flagCode: 'GB' },
+];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
+  const { currentLanguage, changeLanguage } = useLanguage();
 
   const isActive = (path) => location.pathname === path;
+
+  const handleLanguageSelect = (language) => {
+    changeLanguage(language.code);
+    setLanguageMenuOpen(false);
+  };
 
   return (
     <>
@@ -26,19 +42,117 @@ const Navbar = () => {
           end
           style={{ all: 'unset', cursor: 'pointer' }}
         >
-            <img
-              src={'/logo.webp'}
-              style={{ width: '40px', aspectRatio: '1' }}
-              alt="logo"
-            />
+          <img
+            src={'/logo.webp'}
+            style={{ width: '40px', aspectRatio: '1' }}
+            alt="logo"
+          />
         </NavLink>
-        <FontAwesomeIcon
-          icon={faBars}
-          style={{ color: 'black', fontSize: '1.5rem', cursor: 'pointer' }}
-          onClick={() => setOpen(true)}
-        />
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <FontAwesomeIcon
+            icon={faLanguage}
+            style={{ 
+              color: 'black', 
+              fontSize: '1.5rem', 
+              cursor: 'pointer',
+              marginRight: '1rem'
+            }}
+            onClick={() => setLanguageMenuOpen(true)}
+          />
+          <FontAwesomeIcon
+            icon={faBars}
+            style={{ color: 'black', fontSize: '1.5rem', cursor: 'pointer' }}
+            onClick={() => setOpen(true)}
+          />
+        </div>
       </nav>
 
+      {/* Language Menu */}
+      {languageMenuOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 1000,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          onClick={() => setLanguageMenuOpen(false)}
+        >
+          <div
+            style={{
+              backgroundColor: 'white',
+              borderRadius: '1rem',
+              padding: '2rem',
+              width: '80%',
+              maxWidth: '400px',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'center',
+              marginBottom: '1rem'
+            }}>
+              <h2 style={{ margin: 0 }}>{t('nav.language')}</h2>
+              <FontAwesomeIcon
+                icon={faTimes}
+                style={{ 
+                  fontSize: '1.5rem', 
+                  cursor: 'pointer',
+                  color: '#4CB9C1'
+                }}
+                onClick={() => setLanguageMenuOpen(false)}
+              />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {languageOptions.map((language) => (
+                <div
+                  key={language.code}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    padding: '1rem',
+                    cursor: 'pointer',
+                    backgroundColor: language.code === currentLanguage ? '#f3f4f6' : 'white',
+                    borderRadius: '0.5rem',
+                  }}
+                  onClick={() => handleLanguageSelect(language)}
+                >
+                  <img
+                    src={`https://flagsapi.com/${language.flagCode}/shiny/64.png`}
+                    alt={`${language.name} flag`}
+                    style={{
+                      width: '24px',
+                      height: '24px',
+                      borderRadius: '50%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                  <span style={{ flex: 1 }}>{language.name}</span>
+                  {language.code === currentLanguage && (
+                    <div style={{ 
+                      width: '8px', 
+                      height: '8px', 
+                      borderRadius: '50%', 
+                      backgroundColor: '#4CB9C1' 
+                    }} />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Navigation Menu */}
       {open && (
         <ul
           className="navbar-menu__phone"
@@ -78,7 +192,7 @@ const Navbar = () => {
               end
               style={{ all: 'unset', cursor: 'pointer' }}
             >
-              Accueil
+              {t('nav.home')}
             </NavLink>
           </li>
           <li className={`navbar__menu-item__phone ${isActive('/apropos') ? 'active' : ''}`}>
@@ -87,7 +201,7 @@ const Navbar = () => {
               end
               style={{ all: 'unset', cursor: 'pointer' }}
             >
-              À-propos
+              {t('nav.about')}
             </NavLink>
           </li>
           <li className={`navbar__menu-item__phone ${isActive('/specialites') ? 'active' : ''}`}>
@@ -96,7 +210,7 @@ const Navbar = () => {
               end
               style={{ all: 'unset', cursor: 'pointer' }}
             >
-              Spécialités
+              {t('nav.specialties')}
             </NavLink>
           </li>
           <li className={`navbar__menu-item__phone ${isActive('/galerie') ? 'active' : ''}`}>
@@ -105,7 +219,7 @@ const Navbar = () => {
               end
               style={{ all: 'unset', cursor: 'pointer' }}
             >
-              Galerie
+              {t('nav.gallery')}
             </NavLink>
           </li>
           <li className={`navbar__menu-item__phone ${isActive('/contact') ? 'active' : ''}`}>
@@ -114,7 +228,7 @@ const Navbar = () => {
               end
               style={{ all: 'unset', cursor: 'pointer' }}
             >
-              Contact
+              {t('nav.contact')}
             </NavLink>
           </li>
         </ul>

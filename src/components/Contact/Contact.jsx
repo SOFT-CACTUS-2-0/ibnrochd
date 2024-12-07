@@ -2,18 +2,21 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faFacebookF, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
-import './Contact.css'
+import './Contact.css';
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
+  const { t } = useTranslation();
+
   return (
     <div className='contact__container' style={{position:'relative'}}>
       <form className="contact__form">
-        <h1 className="contact__form__title">Contactez-nous</h1>
+        <h1 className="contact__form__title">{t('contact.contactUs')}</h1>
         <hr />
         <div className="form__group">
           <input 
             type="text"
-            placeholder="Nom et prénom"
+            placeholder={t('contact.fullName')}
             className="form__input"
             required
           />
@@ -22,7 +25,7 @@ const Contact = () => {
         <div className="form__group">
           <input 
             type="email"
-            placeholder="Email"
+            placeholder={t('contact.emailPlaceholder')}
             className="form__input"
             required
           />
@@ -31,7 +34,7 @@ const Contact = () => {
         <div className="form__group">
           <input 
             type="tel"
-            placeholder="Téléphone"
+            placeholder={t('contact.phone')}
             className="form__input"
             required
           />
@@ -40,40 +43,40 @@ const Contact = () => {
         <div className="form__group">
           <input
             type="text"
-            placeholder="Message"
+            placeholder={t('contact.message')}
             className="form__input"
             required
           />
         </div>
 
         <button type="submit" className="form__button">
-          Envoyer
+          {t('contact.send')}
         </button>
       </form>
       <div className="contact__separator"></div>
       <div className="contact__info__footer">
         <h1 className="footer__title">
-            Rester en contact
+            {t('contact.stayInTouch')}
         </h1>
         <div className="footer__description">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.
+            {t('contact.description')}
         </div>
         <hr />
         <div className="footer__contact">
-            <h2 style={{paddingBlock:'1rem'}}>Contact Info :</h2>
+            <h2 style={{paddingBlock:'1rem'}}>{t('contact.contactInfo')}</h2>
             {/* icon item*/}
             <div className="footer__contact__li">
                 <div className="footer__icon__container"><img loading="lazy" src="/contact/support.svg" alt="Image" /></div>
-                <p>H24/7 Service</p>
+                <p>{t('contact.service')}</p>
             </div>
             <div className="footer__contact__li">
                 <div className="footer__icon__container"><img loading="lazy" src="/contact/openEnvelope.svg" alt="Image" /></div>
-                <p>contact@cliniqueibnrochdberkane.com</p>
+                <p>{t('contact.email')}</p>
             </div>
             <div className="footer__contact__li">
                 <div className="footer__icon__container"><img loading="lazy" src="/contact/phone.svg" alt="Image" /></div>
-                <p>+212 - 536  614  446<br />
-                +212 - 616  569  193</p>
+                <p>{t('contact.phone1')}<br />
+                {t('contact.phone2')}</p>
             </div>
         </div>
         <div className="social__links" style={{ display: "flex", gap: "10px", marginBlock: "1rem" }}>
@@ -89,7 +92,7 @@ const Contact = () => {
         </div>
       </div>
       <div className="copyright" style={{ position: "absolute", bottom: "1rem", width: "100%", textAlign: "center", color: "white", fontSize: "15px" }}>
-        Tous les droits sont réservés pour SOFT CACTUS 2024
+        {t('contact.copyright')}
       </div>
     </div>
   )

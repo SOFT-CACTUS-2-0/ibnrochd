@@ -8,27 +8,34 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Sponsors from '@components/Sponsors/Sponsors';
 import Contact from '@components/Contact/mobile/Contact';
 import { faArrowLeft, faArrowRight, faCalendarAlt, faChevronRight, faEnvelopeOpen, faPhone, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { useTranslation } from 'react-i18next';
 
 const MobileHomePage = () => {
+  const { t } = useTranslation();
+
   return (
     <div className='home__page__mobile'>
         <Navbar />
         <div className="home__mobile__hero">
-            <h1 className="hero__mobile__title">
-                YOUR HEALTH,<br />
-                Our Personal Care.
-            </h1>
-            <p className="hero__mobile__description">
-                Bienvenue dans un lieu où "votre santé, Nos soins personnels" est notre engagement.
-            </p>
-            <div className="hero__mobile__cta">
-                <button className="hero__cta__mobile__button">MORE ABOUT US</button>
-                <div className="hero__arrow__mobile">
-                    <FontAwesomeIcon style={{ fontSize: '1.5rem' }} icon={faArrowRight} />
+            <div className="hero__mobile__content">
+                <h1 className="hero__mobile__title">
+                    {t('home.heroTitle')}<br />
+                    {t('home.heroSubtitle')}
+                </h1>
+                <p className="hero__mobile__description">
+                    {t('home.heroDescription')}
+                </p>
+                <div className="hero__mobile__cta">
+                    <button className="hero__cta__mobile__button">
+                        {t('home.moreAboutUs')}
+                    </button>
+                    <div className="hero__arrow__mobile">
+                        <FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faArrowRight} />
+                    </div>
                 </div>
             </div>
             <div className="hero__mobile__image">
-                <img src="/13f00b97db4641b3ed6c7b387b771752.webp" alt="Home" />
+                <img src="/13f00b97db4641b3ed6c7b387b771752.webp" alt={t('home.heroImageAlt')} />
             </div>
         </div>
         <div className="booking__form__mobile">

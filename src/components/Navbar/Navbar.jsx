@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { Link, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { useLanguage } from '../../contexts/LanguageContext'
 import './Navbar.css'
 
 const languageOptions = [
@@ -13,8 +15,10 @@ const languageOptions = [
 const Navbar = () => {
   const [active, setActive] = useState('Acceuil')
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false)
-  const [selectedLanguage, setSelectedLanguage] = useState(languageOptions[0])
+  const { currentLanguage, changeLanguage } = useLanguage()
+  const selectedLanguage = languageOptions.find(lang => lang.code === currentLanguage)
   const pathname = useLocation().pathname
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (pathname === '/') {
@@ -38,10 +42,8 @@ const Navbar = () => {
   }
 
   const handleLanguageSelect = (language) => {
-    setSelectedLanguage(language)
+    changeLanguage(language.code)
     setLanguageDropdownOpen(false)
-    // Here you would typically also handle language change logic
-    // Such as updating app language, changing translations, etc.
   }
 
   return (
@@ -52,31 +54,32 @@ const Navbar = () => {
       <ul className="navbar__navigation">
         <Link to="/" style={{ textDecoration: 'none' }}>
           <li className={`navbar__navigation__item ${active === 'Acceuil' ? 'active' : ''}`}>
-            Acceuil
+            {t('nav.home')}
           </li>
         </Link>
         <Link to="/apropos" style={{ textDecoration: 'none' }}>
           <li className={`navbar__navigation__item ${active === 'Apropos' ? 'active' : ''}`}>
-            À propos
+            {t('nav.about')}
           </li>
         </Link>
         <Link to="/specialites" style={{ textDecoration: 'none' }}>
           <li className={`navbar__navigation__item ${active === 'Spécialités' ? 'active' : ''}`}>
-            Spécialités
+            {t('nav.specialties')}
           </li>
         </Link>
         <Link to="/galerie" style={{ textDecoration: 'none' }}>
           <li className={`navbar__navigation__item ${active === 'Galerie' ? 'active' : ''}`}>
-            Galerie
+            {t('nav.gallery')}
           </li>
         </Link>
       </ul>
       <ul className="navbar__contact">
         <li 
-          className="navbar__contact__item" style={{position: 'relative'}}
+          className="navbar__contact__item" 
+          style={{position: 'relative'}}
           onClick={toggleLanguageDropdown}
         >
-          Langue
+          {t('nav.language')}
           <div className="navbar__contact__item__arrow">
             <FontAwesomeIcon icon={languageDropdownOpen ? faChevronUp : faChevronDown} />
           </div>
@@ -112,6 +115,7 @@ const Navbar = () => {
                       alignItems: 'center',
                       gap: '0.5rem',
                       paddingLeft: '1rem',
+                      backgroundColor: language.code === currentLanguage ? '#f3f4f6' : 'white'
                     }}
                     onClick={() => handleLanguageSelect(language)}
                   >
@@ -134,7 +138,7 @@ const Navbar = () => {
         </li>
         <Link to="/contact" style={{ textDecoration: 'none' }}>
           <li className={`navbar__contact__item ${active === 'Contact' ? 'active' : ''}`}>
-            Contact
+            {t('nav.contact')}
           </li>
         </Link>
       </ul>
