@@ -25,6 +25,14 @@
     gap: 1rem;
 }
 
+.title__title__container{
+    padding-inline: 2rem;
+}
+
+.apropos__doctor__team{
+    padding-inline: 2rem;
+}
+
 .section__container::after{
     content: unset;
 }

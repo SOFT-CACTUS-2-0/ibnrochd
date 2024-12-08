@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import ContactInfo from '@components/ContactInfo/ContactInfo';
@@ -24,30 +24,42 @@ const images = [
 const paginationItems = [1, 2, 3];
 
 const GaleriePage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(1);
   const [videos, setVideos] = useState([
-      {
-        src: '/dac531343433d67ad1859b5e8b22ec7a.webp',
-        title: t('gallery.videos.title'),
-        active: true,
-      },
-      {
-        src: '/aa2af345e93eeea0eeb7efb594b2b6a6.webp',
-        title: t('gallery.videos.defaultTitle'),
-        active: false,
-      },
-      {
-        src: '/9eb95320ae2883dfea85158872ab13cd.webp',
-        title: t('gallery.videos.defaultTitle'),
-        active: false,
-      },
-      {
-        src: '/38b8fac457189fc27f3de71b38e89e02.webp',
-        title: t('gallery.videos.defaultTitle'),
-        active: false,
-      },
+    {
+      src: '/dac531343433d67ad1859b5e8b22ec7a.webp',
+      title: t('gallery.videos.title'),
+      active: true,
+    },
+    {
+      src: '/aa2af345e93eeea0eeb7efb594b2b6a6.webp',
+      title: t('gallery.videos.defaultTitle'),
+      active: false,
+    },
+    {
+      src: '/9eb95320ae2883dfea85158872ab13cd.webp',
+      title: t('gallery.videos.defaultTitle'),
+      active: false,
+    },
+    {
+      src: '/38b8fac457189fc27f3de71b38e89e02.webp',
+      title: t('gallery.videos.defaultTitle'),
+      active: false,
+    },
   ]);
+
+  useEffect(() => {
+    const updateVideoTitles = () => {
+      setVideos((prevVideos) => {
+        return prevVideos.map((video) => ({
+          ...video,
+          title: t(video.src === '/dac531343433d67ad1859b5e8b22ec7a.webp' ? 'gallery.videos.title' : 'gallery.videos.defaultTitle'),
+        }));
+      });
+    };
+    updateVideoTitles();
+  }, [i18n.language]);
 
   return (
     <>
@@ -66,16 +78,16 @@ const GaleriePage = () => {
                 className={`video__item ${video.active ? 'active' : ''}`}
                 onClick={() => {
                   setVideos((prevVideos) => {
-                    const newVideos = prevVideos.map(video => ({
+                    const newVideos = prevVideos.map((video) => ({
                       ...video,
-                      active: false
+                      active: false,
                     }));
                     newVideos[index].active = !newVideos[index].active;
                     return newVideos;
                   });
                 }}
               >
-                <img loading="lazy" src={video.src} alt={`${t('gallery.videos.videoAlt')} ${index + 1}`} />
+                <img loading="lazy" src={video.src} alt={`${t('gallery.videos.alt')} ${index + 1}`} />
                 <div className="video__title">{video.title}</div>
                 {video.active && (
                   <div className="play-icon">
@@ -97,11 +109,11 @@ const GaleriePage = () => {
                 style={{ '--i': `item${index + 1}` }}
                 className="image__galerie__item"
               >
-                <img loading="lazy" src={src} alt={`${t('gallery.pictures.imageAlt')} ${index + 1}`} />
+                <img loading="lazy" src={src} alt={`${t('gallery.images.alt')} ${index + 1}`} />
               </div>
             ))}
           </div>
-            <div className="image__galerie__pagination">
+          <div className="image__galerie__pagination">
             {paginationItems.map((item) => (
               <div
                 key={item}

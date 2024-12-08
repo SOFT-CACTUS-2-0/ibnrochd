@@ -6,10 +6,11 @@ import './Contact.css';
 import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'MA';
 
   return (
-    <div className='contact__container' style={{position:'relative',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'1rem',height:'1000px',paddingInline:'2rem',borderRadius: 0}}>
+    <div className='contact__container' style={{position:'relative',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'1rem',height:'1000px',paddingInline:'2rem',borderRadius: 0, direction: isRTL ? 'rtl' : 'ltr'}}>
       <div className="contact__info__footer" style={{width:'100%',height:'fit-content',gap:'1rem'}}>
         <h1 className="footer__title">
             {t('contact.stayInTouch')}
@@ -31,7 +32,7 @@ const Contact = () => {
             </div>
             <div className="footer__contact__li">
                 <div className="footer__icon__container"><img loading="lazy" src="/contact/phone.svg" alt="Image" /></div>
-                <p>{t('contact.phone1')}<br />
+                <p style={{direction:'ltr'}}>{t('contact.phone1')}<br />
                 {t('contact.phone2')}</p>
             </div>
         </div>
@@ -73,6 +74,7 @@ const Contact = () => {
             type="tel"
             placeholder={t('contact.phone')}
             className="form__input"
+            style={{direction:isRTL ? 'rtl' : 'ltr'}}
             required
           />
         </div>

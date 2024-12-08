@@ -7,17 +7,21 @@ import { faArrowLeft, faArrowRight, faPlay } from '@fortawesome/free-solid-svg-i
 import Sponsors from '@components/Sponsors/Sponsors'
 import Contact from '@components/Contact/Contact'
 import CardBoard from '@components/CardBoard/CardBoard'
+import { useTranslation } from 'react-i18next';
 import './SpecialitesPage.css'
 
 const SpecialitesPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'MA';
+
   return (
     <>
-        <div className='specialites__page'>
+        <div className='specialites__page' data-direction={isRTL ? 'rtl' : 'ltr'}>
             <ContactInfo />
             <Header>
                 <div className="title__title__container">
-                    <Title title="NOS" subtitle="Spécialités" style={{
+                    <Title title={t('specialites.title')} subtitle={t('specialites.subtitle')} style={{
                         title: {fontSize: '57.71px'},
                         subtitle: {fontSize: '57.71px'}
                     }} />
@@ -42,11 +46,11 @@ const SpecialitesPage = () => {
                         </div>
                     </div>
                     <div className="specialites__button__group">
-                        <button className={`specialites__button__item ${currentIndex === 0 ? 'active' : ''}`}>Pédiatrie et néonatalogie</button>
-                        <button className={`specialites__button__item ${currentIndex === 1 ? 'active' : ''}`}>Gynécologie obstétricale</button>
-                        <button className={`specialites__button__item ${currentIndex === 2 ? 'active' : ''}`}>Pédiatrie et néonatalogie</button>
-                        <button className={`specialites__button__item ${currentIndex === 3 ? 'active' : ''}`}>ophtalmologie</button>
-                        <button className={`specialites__button__item ${currentIndex === 4 ? 'active' : ''}`}>Pédiatrie et néonatalogie</button>
+                        <button className={`specialites__button__item ${currentIndex === 0 ? 'active' : ''}`}>{t('specialites.specialties.pediatrics')}</button>
+                        <button className={`specialites__button__item ${currentIndex === 1 ? 'active' : ''}`}>{t('specialites.specialties.gynecology')}</button>
+                        <button className={`specialites__button__item ${currentIndex === 2 ? 'active' : ''}`}>{t('specialites.specialties.pediatrics')}</button>
+                        <button className={`specialites__button__item ${currentIndex === 3 ? 'active' : ''}`}>{t('specialites.specialties.ophthalmology')}</button>
+                        <button className={`specialites__button__item ${currentIndex === 4 ? 'active' : ''}`}>{t('specialites.specialties.pediatrics')}</button>
                     </div>
                     <hr style={{width:'100%'}} />
                     <div className="specialites__content">
@@ -58,13 +62,13 @@ const SpecialitesPage = () => {
                             </div>
                         </div>
                         <div className="specialites__description">
-                            <div className="specialites__description__title">
-                                <h2>LOREM IPSUM DOLOR</h2>
+                            <div className="specialites__description__title" data-direction={isRTL ? 'rtl' : 'ltr'} style={{direction: isRTL ? 'rtl' : 'ltr', textAlign: isRTL ? 'right' : 'left'}}>
+                                <h2>{t('specialites.description.title')}</h2>
                                 <p className='specialites__description__first'>
-                                    Notre objectif est de fournir des soins de qualité de manière courtoise, respectueuse et compatissante. Nous espérons que vous nous permettrez.
+                                    {t('specialites.description.firstParagraph')}
                                 </p>
                                 <p className='specialites__description__second'>
-                                    prendre soin de vous et de nous efforcer d'être le premier et le meilleur choix en matière de soins de santé.
+                                    {t('specialites.description.secondParagraph')}
                                 </p>
                             </div>
                         </div>
@@ -80,32 +84,32 @@ const SpecialitesPage = () => {
                     <div className="border__bottom"></div>
                 </div>
                 <div className="video__description">
-                    <h2>A dedicated doctor with the core mission to help</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quam proin nibh cursus at sed sagittis amet, sed. Tristique id nibh lobortis nunc elementum. Tellus quam mauris aenean turpis vulputate sodales nullam lobortis. Vulputate tortor tincidun.</p>
+                    <h2>{t('specialites.video.title')}</h2>
+                    <p>{t('specialites.video.description')}</p>
                 </div>
                 <div className="highlights">
                     <div className="highlights__item">
                         <div className="highlights__item__icon">
                             <img loading="lazy" src="/highlight/clock.svg" alt="Image" />
                         </div>
-                        <div className="highlights__item__title">
-                            +15 years of experience
+                        <div className="highlights__item__title" style={{direction: isRTL ? 'rtl' : 'ltr', textAlign: isRTL ? 'right' : 'left'}}>
+                            {t('specialites.highlights.experience')}
                         </div>
                     </div>
                     <div className="highlights__item">
                         <div className="highlights__item__icon">
                             <img loading="lazy" src="/highlight/check.svg" alt="Image" />
                         </div>
-                        <div className="highlights__item__title">
-                            Urgent 24 hour service
+                        <div className="highlights__item__title" style={{direction: isRTL ? 'rtl' : 'ltr', textAlign: isRTL ? 'right' : 'left'}}>
+                            {t('specialites.highlights.service')}
                         </div>
                     </div>
                     <div className="highlights__item">
                         <div className="highlights__item__icon">
                             <img loading="lazy" src="/highlight/care.svg" alt="Image" />
                         </div>
-                        <div className="highlights__item__title">
-                            High quality care
+                        <div className="highlights__item__title" style={{direction: isRTL ? 'rtl' : 'ltr', textAlign: isRTL ? 'right' : 'left'}}>
+                            {t('specialites.highlights.care')}
                         </div>
                     </div>
                 </div>

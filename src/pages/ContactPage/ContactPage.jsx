@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import ContactInfo from '@components/ContactInfo/ContactInfo';
 import Header from '@components/Header/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -25,70 +26,68 @@ const SOCIAL_LINKS = [
   },
 ];
 
-const CONTACT_INFO = [
-  {
-    iconSrc: '/contact/phoneOutline.svg',
-    label: 'TÉLÉPHONE',
-    description: '+212 - 616  569  193',
-  },
-  {
-    iconSrc: '/contact/fax.svg',
-    label: 'FAX',
-    description: '+212 - 536  614  446',
-  },
-  {
-    iconSrc: null,
-    label: 'E-MAIL',
-    description: 'contact@cliniqueibnrochdberkane.com',
-    customIcon: <div className="blueish" />,
-  },
-];
-
 const ContactPage = () => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'MA';
+  
+  const CONTACT_INFO = [
+    {
+      iconSrc: '/contact/phoneOutline.svg',
+      label: t('contact.mobile.info.phone.label'),
+      description: t('contact.mobile.info.phone.value'),
+    },
+    {
+      iconSrc: '/contact/fax.svg',
+      label: t('contact.mobile.info.fax.label'),
+      description: t('contact.mobile.info.fax.value'),
+    },
+    {
+      iconSrc: null,
+      label: t('contact.mobile.info.email.label'),
+      description: t('contact.mobile.info.email.value'),
+      customIcon: <div className="blueish" />,
+    },
+  ];
+
   return (
     <div className="contact__page">
       <ContactInfo />
       <Header>
-        <div className="contact__us__container">
-          <div className="contact__us__subcontainer">
+        <div className="contact__us__container" data-direction={isRTL ? 'rtl' : 'ltr'}>
+          <div className="contact__us__subcontainer" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
             <div className="contact__us__form">
               <h1>
-                Parlez-
-                <span>
-                  Nous
-                  <br />
-                  de Vous
-                </span>
+                {t('contact.mobile.title')}
               </h1>
               <div className="contact__us__description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore aliqua.
+                {t('contact.mobile.description')}
               </div>
               <form className="contact__us__form__input">
                 <input
                   type="text"
                   name="name"
-                  placeholder="Nom et prénom"
+                  placeholder={t('contact.mobile.form.name')}
                   required
                 />
                 <input
                   type="email"
                   name="email"
-                  placeholder="E-mail"
+                  placeholder={t('contact.mobile.form.email')}
                   required
                 />
                 <input
                   type="tel"
                   name="phone"
-                  placeholder="Numéro de téléphone"
+                  placeholder={t('contact.mobile.form.phone')}
+                  style={{direction: isRTL ? 'rtl' : 'ltr'}}
                   required
                 />
                 <textarea
                   name="message"
-                  placeholder="Votre message"
+                  placeholder={t('contact.mobile.form.message')}
                   required
                 ></textarea>
-                <button type="submit">Envoyer</button>
+                <button type="submit">{t('contact.mobile.form.submit')}</button>
               </form>
             </div>
             <div className="socials__and__location">
@@ -119,7 +118,7 @@ const ContactPage = () => {
               </div>
             </div>
           </div>
-          <div className="contact__page__info">
+          <div className="contact__page__info" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
             {CONTACT_INFO.map((item, index) => (
               <div className="contact__info__item" key={index}>
                 <div className="contact__item__icon">
@@ -130,8 +129,8 @@ const ContactPage = () => {
                   )}
                 </div>
                 <div className="contact__item__text">
-                  <div className="contact__item__label">{item.label}</div>
-                  <div className="contact__item__description">
+                  <div className="contact__item__label" style={{textAlign: isRTL ? 'right' : 'left'}}>{item.label}</div>
+                  <div className="contact__item__description" style={{direction: 'ltr'}}>
                     {item.description}
                   </div>
                 </div>
@@ -143,8 +142,8 @@ const ContactPage = () => {
         <FontAwesomeIcon icon={faArrowUp} size="lg" />
       </div>
       </Header>
-      <footer className="footer">
-        Tous les droits sont réservés pour SOFT CACTUS 2024
+      <footer className="footer" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
+        {t('contact.copyright')}
       </footer>
     </div>
   );

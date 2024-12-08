@@ -33,3 +33,29 @@
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
 }
+
+/* RTL Support */
+[dir='rtl'] .contact__info__item {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+@media screen and (max-width: 768px) {
+    .contact__info__container {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+        gap: 0.5rem;
+        border-radius: 1rem;
+    }
+
+    .separator {
+        width: 80%;
+        height: 1px;
+        margin: 0.25rem 0;
+    }
+
+    .contact__info__item {
+        font-size: 14px;
+    }
+}

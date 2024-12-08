@@ -25,7 +25,6 @@ body {
     padding-left: 5rem;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     justify-content: space-between;
 }
 
@@ -33,13 +32,24 @@ body {
     content: '';
     position: absolute;
     top: 0;
-    right: -20px;
-    width: 308px;
+    right: -40px;
+    width: 328px;
     height: 100%;
     background: linear-gradient(90deg, #4CB9C1 0%, #345885 100%);
     border-radius: 15px;
     z-index: -1;
 }
+
+.contact__us__container[data-direction="rtl"]::before {
+    left: -40px;
+    right: unset;
+}
+
+.contact__us__container[data-direction="rtl"]{
+    align-items: flex-end;
+    padding-right: 5rem;
+    padding-left: 20px;
+}   
 
 .contact__us__subcontainer {
     width: 100%;

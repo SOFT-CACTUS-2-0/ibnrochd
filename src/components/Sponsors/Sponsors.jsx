@@ -5,7 +5,8 @@ import './Sponsors.css'
 import { useTranslation } from 'react-i18next'
 
 const Sponsors = () => {
-  const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const isRTL = i18n.language === 'MA';
 
   return (
     <div className='sponsors__container'>
@@ -21,7 +22,7 @@ const Sponsors = () => {
             <div className="sponsors__dot"></div>
         </div>
         <div className="sponsors__content">
-            <p>
+            <p style={{direction: isRTL ? 'rtl' : 'ltr'}}>
                 {t('sponsors.description')}
             </p>
         </div>

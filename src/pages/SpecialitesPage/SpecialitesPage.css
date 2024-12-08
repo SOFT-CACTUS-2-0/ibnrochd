@@ -39,6 +39,10 @@
     padding: 1rem;
 }
 
+.specialites__description__title[data-direction='rtl'] > *{
+    text-align: right;
+}
+
 .specialites__button__item.active{
     background: #4CB9C1;
     border: 0.4px solid #4CB9C1;
@@ -324,4 +328,10 @@
     transform: translateX(60%);
     background: #ffffff;
     z-index: 2;
+}
+
+.specialites__page[data-direction='rtl'] .title__title__container::before{
+    left: 0;
+    right: unset;
+    transform: translateX(-60%);
 }

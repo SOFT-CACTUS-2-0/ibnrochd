@@ -90,7 +90,7 @@
 }
 
 .section__bullets li img{
-    margin-right: 10px;
+    margin-inline: 10px;
 }
 
 .image__container .section__image{
@@ -168,8 +168,8 @@
 }
 
 .doctor__team__content{
-    width: 455px;
-    height: 344px;
+    width: 400px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -184,6 +184,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-block: 1rem;
 }
 
 .doctor__team__separator{
@@ -193,7 +194,8 @@
 }
 
 .doctor__team__contact__us{
-    width: 121px;
+    width: fit-content;
+    padding-inline: 1rem;
     height: 45px;
     border-radius: 6px;
     border: 1px solid #4CB9C1;
@@ -210,6 +212,7 @@
 }
 
 .doctor__team__title{
+    margin-block: 1rem;
     font-family: Manrope;
     font-size: 38px;
     font-weight: 800;
@@ -276,6 +279,11 @@
     z-index: -1;
 }
 
+.background[data-direction="rtl"]{
+    left: -100px;
+    right: unset;
+}
+
 .doctor__cardboard{
     position: relative;
     margin-left: 1.5rem;
@@ -291,6 +299,16 @@
     top: 50%;
     transform: translateY(-50%);
     left: -1.5rem;
+}
+
+.doctor__cardboard[data-direction="rtl"]{
+    margin-left: 0;
+    margin-right: 1.5rem;
+}
+
+.doctor__cardboard[data-direction="rtl"]::before{
+    left: unset;
+    right: -1.5rem;
 }
 
 .section__container::after{

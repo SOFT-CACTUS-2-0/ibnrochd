@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import ContactInfo from '@components/ContactInfo/ContactInfo';
 import Header from '@components/Header/Header';
 import Sponsors from '@components/Sponsors/Sponsors';
@@ -21,12 +22,6 @@ const sectionImages = [
   },
 ];
 
-const bulletPoints = [
-  'Restez informé de votre santé',
-  'Consultez vos résultats en ligne',
-  'Gérez vos rendez-vous',
-];
-
 const videos = [
   {
     src: '/981e14ca60d564e39dcf65faf5036dee.webp',
@@ -39,12 +34,18 @@ const videos = [
 ];
 
 const AproposPage = () => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'MA';
+  
+  // Get bulletPoints as a string and split it
+  const bulletPoints = t('apropos.bulletPoints', { returnObjects: true });
+
   return (
     <> 
         <div className='apropos__page'>
             <ContactInfo />
             <Header>
-                <Title title="Explorez la" subtitle="Clinique Ibn Rochd" />
+                <Title title={t('apropos.title')} subtitle={t('apropos.subtitle')} />
                 <div className="section__container">
                     <div className="section__container__item image__container">
                       {sectionImages.map((image, index) => (
@@ -52,34 +53,30 @@ const AproposPage = () => {
                           key={index}
                           src={image.src}
                           className={image.className}
-                          alt={image.alt}
+                          alt={t(`apropos.images.section${index + 1}`)}
                         />
                       ))}
                       <div className="phone__number">
                         <div className="icon__container">
-                          <img loading="lazy" src="/contact/phone.svg" alt="Icône Téléphone" /></div>
+                          <img loading="lazy" src="/contact/phone.svg" alt={t('apropos.images.phoneIcon')} /></div>
                           <p>+212-536-614446</p>
                       </div>
                     </div>
-                    <div className="section__container__item">
-                      <div className="section__sub__header">
-                        AIDER LES PATIENTS DU MONDE ENTIER !
+                    <div className="section__container__item" style={{direction: isRTL ? 'rtl' : 'ltr' }}>
+                      <div className="section__sub__header" style={{textAlign: isRTL ? 'right' : 'left'}}>
+                        {t('apropos.subHeader')}
                       </div>
                       <div className="section__header">
-                        <h1>Patient <span>Caring</span></h1>
+                        <h1 style={{textAlign: isRTL ? 'right' : 'left'}}>{t('apropos.patientCaring.title')} <span>{t('apropos.patientCaring.highlight')}</span></h1>
                       </div>
                       <div className="section__description">
-                        Notre objectif est de fournir des soins de qualité de manière
-                        courtoise, respectueuse et compatissante. Nous espérons que vous
-                        nous permettrez de prendre soin de vous et de nous efforcer
-                        d'être le premier et le meilleur choix en matière de soins de
-                        santé.
+                        {t('apropos.description')}
                       </div>
                       <div className="section__bullets">
                         <ul>
                           {bulletPoints.map((point, index) => (
                             <li key={index}>
-                              <img loading="lazy" src="/checklist.svg" alt="Icône Liste" /> {point}
+                              <img loading="lazy" src="/checklist.svg" alt={t('apropos.images.checklistIcon')} /> {point}
                             </li>
                           ))}
                         </ul>
@@ -89,7 +86,7 @@ const AproposPage = () => {
                 <div className="apropos__video__container">
                   {videos.map((video, index) => (
                     <div key={index} className="apropos__video__item">
-                      <img loading="lazy" src={video.src} alt={video.alt} />
+                      <img loading="lazy" src={video.src} alt={t(`apropos.images.video${index + 1}`)} />
                       <div className="play-icon">
                         <FontAwesomeIcon icon={faPlay} />
                       </div>
@@ -97,7 +94,7 @@ const AproposPage = () => {
                   ))}
                 </div>
                 <div className="title__title__container">
-                  <Title title="NOS" subtitle="MEDECINS" />
+                  <Title title={t('apropos.doctors.title')} subtitle={t('apropos.doctors.subtitle')} />
                 </div>
                 <DoctorTeam />
             </Header>
@@ -122,6 +119,8 @@ const DOCTORS = [
 ]
 
 const DoctorTeam = () => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'MA';  
   const [currentIndex, setCurrentIndex] = useState(0);
   const handleNext = () => {
     setCurrentIndex((prevIndex) => 
@@ -138,22 +137,20 @@ const DoctorTeam = () => {
     });
   };
   return (
-    <div className="apropos__doctor__team">
+    <div className="apropos__doctor__team" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
       <div className="doctor__team__item doctor__team__content">
-        <div className="doctor__cardboard">
+        <div className="doctor__cardboard" data-direction={isRTL ? 'rtl' : 'ltr'}>
           <div className="doctor__name">{DOCTORS.at(currentIndex).name}</div>
-          <div className="doctor__speciality">{DOCTORS.at(currentIndex).speciality}</div>
+          <div className="doctor__speciality" style={{textAlign: isRTL ? 'right' : 'left'}}>{DOCTORS.at(currentIndex).speciality}</div>
         </div>
-        <div className="doctor__team__title">
-          Meet Our Expert  Doctor
+        <div className="doctor__team__title" style={{textAlign: isRTL ? 'right' : 'left'}}>
+          {t('apropos.doctorTeam.title')}
         </div>
         <div className="doctor__team__description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Lorem ipsum dolor sit amet, consectetur adipiscing.
+          {t('apropos.doctorTeam.description')}
         </div>
         <div className="doctor__team__cta">
-          <div className="back__next__item">
+          <div className="back__next__item" style={{flexDirection: isRTL ? 'row-reverse' : 'row'}}>
               <div className="back__next__item__arrow active" onClick={handlePrev}>
               <FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: "1rem" }} />
               </div>
@@ -162,12 +159,12 @@ const DoctorTeam = () => {
               </div>
           </div>
           <div className="doctor__team__separator"></div>
-          <div className="doctor__team__contact__us" style={{cursor:'pointer'}} onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}>Contact us</div>
+          <div className="doctor__team__contact__us" style={{cursor:'pointer'}} onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}>{t('apropos.doctorTeam.contactUs')}</div>
         </div>
       </div>
       <div className="doctor__team__item doctor__team__image">
         <img loading="lazy" src={DOCTORS.at(currentIndex).image} alt="Doctor Image" />
-        <div className="background"></div>
+        <div className="background" data-direction={isRTL ? 'rtl' : 'ltr'}></div>
       </div>
     </div>
   )

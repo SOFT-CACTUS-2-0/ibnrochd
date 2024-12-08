@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Navbar from '@components/Navbar/mobile/Navbar';
 import {
@@ -24,91 +25,92 @@ const SOCIAL_LINKS = [
   },
 ];
 
-const CONTACT_INFO = [
-  {
-    icon: faPhone,
-    label: 'TÉLÉPHONE',
-    description: '+212 - 616  569  193',
-  },
-  {
-    icon: faFax,
-    label: 'FAX',
-    description: '+212 - 536  614  446',
-  },
-  {
-    icon: faEnvelope,
-    label: 'E-MAIL',
-    description: 'contact@cliniqueibnrochdberkane.com',
-  },
-];
-
 const MobileContactPage = () => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'MA';
+
+  const CONTACT_INFO = [
+    {
+      icon: faPhone,
+      label: t('contact.mobile.info.phone.label'),
+      description: t('contact.mobile.info.phone.value'),
+    },
+    {
+      icon: faFax,
+      label: t('contact.mobile.info.fax.label'),
+      description: t('contact.mobile.info.fax.value'),
+    },
+    {
+      icon: faEnvelope,
+      label: t('contact.mobile.info.email.label'),
+      description: t('contact.mobile.info.email.value'),
+    },
+  ];
+
   return (
     <div className="mobile__contact__page">
       <Navbar />
       <div style={{marginInline:'2rem'}}>
         <div className="mobile__contact__header">
             <h1>
-            Parlez-
-            <span>
-                Nous
-                <br />
-                de Vous
-            </span>
+              {t('contact.mobile.title')}
             </h1>
         </div>
 
         <div className="mobile__contact__content">
             <div className="mobile__contact__form__container">
-            <div className="mobile__contact__description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore aliqua.
-            </div>
+              <div className="mobile__contact__description">
+                {t('contact.mobile.description')}
+              </div>
 
-            <form className="mobile__contact__form">
+              <form className="mobile__contact__form">
                 <input
-                type="text"
-                name="name"
-                placeholder="Nom et prénom"
-                required
+                  type="text"
+                  name="name"
+                  placeholder={t('contact.mobile.form.name')}
+                  required
+                  style={{direction: isRTL ? 'rtl' : 'ltr'}}
                 />
                 <input
-                type="email"
-                name="email"
-                placeholder="E-mail"
-                required
+                  type="email"
+                  name="email"
+                  placeholder={t('contact.mobile.form.email')}
+                  required
+                  style={{direction: isRTL ? 'rtl' : 'ltr'}}
                 />
                 <input
-                type="tel"
-                name="phone"
-                placeholder="Numéro de téléphone"
-                required
+                  type="tel"
+                  name="phone"
+                  placeholder={t('contact.mobile.form.phone')}
+                  required
+                  style={{direction: isRTL ? 'rtl' : 'ltr'}}
                 />
                 <textarea
-                name="message"
-                placeholder="Votre message"
-                required
+                  name="message"
+                  placeholder={t('contact.mobile.form.message')}
+                  required
+                  style={{direction: isRTL ? 'rtl' : 'ltr'}}
                 ></textarea>
-                <button type="submit">Envoyer</button>
-            </form>
+                <button type="submit">{t('contact.mobile.form.submit')}</button>
+              </form>
             </div>
 
             <div className="mobile__contact__info__section">
-            <div className="mobile__social__links">
+              <div className="mobile__social__links">
                 {SOCIAL_LINKS.map(({ href, icon }, index) => (
-                <a
+                  <a
                     key={index}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mobile__social__link"
-                >
+                  >
                     <FontAwesomeIcon icon={icon} />
-                </a>
+                  </a>
                 ))}
-            </div>
+              </div>
 
-            <div className="mobile__contact__details">
+            <div className="mobile__contact__details" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
                 {CONTACT_INFO.map((item, index) => (
                 <div className="mobile__contact__detail__item" key={index}>
                     <div className="mobile__contact__detail__icon">
@@ -116,18 +118,18 @@ const MobileContactPage = () => {
                     </div>
                     <div className="mobile__contact__detail__text">
                     <div className="mobile__contact__detail__label">{item.label}</div>
-                    <div className="mobile__contact__detail__description">
+                    <div className="mobile__contact__detail__description" style={{direction: 'ltr'}}>
                         {item.description}
                     </div>
                     </div>
-                </div>
+                  </div>
                 ))}
-            </div>
+              </div>
 
             <div className="mobile__location__container">
-                <div className="mobile__location__header">
+                <div className="mobile__location__header" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
                 <FontAwesomeIcon icon={faLocationDot} />
-                <h3>Notre Emplacement</h3>
+                <h3>{t('contact.mobile.ourLocation')}</h3>
                 </div>
                 <iframe
                 title="Clinique Ibn Rochd Location"
@@ -139,16 +141,16 @@ const MobileContactPage = () => {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
+                </div>
+              </div>
             </div>
-            </div>
-        </div>
 
         <div className="mobile__back__to__top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <FontAwesomeIcon icon={faArrowUp} size="lg" />
         </div>
 
-        <footer className="mobile__footer">
-            Tous les droits sont réservés pour SOFT CACTUS 2024
+        <footer className="mobile__footer" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
+            {t('contact.copyright')}
         </footer>
       </div>
     </div>
