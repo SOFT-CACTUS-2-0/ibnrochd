@@ -30,13 +30,18 @@ const Navbar = () => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '1.5rem',
+          padding: '1rem 1.5rem',
+          backgroundColor: 'white',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          zIndex: 10000,
         }}
       >
         <NavLink
           to="/"
           end
-          style={{ all: 'unset', cursor: 'pointer' }}
+          style={{ all: 'unset', cursor: 'pointer',display:'flex', alignItems: 'center', justifyContent: 'center' }}
         >
           <img
             src={'/logo.webp'}

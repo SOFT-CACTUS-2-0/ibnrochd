@@ -1,19 +1,23 @@
 /* Root Variables */
 :root {
-    --main-font: 'Manrope', sans-serif;
-    --secondary-font: 'Archivo', sans-serif;
+    /* Colors */
     --primary-color: #4CB9C1;
     --secondary-color: #18466F;
-    --tertiary-color: #2E486C;
-    --accent-color: #002964;
-    --light-gray: #E7E7E7;
-    --medium-gray: #4F4F4F; /* Added for consistency */
-    --dark-gray: #838383;
-    --white: #FFFFFF;
-    --black: #000000;
-    --semi-transparent-white: rgba(255, 255, 255, 0.5);
-    --shadow-color: rgba(0, 0, 0, 0.2);
-  
+    --tertiary-color: #4F4F4F;
+    --accent-color: #4CB9C1;
+    --dark-gray: #333333;
+    --light-gray: #E0E0E0;
+    --medium-gray: #4F4F4F;
+    --semi-transparent-white: rgba(255, 255, 255, 0.7);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --white: #fff;
+    --black: #000;
+
+    /* Fonts */
+    --main-font: 'Manrope', sans-serif;
+    --secondary-font: 'Archivo', sans-serif;
+    --arabic-font: "Cairo", sans-serif;
+
     --border-radius-small: 0.5rem;
     --border-radius-medium: 1rem;
     --border-radius-full: 50%;
@@ -29,14 +33,23 @@
     --font-size-xl: 1.5rem; /* 24px */
 }
 
+#root[data-direction="rtl"] * {
+    --main-font: var(--arabic-font)!important;
+}
+
 *,*::before,*::after{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--main-font);
+}
+
+.page__mobile{
+    margin-top: 81px;
 }
 
 body{
-    font-family: 'Manrope', sans-serif;
+    font-family: var(--main-font), sans-serif;
     overflow-x: hidden;
 }
 

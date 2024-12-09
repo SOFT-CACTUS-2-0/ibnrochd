@@ -35,7 +35,7 @@
 }
 
 .section__sub__header{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 13.83px;
     font-weight: 600;
     line-height: 23.34px;
@@ -46,7 +46,7 @@
 }
 
 .section__header h1{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 40px;
     font-weight: 700;
     line-height: 57.92px;
@@ -61,7 +61,7 @@
 }
 
 .section__description{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 18px;
     font-weight: 400;
     line-height: 25.07px;
@@ -76,7 +76,7 @@
 }
 
 .section__bullets li{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 15.56px;
     font-weight: 600;
     line-height: 23.34px;
@@ -129,7 +129,7 @@
     height: 55.56px;
     border-radius: 6.61px;
     background: white;
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 16.95px;
     font-weight: 600;
     line-height: 23.15px;
@@ -202,7 +202,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 15px;
     font-weight: 600;
     line-height: 20.49px;
@@ -213,7 +213,7 @@
 
 .doctor__team__title{
     margin-block: 1rem;
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 38px;
     font-weight: 800;
     line-height: 51.91px;
@@ -224,7 +224,7 @@
 }
 
 .doctor__team__description{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 18px;
     font-weight: 400;
     line-height: 25.92px;
@@ -235,7 +235,7 @@
 }
 
 .doctor__name{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 29.4px;
     font-weight: 700;
     line-height: 38.22px;
@@ -245,7 +245,7 @@
 }
 
 .doctor__speciality{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 24.06px;
     font-weight: 300;
     line-height: 31.27px;

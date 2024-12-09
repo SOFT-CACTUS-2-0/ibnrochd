@@ -59,7 +59,7 @@ const ContactPage = () => {
               <h1>
                 {t('contact.mobile.title')}
               </h1>
-              <div className="contact__us__description">
+              <div className="contact__us__description" style={{textAlign: isRTL ? 'right' : 'left'}}>
                 {t('contact.mobile.description')}
               </div>
               <form className="contact__us__form__input">

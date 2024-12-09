@@ -1,6 +1,5 @@
 /* Root Variables - Mobile Adaptation */
 :root {
-    --mobile-main-font: 'Manrope', sans-serif;
     --mobile-primary-color: #4CB9C1;
     --mobile-secondary-color: #18466F;
     --mobile-text-color: #4F4F4F;
@@ -22,7 +21,7 @@
 }
 
 .mobile__contact__header h1 {
-    font-family: var(--mobile-main-font);
+    font-family: var(--main-font);
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--mobile-secondary-color);
@@ -35,7 +34,7 @@
 }
 
 .mobile__contact__description {
-    font-family: var(--mobile-main-font);
+    font-family: var(--main-font);
     font-size: 1rem;
     color: var(--mobile-text-color);
     text-align: center;
@@ -59,7 +58,7 @@
     padding: 12px;
     border: 1px solid #E0E0E0;
     border-radius: var(--mobile-border-radius);
-    font-family: var(--mobile-main-font);
+    font-family: var(--main-font);
     font-size: 1rem;
     box-sizing: border-box;
 }
@@ -76,7 +75,7 @@
     color: white;
     border: none;
     border-radius: var(--mobile-border-radius);
-    font-family: var(--mobile-main-font);
+    font-family: var(--main-font);
     font-size: 1rem;
     font-weight: bold;
     text-transform: uppercase;
@@ -143,7 +142,7 @@
 }
 
 .mobile__contact__detail__label {
-    font-family: var(--mobile-main-font);
+    font-family: var(--main-font);
     font-size: 0.9rem;
     font-weight: bold;
     color: var(--mobile-secondary-color);
@@ -151,7 +150,7 @@
 }
 
 .mobile__contact__detail__description {
-    font-family: var(--mobile-main-font);
+    font-family: var(--main-font);
     font-size: 0.9rem;
     color: var(--mobile-text-color);
 }
@@ -175,7 +174,7 @@
 }
 
 .mobile__location__header h3 {
-    font-family: var(--mobile-main-font);
+    font-family: var(--main-font);
     font-size: 1.2rem;
     margin: 0;
 }
@@ -200,7 +199,7 @@
 .mobile__footer {
     text-align: center;
     padding: 1rem;
-    font-family: var(--mobile-main-font);
+    font-family: var(--main-font);
     font-size: 0.8rem;
     color: var(--mobile-text-color);
     background-color: #f1f1f1;

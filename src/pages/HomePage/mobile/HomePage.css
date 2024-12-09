@@ -61,6 +61,16 @@
     border-radius: 1.5px;
 }
 
+.hero__mobile__description[data-direction="rtl"]::before {
+    left: auto;
+    right: 0;
+}
+
+.hero__mobile__description[data-direction="rtl"] {
+    padding-left: 0;
+    padding-right: 1rem;
+}
+
 .hero__mobile__cta {
     display: flex;
     align-items: center;

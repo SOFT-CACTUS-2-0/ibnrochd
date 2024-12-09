@@ -21,7 +21,7 @@
 
 .specialites__button__item{
     height: 64.49px;
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 14.33px;
     font-weight: 500;
     line-height: 18.63px;
@@ -47,7 +47,7 @@
     background: #4CB9C1;
     border: 0.4px solid #4CB9C1;
     color: white;
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 14.95px;
     font-weight: 700;
     line-height: 19.44px;
@@ -102,7 +102,7 @@
 }
 
 .specialites__description__title{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 30px;
     font-weight: 800;
     line-height: 40.98px;
@@ -118,7 +118,7 @@
 
 .specialites__description__title h2{
     font-size: 30px;
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 30px;
     font-weight: 800;
     line-height: 40.98px;
@@ -128,7 +128,7 @@
 }
 
 .specialites__description__first{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 18px;
     font-weight: 400;
     line-height: 25.07px;
@@ -139,7 +139,7 @@
 }
 
 .specialites__description__second{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 18px;
     font-weight: 400;
     line-height: 25.07px;
@@ -160,7 +160,7 @@
     height: 55.56px;
     border-radius: 6.61px;
     background: white;
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 16.95px;
     font-weight: 600;
     line-height: 23.15px;
@@ -243,7 +243,7 @@
   }
 
   .video__description h2{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 31.43px;
     font-weight: 600;
     line-height: 42.93px;
@@ -254,7 +254,7 @@
   }
 
   .video__description p{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 18px;
     font-weight: 400;
     line-height: 23.57px;

@@ -48,9 +48,9 @@ const MobileContactPage = () => {
   ];
 
   return (
-    <div className="mobile__contact__page">
+    <div className="mobile__contact__page page__mobile">
       <Navbar />
-      <div style={{marginInline:'2rem'}}>
+      <div style={{marginInline:'2rem',marginTop:'10rem'}}>
         <div className="mobile__contact__header">
             <h1>
               {t('contact.mobile.title')}
@@ -118,7 +118,7 @@ const MobileContactPage = () => {
                     </div>
                     <div className="mobile__contact__detail__text">
                     <div className="mobile__contact__detail__label">{item.label}</div>
-                    <div className="mobile__contact__detail__description" style={{direction: 'ltr'}}>
+                    <div className="mobile__contact__detail__description" style={{direction: 'ltr',textAlign: isRTL ? 'right' : 'left'}}>
                         {item.description}
                     </div>
                     </div>

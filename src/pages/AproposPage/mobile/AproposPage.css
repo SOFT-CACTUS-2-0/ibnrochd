@@ -14,7 +14,7 @@
     height: 55.56px;
     border-radius: 6.61px;
     background: white;
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 16.95px;
     font-weight: 600;
     line-height: 23.15px;

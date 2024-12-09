@@ -24,7 +24,7 @@
 
 .card__board__mobile__title {
     width: fit-content;
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 24px; /* Reduced font size for readability */
     font-weight: 600;
     line-height: 28px; /* Adjusted line height */

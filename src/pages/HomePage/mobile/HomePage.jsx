@@ -15,7 +15,7 @@ const MobileHomePage = () => {
   const isRTL = i18n.language === 'MA';
 
   return (
-    <div className='home__page__mobile'>
+    <div className='home__page__mobile page__mobile'>
         <Navbar />
         <div className="home__mobile__hero">
             <div className="hero__mobile__content" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
@@ -23,7 +23,7 @@ const MobileHomePage = () => {
                     {t('home.hero.title')}<br />
                     {t('home.hero.subtitle')}
                 </h1>
-                <p className="hero__mobile__description">
+                <p className="hero__mobile__description" data-direction={isRTL ? 'rtl' : 'ltr'}>
                     {t('home.hero.description')}
                 </p>
                 <div className="hero__mobile__cta">
@@ -270,9 +270,29 @@ const ClinicWing = ({ number, title, description, images }) => {
   // Clone first and last images
   const extendedImages = [images[images.length - 1], ...images, images[0]];
 
+  const [currentContentIndex, setCurrentContentIndex] = useState(0);
+
+  const clinicWingData = [
+    {
+      number: t(`home.clinicWings.wings.${currentContentIndex}.number`),
+      title: t(`home.clinicWings.wings.${currentContentIndex}.title`),
+      description: t(`home.clinicWings.wings.${currentContentIndex}.description`, { returnObjects: true }),
+      images: [
+        '/b8dabe7f11276a7a5a058c97166b0c15.webp',
+        '/f800cfb2aa8238b84077530434eb11c5.webp',
+        '/300726901718ac044bf52aa78933c642.webp',
+      ]
+    },
+    // You can add more clinic wing data here if needed
+  ];
+
+
   const handleNext = () => {
     setCurrentIndex((prevIndex) => 
       prevIndex < images.length ? prevIndex + 1 : prevIndex
+    );
+    setCurrentContentIndex((prevIndex) =>
+      prevIndex < 5 - 1 ? prevIndex + 1 : 0
     );
   };
 
@@ -280,7 +300,12 @@ const ClinicWing = ({ number, title, description, images }) => {
     setCurrentIndex((prevIndex) => 
       prevIndex > -1 ? prevIndex - 1 : -1
     );
+    setCurrentContentIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : 5 - 1
+    );
   };
+
+  const currentWing = clinicWingData[0];
 
     useEffect(() => {
         const imageContainer = imageContainerRef.current;
@@ -310,11 +335,15 @@ const ClinicWing = ({ number, title, description, images }) => {
 
   return (
     <>
-      <div className="header-section" style={{ width: '100%' }}>
+      <div className="header-section" data-direction={isRTL ? 'rtl' : 'ltr'} style={{ width: '100%' }}>
         <div className="header-section__content" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
-          <h1 className="header-section__title">{title}</h1>
+          <h1 className="header-section__title">{currentWing.title}</h1>
           <hr style={{ width: '78vw' }} />
-          <p className="header-section__description">{description}</p>
+          <ul className="header-section__description">
+            {currentWing.description.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
         </div>
       </div>
       <div className="image-carousel__container-mobile" style={{alignSelf:'flex-start',width:'100%'}}>

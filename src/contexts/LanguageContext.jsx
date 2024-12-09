@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { resources } from '../translations';
@@ -31,7 +31,21 @@ export function LanguageProvider({ children }) {
     i18n.changeLanguage(lng);
     setLanguage(lng);
     localStorage.setItem('language', lng); // Save to localStorage
+    
+    // Set data-direction on root element
+    const root = document.getElementById('root');
+    if (root) {
+      root.setAttribute('data-direction', lng === 'MA' ? 'rtl' : 'ltr');
+    }
   };
+
+  // Set initial direction on mount
+  useEffect(() => {
+    const root = document.getElementById('root');
+    if (root) {
+      root.setAttribute('data-direction', language === 'MA' ? 'rtl' : 'ltr');
+    }
+  }, []);
 
   return (
     <LanguageContext.Provider value={{ language, changeLanguage }}>

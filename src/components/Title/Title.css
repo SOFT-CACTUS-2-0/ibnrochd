@@ -1,5 +1,5 @@
 .title__title, .title__subtitle{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 50px;
     font-weight: 300;
     line-height: 52.8px;
@@ -25,7 +25,7 @@
 }
 
 .title__description{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 18px;
     font-weight: 400;
     line-height: 24.59px;

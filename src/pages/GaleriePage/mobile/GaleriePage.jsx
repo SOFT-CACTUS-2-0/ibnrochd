@@ -61,7 +61,7 @@ const MobileGaleriePage = () => {
     }, [i18n.language, t]);
 
     return (
-        <div className='galerie__page__mobile'>
+        <div className='galerie__page__mobile page__mobile'>
             <Navbar />
             <div style={{padding:'2rem'}}>
                 <Title

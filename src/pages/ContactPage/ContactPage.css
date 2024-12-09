@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-    font-family: 'Manrope', sans-serif;
+    font-family: var(--main-font);
     color: #18466F;
     margin: 0;
     padding: 0;
@@ -26,6 +26,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.contact__item__label{
+    font-family: var(--main-font);
 }
 
 .contact__us__container::before {
@@ -72,7 +76,7 @@ body {
 }
 
 .contact__us__form h1 {
-    font-family: 'Manrope', sans-serif;
+    font-family: var(--main-font);
     font-size: 50.9px;
     font-weight: 700;
     line-height: 60.77px;
@@ -86,7 +90,7 @@ body {
 }
 
 .contact__us__description {
-    font-family: 'Manrope', sans-serif;
+    font-family: var(--main-font);
     font-size: 18px;
     font-weight: 400;
     line-height: 23.4px;
@@ -108,7 +112,7 @@ body {
     padding: 10.85px 18.08px;
     border: 0.9px solid #E0E0E0;
     border-radius: 4px;
-    font-family: 'Manrope', sans-serif;
+    font-family: var(--main-font);
     font-size: 15px;
     line-height: 1.5;
     resize: vertical;
@@ -126,7 +130,7 @@ body {
     background-color: #4CB9C1;
     color: #fff;
     text-transform: uppercase;
-    font-family: 'Manrope', sans-serif;
+    font-family: var(--main-font);
     font-size: 15.37px;
     font-weight: 700;
     line-height: 23.06px;
@@ -213,7 +217,7 @@ body {
 }
 
 .contact__item__label {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--main-font);
     font-size: 13.43px;
     font-weight: 600;
     line-height: 20.66px;
@@ -222,7 +226,7 @@ body {
 }
 
 .contact__item__description {
-    font-family: 'Manrope', sans-serif;
+    font-family: var(--main-font);
     font-size: 13.43px;
     font-weight: 500;
     line-height: 20.66px;
@@ -233,7 +237,7 @@ body {
 /* Footer */
 .footer,
 .contact__page .copyright {
-    font-family: 'Manrope', sans-serif;
+    font-family: var(--main-font);
     font-size: 15px;
     font-weight: 600;
     line-height: 20.49px;

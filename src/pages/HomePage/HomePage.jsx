@@ -155,13 +155,19 @@ const HeaderContent = () => {
           <br />
           {t('home.hero.subtitle')}
         </h1>
-        <p className="hero__description">
+        <p className="hero__description" data-direction={isRTL ? 'rtl' : 'ltr'}>
           {t('home.hero.description')}
         </p>
         <div className="hero__cta">
           <button className="hero__cta__button">{t('home.hero.button')}</button>
           <div className="hero__arrow">
-            <FontAwesomeIcon style={{ fontSize: '1.5rem' }} icon={faArrowRight} />
+            {
+              isRTL ? (
+                <FontAwesomeIcon style={{ fontSize: '1.5rem' }} icon={faArrowLeft} />
+              ) : (
+                <FontAwesomeIcon style={{ fontSize: '1.5rem' }} icon={faArrowRight} />
+              )
+            }
           </div>
         </div>
       </div>
@@ -335,12 +341,13 @@ const ClinicWings = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'MA';
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentContentIndex, setCurrentContentIndex] = useState(0);
 
   const clinicWingData = [
     {
-      number: t('home.clinicWings.wings.0.number'),
-      title: t('home.clinicWings.wings.0.title'),
-      description: t('home.clinicWings.wings.0.description'),
+      number: t(`home.clinicWings.wings.${currentContentIndex}.number`),
+      title: t(`home.clinicWings.wings.${currentContentIndex}.title`),
+      description: t(`home.clinicWings.wings.${currentContentIndex}.description`, { returnObjects: true }),
       images: [
         '/b8dabe7f11276a7a5a058c97166b0c15.webp',
         '/f800cfb2aa8238b84077530434eb11c5.webp',
@@ -354,11 +361,17 @@ const ClinicWings = () => {
     setCurrentIndex((prevIndex) => 
       prevIndex < clinicWingData[0].images.length ? prevIndex + 1 : prevIndex
     );
+    setCurrentContentIndex((prevIndex) =>
+      prevIndex < 5 - 1 ? prevIndex + 1 : 0
+    );
   };
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => 
       prevIndex > -1 ? prevIndex - 1 : -1
+    );
+    setCurrentContentIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : 5 - 1
     );
   };
 
@@ -456,12 +469,16 @@ const ClinicWing = ({
 
   return (
     <>
-      <div className="header-section" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
-        <div className="header-section__number">{number}</div>
+      <div className="header-section" data-direction={isRTL ? 'rtl' : 'ltr'} style={{direction: isRTL ? 'rtl' : 'ltr'}}>
+        <div className="header-section__number">{parseInt(number) + 2}</div>
         <div className="header-section__content">
           <h1 className="header-section__title">{title}</h1>
           <hr style={{ width: '300.5px' }} />
-          <p className="header-section__description">{description}</p>
+          <ul className="header-section__description">
+            {description.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
         </div>
       </div>
       <div className="image-carousel__container">

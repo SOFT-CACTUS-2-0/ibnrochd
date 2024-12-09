@@ -16,7 +16,7 @@ const MobileSpecialitesPage = () => {
     const isRTL = i18n.language === 'MA';
 
     return (
-        <div className='specialites__page__mobile' data-direction={isRTL ? 'rtl' : 'ltr'}>
+        <div className='specialites__page__mobile page__mobile' data-direction={isRTL ? 'rtl' : 'ltr'}>
             <Navbar />
             <div style={{margin:'2rem'}}>
                 <Title

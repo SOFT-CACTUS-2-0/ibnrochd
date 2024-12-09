@@ -25,7 +25,7 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 16.47px;
     font-weight: 600;
     line-height: 22.5px;

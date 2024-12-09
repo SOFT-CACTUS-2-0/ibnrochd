@@ -26,7 +26,7 @@
 
 .contact__form__title {
     text-align: center;
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 26.91px;
     font-weight: 600;
     line-height: 40.36px;
@@ -70,7 +70,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 16.82px;
     font-weight: 700;
     line-height: 25.22px;
@@ -111,7 +111,7 @@
   }
 
   .footer__contact__li P{
-    font-family: Manrope;
+    font-family: var(--main-font);
     font-size: 18.23px;
     font-weight: 700;
     line-height: 24.3px;
@@ -129,8 +129,16 @@
     flex-shrink: 0;
   }
 
+  .footer__title{
+    font-family: var(--main-font);
+  }
+
   .form__group {
     width: unset;
+  }
+
+  .footer__contact h2{
+    font-family: var(--main-font);
   }
 
   @media screen and (max-width: 1280px) {

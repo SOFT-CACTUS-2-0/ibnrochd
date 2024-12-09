@@ -39,7 +39,7 @@ const MobileAproposPage = () => {
   const bulletPoints = t('apropos.bulletPoints', { returnObjects: true });
 
   return (
-    <div className="apropos__page__mobile">
+    <div className="apropos__page__mobile page__mobile">
         <Navbar />
         <div className="apropos__image__section">
             <Title
