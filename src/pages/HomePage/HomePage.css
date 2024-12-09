@@ -25,12 +25,16 @@ body {
 .hero__container {
     flex: 1;
     width: 100%;
-    padding-left: 8vw;
+    padding-inline: 8vw;
     margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-top: 35px;
+}
+
+.hero__container[data-direction="rtl"] {
+    direction: rtl;
 }
   
 .hero__title {
@@ -38,6 +42,15 @@ body {
     font-weight: 800;
     line-height: 56px;
     text-align: left;
+}
+
+.hero__container[data-direction="rtl"] .hero__title {
+    text-align: right;
+}
+
+.hero__background[data-direction="rtl"] img {
+    right: auto;
+    left: -7rem;
 }
   
 .hero__description {
@@ -174,6 +187,11 @@ body {
     margin-right: 1rem;
     color: #4CB9C1;
 }
+
+.render__vous__form[data-direction="rtl"] svg {
+    margin-right: 0;
+    margin-left: 1rem
+}
   
 .form-submit button {
     width: 100%;
@@ -293,6 +311,11 @@ body {
     font-weight: 700;
     line-height: 33.55px;
     color: var(--primary-color);
+}
+
+.specialties__title h2[data-direction="rtl"] {
+    margin-right: 1rem;
+    margin-left: 0;
 }
   
 .arrow {
