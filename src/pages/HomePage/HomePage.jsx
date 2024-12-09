@@ -332,7 +332,8 @@ const NavigationControls = ({ onNext, onPrev, activeIndex, totalButtons }) => (
 
 // ClinicWings Component
 const ClinicWings = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'MA';
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const clinicWingData = [
@@ -374,7 +375,7 @@ const ClinicWings = () => {
           subtitle: {fontSize: '57.71px'}
         }}
       />
-      <div className="stages__container">
+      <div className="stages__container" style={{flexDirection: isRTL ? 'row-reverse' : 'row'}}>
         <ClinicWing
           number={currentWing.number}
           title={currentWing.title}
@@ -400,6 +401,8 @@ const ClinicWing = ({
   onNext,
   onPrev,
 }) => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'MA';
   const imageWidth = 40; // Width of each image card
   const gap = 1; // Gap between image cards
   const slideWidth = imageWidth + gap;
@@ -453,7 +456,7 @@ const ClinicWing = ({
 
   return (
     <>
-      <div className="header-section">
+      <div className="header-section" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
         <div className="header-section__number">{number}</div>
         <div className="header-section__content">
           <h1 className="header-section__title">{title}</h1>

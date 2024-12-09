@@ -26,6 +26,11 @@
     z-index: 2;
 }
 
+.specialties__title h2[data-direction="rtl"] {
+    margin-right: 1rem;
+    margin-left: 0;
+}
+
 .hero__mobile__title {
     font-size: 2.5rem;
     font-weight: 800;

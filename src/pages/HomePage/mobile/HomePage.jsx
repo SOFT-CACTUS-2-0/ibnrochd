@@ -7,81 +7,84 @@ import CardBoard from '@components/CardBoard/mobile/CardBoard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Sponsors from '@components/Sponsors/Sponsors';
 import Contact from '@components/Contact/mobile/Contact';
-import { faArrowLeft, faArrowRight, faCalendarAlt, faChevronRight, faEnvelopeOpen, faPhone, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faArrowRight, faCalendarAlt, faChevronLeft, faChevronRight, faEnvelopeOpen, faPhone, faPlay } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from 'react-i18next';
 
 const MobileHomePage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'MA';
 
   return (
     <div className='home__page__mobile'>
         <Navbar />
         <div className="home__mobile__hero">
-            <div className="hero__mobile__content">
+            <div className="hero__mobile__content" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
                 <h1 className="hero__mobile__title">
-                    {t('home.heroTitle')}<br />
-                    {t('home.heroSubtitle')}
+                    {t('home.hero.title')}<br />
+                    {t('home.hero.subtitle')}
                 </h1>
                 <p className="hero__mobile__description">
-                    {t('home.heroDescription')}
+                    {t('home.hero.description')}
                 </p>
                 <div className="hero__mobile__cta">
                     <button className="hero__cta__mobile__button">
-                        {t('home.moreAboutUs')}
+                        {t('home.hero.button')}
                     </button>
                     <div className="hero__arrow__mobile">
-                        <FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faArrowRight} />
+                        <FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={isRTL ? faArrowLeft : faArrowRight} />
                     </div>
                 </div>
             </div>
             <div className="hero__mobile__image">
-                <img src="/13f00b97db4641b3ed6c7b387b771752.webp" alt={t('home.heroImageAlt')} />
+                <img src="/13f00b97db4641b3ed6c7b387b771752.webp" alt="Hero" />
             </div>
         </div>
-        <div className="booking__form__mobile">
+        <div className="booking__form__mobile" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
             <form>
                 <div className="form-container">
                     <div className="form-field">
                     <label htmlFor="email">
-                        <FontAwesomeIcon icon={faEnvelopeOpen} /> Adresse E-mail
+                        <FontAwesomeIcon icon={faEnvelopeOpen} /> {t('home.bookingForm.email')}
                     </label>
                     <input
                         type="email"
                         id="email"
                         name="email"
-                        placeholder="Votre E-mail"
+                        placeholder={t('home.bookingForm.emailPlaceholder')}
                         required
+                        style={{direction: isRTL ? 'rtl' : 'ltr'}}
                     />
                     </div>
                     <div className="form-field">
                     <label htmlFor="phone">
-                        <FontAwesomeIcon icon={faPhone} /> Numéro de téléphone
+                        <FontAwesomeIcon icon={faPhone} /> {t('home.bookingForm.phone')}
                     </label>
                     <input
                         type="tel"
                         id="phone"
                         name="phone"
-                        placeholder="Téléphone"
+                        placeholder={t('home.bookingForm.phonePlaceholder')}
                         required
+                        style={{direction: isRTL ? 'rtl' : 'ltr'}}
                     />
                     </div>
                     <div className="form-field">
                     <label htmlFor="date">
-                        <FontAwesomeIcon icon={faCalendarAlt} /> Date
+                        <FontAwesomeIcon icon={faCalendarAlt} /> {t('home.bookingForm.date')}
                     </label>
-                    <input type="date" id="date" name="date" required />
+                    <input type="date" id="date" name="date" required style={{direction: isRTL ? 'rtl' : 'ltr'}} />
                     </div>
                     <div className="form-submit">
-                    <button type="submit">Rendez-vous</button>
+                    <button type="submit">{t('home.bookingForm.submit')}</button>
                     </div>
                 </div>
             </form>
         </div>
         <div className="video__mobile__section">
             <Title
-                title="Explorez la"
-                subtitle="Clinique Ibn Rochd"
-                description="Excellence médicale et compassion personnalisée pour vos soins de gynécologie et de pédiatrie à BERKANE."
+                title={t('home.explore.title')}
+                subtitle={t('home.explore.subtitle')}
+                description={t('home.explore.description')}
                 style={{
                     title: {fontSize: '24px',lineHeight:'28px'},
                     subtitle: {fontSize: '24px',lineHeight:'28px'},
@@ -91,9 +94,9 @@ const MobileHomePage = () => {
             />
             <HomeVideo />
             <Title
-                title="Ce qui fait la différence"
-                subtitle="Chez Ibn Rochd"
-                description="À la Clinique Ibn Rochd, notre engagement se traduit par une approche centrée sur la qualité des soins de gynécologie et de pédiatrie ainsi que sur le bien-être de nos patientes."
+                title={t('home.difference.title')}
+                subtitle={t('home.difference.subtitle')}
+                description={t('home.difference.description')}
                 style={{
                     title: {fontSize: '24px',lineHeight:'28px'},
                     subtitle: {fontSize: '24px',lineHeight:'28px'},
@@ -104,9 +107,9 @@ const MobileHomePage = () => {
             <Features />
             <CardBoard />
             <Title
-                title="Soins personnels"
-                subtitle="Et vie saine"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore aliqua."
+                title={t('home.personalCare.title')}
+                subtitle={t('home.personalCare.subtitle')}
+                description={t('home.personalCare.description')}
                 style={{
                     title: {fontSize: '24px',lineHeight:'28px'},
                     subtitle: {fontSize: '24px',lineHeight:'28px'},
@@ -116,9 +119,9 @@ const MobileHomePage = () => {
             />
             <Specialties />
             <Title
-              title="Les ailes de"
-              subtitle="La clinique"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore aliqua."
+              title={t('home.clinicWings.title')}
+              subtitle={t('home.clinicWings.subtitle')}
+              description={t('home.clinicWings.description')}
               style={{
                 title: {fontSize: '24px',lineHeight:'28px'},
                 subtitle: {fontSize: '24px',lineHeight:'28px'},
@@ -127,9 +130,9 @@ const MobileHomePage = () => {
               }}
             />
             <ClinicWing
-              number="01"
-              title="Premier étage"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+              number={t('home.clinicWings.wings.0.number')}
+              title={t('home.clinicWings.wings.0.title')}
+              description={t('home.clinicWings.wings.0.description')}
               images={[
                 '/b8dabe7f11276a7a5a058c97166b0c15.webp',
                 '/f800cfb2aa8238b84077530434eb11c5.webp',
@@ -137,9 +140,9 @@ const MobileHomePage = () => {
               ]}
             />
             <Title
-              title="NOS"
-              subtitle="MEDECINS"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore aliqua."
+              title={t('home.doctors.title')}
+              subtitle={t('home.doctors.subtitle')}
+              description={t('home.doctors.description')}
               style={{
                 title: {fontSize: '24px',lineHeight:'28px'},
                 subtitle: {fontSize: '24px',lineHeight:'28px'},
@@ -157,14 +160,10 @@ const MobileHomePage = () => {
 
 // Specialties Component
 const Specialties = () => {
-  const specialties = [
-    'Gynécologie obstétricale',
-    'Pédiatrie et néonatalogie',
-    'Ophtalmologie',
-  ];
-
-  // State to keep track of the active specialty index
-  const [activeIndex, setActiveIndex] = useState(1);
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'MA';
+  const specialties = t('home.specialties.items', { returnObjects: true });
+  const [activeIndex, setActiveIndex] = useState(0);
 
   // Handlers to navigate between specialties
   const handleNext = () => {
@@ -179,17 +178,24 @@ const Specialties = () => {
 
   return (
     <>
-      <div className="home__specialites" style={{width:'100%',height:'fit-content',gap:'1rem',padding:'0'}}>
+      <div className="home__specialites" style={{width:'100%',height:'fit-content',gap:'1rem',padding:'0', direction: isRTL ? 'rtl' : 'ltr'}}>
         <div className="specialties__title">
-          <FontAwesomeIcon icon={faChevronRight} className="arrow" />
-          <FontAwesomeIcon icon={faChevronRight} className="arrow" />
-          <h2>Spécialités</h2>
+          {isRTL ? (
+            <>
+              <FontAwesomeIcon icon={faChevronLeft} className="arrow" />
+              <FontAwesomeIcon icon={faChevronLeft} className="arrow" />
+            </>
+          ) : (
+            <>
+              <FontAwesomeIcon icon={faChevronRight} className="arrow" />
+              <FontAwesomeIcon icon={faChevronRight} className="arrow" />
+            </>
+          )}
+          <h2 data-direction={isRTL ? 'rtl' : 'ltr'}>{t('home.specialties.title')}</h2>
         </div>
         <hr className="specialties__divider" />
         <p className="specialties__description">
-          À la Clinique Ibn Rochd, notre engagement se traduit par une approche
-          centrée sur la qualité des soins de gynécologie et de pédiatrie ainsi
-          que sur le bien-être de nos patientes.
+          {t('home.specialties.description')}
         </p>
       </div>
       <SpecialtyButtons
@@ -213,7 +219,7 @@ const HomeVideo = () => (
 
 // NavigationControls Component
 const NavigationControls = ({ onNext, onPrev, activeIndex, totalButtons }) => (
-  <div className="back__next__container" style={{width:'100%',display:'flex',paddingInline:'0'}}>
+  <div className="back__next__container" style={{width:'100%',display:'flex',paddingInline:'0', marginBottom:'2rem'}}>
     <div className="current__item__container">
       <div className="current__item__indicator"></div>
     </div>
@@ -255,6 +261,8 @@ const SpecialtyButtons = ({ specialties, activeIndex }) => {
 
 // ClinicWing Component
 const ClinicWing = ({ number, title, description, images }) => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'MA';
   const [currentIndex, setCurrentIndex] = useState(0);
   const imageContainerRef = useRef(null);
   const imageWidth = Math.min(window.innerWidth * 0.85, 400);
@@ -303,7 +311,7 @@ const ClinicWing = ({ number, title, description, images }) => {
   return (
     <>
       <div className="header-section" style={{ width: '100%' }}>
-        <div className="header-section__content">
+        <div className="header-section__content" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
           <h1 className="header-section__title">{title}</h1>
           <hr style={{ width: '78vw' }} />
           <p className="header-section__description">{description}</p>
@@ -360,62 +368,64 @@ const ImageNavigation = ({ currentIndex, totalImages, onNext, onPrev }) => (
 );
 
 // Features Component
-const Features = () => (
-    <div className="features__container" style={{flexDirection:'column',width:'100%',height:'fit-content',gap:'4rem',marginBlock:'2rem'}}>
-      <div className="features__image" style={{width:'100%',height:'100%'}}>
-        <img loading="lazy" src="/08b22943500b5ee2d90ca52fb8376213.webp" alt="Features" />
-      </div>
-      <div className="features__list" style={{ gridTemplateColumns: '1fr',width:'100%' }}>
-        {featureItems.map((item, index) => (
-          <FeatureItem key={index} {...item} />
-        ))}
-      </div>
-    </div>
-  );
-  
+const Features = () => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'MA';
   const featureItems = [
     {
       icon: '/features/microscope.svg',
-      title: 'Technologies avancées',
-      description:
-        'Nous utilisons des équipements de pointe pour des diagnostics précis et des traitements efficaces, assurant des soins de santé de classe mondiale.',
+      title: t('home.features.items.0.title'),
+      description: t('home.features.items.0.description')
     },
     {
       icon: '/features/security.svg',
-      title: 'Confort et sécurité',
-      description:
-        'Nous créons un environnement accueillant et sûr, où le confort et la sécurité de nos patientes sont nos priorités absolues.',
+      title: t('home.features.items.1.title'),
+      description: t('home.features.items.1.description')
     },
     {
       icon: '/features/care.svg',
-      title: 'Soins personnalisés',
-      description:
-        'Chaque patiente reçoit une attention individualisée avec des plans de traitement adaptés à ses besoins spécifiques.',
+      title: t('home.features.items.2.title'),
+      description: t('home.features.items.2.description')
     },
     {
       icon: '/features/equipe.svg',
-      title: 'Équipe expérimentée',
-      description:
-        'Nos professionnels médicaux et paramédicaux, hautement qualifiés, garantissent des soins de qualité supérieure et une expérience positive.',
-    },
+      title: t('home.features.items.3.title'),
+      description: t('home.features.items.3.description')
+    }
   ];
+
+  return (
+    <div className="features__container__mobile" style={{gap: '1rem',display:'flex',flexDirection:'column',marginBlock:'2rem'}}>
+      {featureItems.map((item, index) => (
+        <FeatureItem key={index} {...item} />
+      ))}
+    </div>
+  );
+};
   
-  // FeatureItem Component
-  const FeatureItem = ({ icon, title, description }) => (
-    <div className="features__list__item" style={{width:'100%'}}>
+// FeatureItem Component
+const FeatureItem = ({ icon, title, description }) => {
+  const {t, i18n} = useTranslation()
+  const isRTL = i18n.language === 'MA';
+  return (
+    <div className="features__list__item" style={{width:'100%', direction: isRTL ? 'rtl' : 'ltr'}}>
       <div className="feature__icon">
         <img loading="lazy" src={icon} alt={title} />
       </div>
       <div className="feature__title">{title}</div>
       <div className="feature__description" style={{width:'100%'}}>{description}</div>
     </div>
-  );  
+  );
+};
 
 // Team Component
 const Team = () => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'MA';
+  const teamMembers = t('home.doctors.team', { returnObjects: true });
   const [currentIndex, setCurrentIndex] = useState(0);
   const teamContainerRef = useRef(null);
-  const memberHeight = 290;
+  const memberHeight = 230;
   const gap = 25; // Gap between team member cards
   const slideWidth = memberHeight + gap;
   const totalMembers = teamMembers.length;
@@ -508,29 +518,6 @@ const Team = () => {
     </>
   );
 };
-
-const teamMembers = [
-    {
-      name: 'Hajar BADAOUI',
-      specialty: 'Traumatologie',
-      image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp',
-    },
-    {
-      name: 'Mohammed RSN',
-      specialty: 'Urologie',
-      image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp',
-    },
-    {
-      name: 'Hajar BADAOUI',
-      specialty: 'Traumatologie',
-      image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp',
-    },
-    {
-      name: 'Mohammed RSN',
-      specialty: 'Urologie',
-      image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp',
-    },
-  ];
 
 // TeamMember Component
 const TeamMember = ({ name, specialty, image, memberHeight, gap }) => {

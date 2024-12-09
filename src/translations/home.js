@@ -97,6 +97,14 @@ const home = {
           image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
         }
       ]
+    },
+    navbar: {
+      languages: 
+        [
+          { code: 'FR', name: 'Français', flagCode: 'FR' },
+          { code: 'MA', name: 'Arabe', flagCode: 'MA' },
+          { code: 'GB', name: 'Anglais', flagCode: 'GB' },
+        ]
     }
   },
   MA: {
@@ -197,6 +205,13 @@ const home = {
           image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
         }
       ]
+    },
+    navbar: {
+      languages: [
+        { code: 'FR', name: 'الفرنسية', flagCode: 'FR' },
+        { code: 'MA', name: 'العربية', flagCode: 'MA' },
+        { code: 'GB', name: 'الانجليزية', flagCode: 'GB' },
+      ]
     }
   },
   GB: {
@@ -296,6 +311,13 @@ const home = {
           specialty: 'Urology',
           image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
         }
+      ]
+    },
+    navbar: {
+      languages: [
+        { code: 'FR', name: 'French', flagCode: 'FR' },
+        { code: 'MA', name: 'Arabic', flagCode: 'MA' },
+        { code: 'GB', name: 'English', flagCode: 'GB' },
       ]
     }
   }

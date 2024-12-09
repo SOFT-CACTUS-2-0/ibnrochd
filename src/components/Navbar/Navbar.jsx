@@ -6,19 +6,14 @@ import { useTranslation } from 'react-i18next'
 import { useLanguage } from '../../contexts/LanguageContext'
 import './Navbar.css'
 
-const languageOptions = [
-  { code: 'FR', name: 'Français', flagCode: 'FR' },
-  { code: 'MA', name: 'Arabe', flagCode: 'MA' },
-  { code: 'GB', name: 'Anglais', flagCode: 'GB' },
-]
-
 const Navbar = () => {
   const [active, setActive] = useState('Acceuil')
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false)
   const { currentLanguage, changeLanguage } = useLanguage()
-  const selectedLanguage = languageOptions.find(lang => lang.code === currentLanguage)
   const pathname = useLocation().pathname
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const isRTL = i18n.language === 'MA'
+  const languageOptions = t('home.navbar.languages', { returnObjects: true })
 
   useEffect(() => {
     if (pathname === '/') {
@@ -115,7 +110,9 @@ const Navbar = () => {
                       alignItems: 'center',
                       gap: '0.5rem',
                       paddingLeft: '1rem',
-                      backgroundColor: language.code === currentLanguage ? '#f3f4f6' : 'white'
+                      backgroundColor: language.code === currentLanguage ? '#f3f4f6' : 'white',
+                      direction: isRTL ? 'rtl' : 'ltr',
+                      textAlign: isRTL ? 'right' : 'left',
                     }}
                     onClick={() => handleLanguageSelect(language)}
                   >

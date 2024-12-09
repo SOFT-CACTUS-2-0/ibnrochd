@@ -6,17 +6,13 @@ import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import './Navbar.css';
 
-const languageOptions = [
-  { code: 'FR', name: 'Français', flagCode: 'FR' },
-  { code: 'MA', name: 'Arabe', flagCode: 'MA' },
-  { code: 'GB', name: 'Anglais', flagCode: 'GB' },
-];
-
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const location = useLocation();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'MA';
+  const languageOptions = t('home.navbar.languages', { returnObjects: true })
   const { currentLanguage, changeLanguage } = useLanguage();
 
   const isActive = (path) => location.pathname === path;
@@ -81,6 +77,7 @@ const Navbar = () => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            direction: isRTL ? 'rtl' : 'ltr',
           }}
           onClick={() => setLanguageMenuOpen(false)}
         >

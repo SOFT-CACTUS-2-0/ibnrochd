@@ -6,12 +6,18 @@ import { resources } from '../translations';
 // Create the language context
 const LanguageContext = createContext();
 
+// Get initial language from localStorage or default to FR
+const getInitialLanguage = () => {
+  const savedLanguage = localStorage.getItem('language');
+  return savedLanguage || 'FR';
+};
+
 // Initialize i18next
 i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'FR', // default language
+    lng: getInitialLanguage(), // use saved language or default
     interpolation: {
       escapeValue: false,
     },
@@ -19,11 +25,12 @@ i18n
 
 // Language provider component
 export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState(i18n.language);
+  const [language, setLanguage] = useState(getInitialLanguage());
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     setLanguage(lng);
+    localStorage.setItem('language', lng); // Save to localStorage
   };
 
   return (
@@ -36,7 +43,7 @@ export function LanguageProvider({ children }) {
 // Custom hook to use language context
 export function useLanguage() {
   const context = useContext(LanguageContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
