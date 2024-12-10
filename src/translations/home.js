@@ -132,26 +132,48 @@ const home = {
       description: "Notre équipe de médecins hautement qualifiés est dévouée à votre santé",
       team: [
         {
-          name: 'Hajar BADAOUI',
-          specialty: 'Traumatologie',
+          name: 'Dr EL GHAZI Jamal',
+          specialty: 'gynécologue',
           image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
         },
         {
-          name: 'Mohammed RSN',
-          specialty: 'Urologie',
+          name: 'Dr MOUADDEN Abdessamad',
+          specialty: 'gynécologue',
           image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
         },
         {
-          name: 'Hajar BADAOUI',
-          specialty: 'Traumatologie',
+          name: 'Dr LAASSOU Khalid',
+          specialty: 'urologue',
           image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
         },
         {
-          name: 'Mohammed RSN',
-          specialty: 'Urologie',
+          name: 'Dr EL MEJDOUBI Yasser',
+          specialty: 'chirurgie générale',
           image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
+        },
+        {
+          name: 'Dr AHMAIDI Houssam',
+          specialty: 'réanimateur anesthésiste',
+          image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
         }
       ]
+    },
+    contact: {
+      contactUs: "Contactez-nous",
+      fullName: "Nom complet",
+      emailPlaceholder: "Votre email",
+      phone: "Téléphone",
+      message: "Message",
+      send: "Envoyer",
+      stayInTouch: "Restons en contact",
+      description: "N'hésitez pas à nous contacter pour toute question ou demande d'information.",
+      contactInfo: "Informations de contact",
+      service: "Service client disponible 24/7",
+      email: "contact@cliniqueibnrochdberkane.com",
+      phone1: "+212 536-618-618",
+      phone2: "+212 662-072-072",
+      copyright: " 2023 Clinique Ibn Rochd. Tous droits réservés.",
+      successMessage: "Message envoyé avec succès!"
     },
     navbar: {
       languages: 
@@ -295,26 +317,48 @@ const home = {
       description: "فريقنا الطبي المؤهل تأهيلا عاليا مكرس لصحتكم",
       team: [
         {
-          name: 'هاجر بداوي',
-          specialty: 'جراحة العظام',
+          name: 'د. الغازي جمال',
+          specialty: 'طبيب النساء والتوليد',
           image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
         },
         {
-          name: 'محمد رسن',
-          specialty: 'المسالك البولية',
+          name: 'د. موذن عبد الصمد',
+          specialty: 'طبيب النساء والتوليد',
           image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
         },
         {
-          name: 'هاجر بداوي',
-          specialty: 'جراحة العظام',
+          name: 'د. لعسو خالد',
+          specialty: 'طبيب المسالك البولية',
           image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
         },
         {
-          name: 'محمد رسن',
-          specialty: 'المسالك البولية',
+          name: 'د. المجدوبي ياسر',
+          specialty: 'الجراحة العامة',
           image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
+        },
+        {
+          name: 'د. احميدي حسام',
+          specialty: 'طبيب التخدير والإنعاش',
+          image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
         }
       ]
+    },
+    contact: {
+      contactUs: "اتصل بنا",
+      fullName: "الاسم الكامل",
+      emailPlaceholder: "بريدك الإلكتروني",
+      phone: "الهاتف",
+      message: "الرسالة",
+      send: "إرسال",
+      stayInTouch: "ابق على تواصل",
+      description: "لا تتردد في الاتصال بنا لأي استفسار أو طلب معلومات.",
+      contactInfo: "معلومات الاتصال",
+      service: "خدمة العملاء متوفرة 24/7",
+      email: "contact@cliniqueibnrochdberkane.com",
+      phone1: "+212 536-618-618",
+      phone2: "+212 662-072-072",
+      copyright: " 2023 عيادة ابن رشد. جميع الحقوق محفوظة.",
+      successMessage: "تم إرسال الرسالة بنجاح!"
     },
     navbar: {
       languages: [
@@ -457,26 +501,48 @@ const home = {
       description: "Our highly qualified team of doctors is dedicated to your health",
       team: [
         {
-          name: 'Hajar BADAOUI',
-          specialty: 'Traumatology',
+          name: 'Dr EL GHAZI Jamal',
+          specialty: 'Gynecologist',
           image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
         },
         {
-          name: 'Mohammed RSN',
-          specialty: 'Urology',
+          name: 'Dr MOUADDEN Abdessamad',
+          specialty: 'Gynecologist',
           image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
         },
         {
-          name: 'Hajar BADAOUI',
-          specialty: 'Traumatology',
+          name: 'Dr LAASSOU Khalid',
+          specialty: 'Urologist',
           image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
         },
         {
-          name: 'Mohammed RSN',
-          specialty: 'Urology',
+          name: 'Dr EL MEJDOUBI Yasser',
+          specialty: 'General Surgery',
           image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
+        },
+        {
+          name: 'Dr AHMAIDI Houssam',
+          specialty: 'Anesthesiologist',
+          image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
         }
       ]
+    },
+    contact: {
+      contactUs: "Contact Us",
+      fullName: "Full Name",
+      emailPlaceholder: "Your Email",
+      phone: "Phone",
+      message: "Message",
+      send: "Send",
+      stayInTouch: "Stay in Touch",
+      description: "Don't hesitate to contact us for any questions or information requests.",
+      contactInfo: "Contact Information",
+      service: "Customer service available 24/7",
+      email: "contact@cliniqueibnrochdberkane.com",
+      phone1: "+212 536-618-618",
+      phone2: "+212 662-072-072",
+      copyright: " 2023 Ibn Rochd Clinic. All rights reserved.",
+      successMessage: "Message sent successfully!"
     },
     navbar: {
       languages: [

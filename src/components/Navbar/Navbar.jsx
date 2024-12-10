@@ -44,7 +44,9 @@ const Navbar = () => {
   return (
     <div className="navbar__container">
       <div className="navbar__logo">
-        <img loading="lazy" className='navbar__logo__img' src="/33be266f1579c810ec3b063aa54b549d.webp" alt="Logo" />
+        <Link to="/" style={{ all: 'unset', cursor: 'pointer' }}>
+          <img loading="lazy" className='navbar__logo__img' src="/33be266f1579c810ec3b063aa54b549d.webp" alt="Logo" />
+        </Link>
       </div>
       <ul className="navbar__navigation">
         <Link to="/" style={{ textDecoration: 'none' }}>

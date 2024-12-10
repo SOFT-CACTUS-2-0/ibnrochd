@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ContactInfo from '@components/ContactInfo/ContactInfo';
 import Header from '@components/Header/Header';
+import Modal from '@components/Modal/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faFacebookF,
     faInstagram,
     faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons';
+import {
+    faArrowUp
+} from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import './ContactPage.css';
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 const SOCIAL_LINKS = [
   {
@@ -29,7 +33,46 @@ const SOCIAL_LINKS = [
 const ContactPage = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'MA';
-  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'dccd1cb8-9a98-429d-bbc9-8fff6b1da741',
+          ...formData
+        })
+      });
+
+      if (response.ok) {
+        setIsModalOpen(true);
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   const CONTACT_INFO = [
     {
       iconSrc: '/contact/phoneOutline.svg',
@@ -62,28 +105,36 @@ const ContactPage = () => {
               <div className="contact__us__description" style={{textAlign: isRTL ? 'right' : 'left'}}>
                 {t('contact.mobile.description')}
               </div>
-              <form className="contact__us__form__input">
+              <form className="contact__us__form__input" onSubmit={handleSubmit}>
                 <input
                   type="text"
                   name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
                   placeholder={t('contact.mobile.form.name')}
                   required
                 />
                 <input
                   type="email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   placeholder={t('contact.mobile.form.email')}
                   required
                 />
                 <input
                   type="tel"
                   name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
                   placeholder={t('contact.mobile.form.phone')}
                   style={{direction: isRTL ? 'rtl' : 'ltr'}}
                   required
                 />
                 <textarea
                   name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
                   placeholder={t('contact.mobile.form.message')}
                   required
                 ></textarea>
@@ -142,6 +193,10 @@ const ContactPage = () => {
         <FontAwesomeIcon icon={faArrowUp} size="lg" />
       </div>
       </Header>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
+        <h2 className="success-message">{t('contact.successMessage')}</h2>
+      </Modal>
       <footer className="footer" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
         {t('contact.copyright')}
       </footer>

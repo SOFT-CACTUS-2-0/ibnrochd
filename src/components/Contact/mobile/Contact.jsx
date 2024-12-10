@@ -1,13 +1,54 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faFacebookF, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import Modal from '../../Modal/Modal';
 import './Contact.css';
 import { useTranslation } from 'react-i18next';
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'MA';
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'dccd1cb8-9a98-429d-bbc9-8fff6b1da741',
+          ...formData
+        })
+      });
+
+      if (response.ok) {
+        setIsModalOpen(true);
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   return (
     <div className='contact__container' style={{position:'relative',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'1rem',height:'1000px',paddingInline:'2rem',borderRadius: 0, direction: isRTL ? 'rtl' : 'ltr'}}>
@@ -48,12 +89,15 @@ const Contact = () => {
           </a>
         </div>
       </div>
-      <form className="contact__form" style={{width:'100%',height:'fit-content',gap:'1rem'}}>
+      <form className="contact__form" onSubmit={handleSubmit} style={{width:'100%',height:'fit-content',gap:'1rem'}}>
         <h1 className="contact__form__title">{t('contact.contactUs')}</h1>
         <hr />
         <div className="form__group">
           <input 
             type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
             placeholder={t('contact.fullName')}
             className="form__input"
             required
@@ -63,6 +107,9 @@ const Contact = () => {
         <div className="form__group">
           <input 
             type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
             placeholder={t('contact.emailPlaceholder')}
             className="form__input"
             required
@@ -72,6 +119,9 @@ const Contact = () => {
         <div className="form__group">
           <input 
             type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
             placeholder={t('contact.phone')}
             className="form__input"
             style={{direction:isRTL ? 'rtl' : 'ltr'}}
@@ -80,11 +130,14 @@ const Contact = () => {
         </div>
 
         <div className="form__group">
-          <input
-            type="text"
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleInputChange}
             placeholder={t('contact.message')}
             className="form__input"
             required
+            rows="4"
           />
         </div>
 
@@ -95,6 +148,10 @@ const Contact = () => {
       <div className="copyright" style={{ position: "absolute", bottom: "1rem", width: "100%", textAlign: "center", color: "white", fontSize: "12px" }}>
         {t('contact.copyright')}
       </div>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
+        <h2 className="success-message">{t('contact.successMessage')}</h2>
+      </Modal>
     </div>
   )
 }
