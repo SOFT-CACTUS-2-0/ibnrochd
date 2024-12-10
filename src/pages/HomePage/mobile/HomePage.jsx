@@ -454,7 +454,7 @@ const Team = () => {
   const teamMembers = t('home.doctors.team', { returnObjects: true });
   const [currentIndex, setCurrentIndex] = useState(0);
   const teamContainerRef = useRef(null);
-  const memberHeight = 230;
+  const memberHeight = 320;
   const gap = 25; // Gap between team member cards
   const slideWidth = memberHeight + gap;
   const totalMembers = teamMembers.length;
@@ -522,7 +522,7 @@ const Team = () => {
               flexDirection: 'column',
               alignItems: 'center',
               width: '100%',
-              height: '1235px',
+              height: '1330px',
             }}
           >
         {extendedMembers.map((member, index) => (

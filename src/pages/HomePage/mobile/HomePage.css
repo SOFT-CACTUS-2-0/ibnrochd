@@ -256,3 +256,7 @@ form {
     height: auto;
     object-fit: cover;
 }
+
+.header-section__content{
+    height: 220px;
+}
