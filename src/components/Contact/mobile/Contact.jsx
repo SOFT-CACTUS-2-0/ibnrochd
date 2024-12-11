@@ -89,7 +89,7 @@ const Contact = () => {
           </a>
         </div>
       </div>
-      <form className="contact__form" onSubmit={handleSubmit} style={{width:'100%',height:'fit-content',gap:'1rem'}}>
+      <form className="contact__form" onSubmit={handleSubmit} style={{width:'100%',height:'fit-content',gap:'1rem', marginBottom:'2rem'}}>
         <h1 className="contact__form__title">{t('contact.contactUs')}</h1>
         <hr />
         <div className="form__group">

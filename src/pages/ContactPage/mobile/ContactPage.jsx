@@ -194,9 +194,11 @@ const MobileContactPage = () => {
               </div>
             </div>
 
-        <div className="mobile__back__to__top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <FontAwesomeIcon icon={faArrowUp} size="lg" />
+      <div style={{width:'100%',display:'flex',justifyContent:'flex-end'}}>
+        <div className="mobile__back__to__top" style={{bottom:'0'}} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <FontAwesomeIcon icon={faArrowUp} size="lg" />
         </div>
+      </div>
 
         <footer className="mobile__footer" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
             {t('contact.copyright')}

@@ -48,11 +48,11 @@ const MobileSpecialitesPage = () => {
                     </div>
                 </div>
                 <div className="specialites__button__group" style={{width:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'1rem'}}>
-                    <button className={`specialites__button__item ${currentIndex === 0 ? 'active' : ''}`} style={{width:'100%'}}>{t('specialites.specialties.pediatrics')}</button>
-                    <button className={`specialites__button__item ${currentIndex === 1 ? 'active' : ''}`} style={{width:'100%'}}>{t('specialites.specialties.gynecology')}</button>
-                    <button className={`specialites__button__item ${currentIndex === 2 ? 'active' : ''}`} style={{width:'100%'}}>{t('specialites.specialties.pediatrics')}</button>
-                    <button className={`specialites__button__item ${currentIndex === 3 ? 'active' : ''}`} style={{width:'100%'}}>{t('specialites.specialties.ophthalmology')}</button>
-                    <button className={`specialites__button__item ${currentIndex === 4 ? 'active' : ''}`} style={{width:'100%'}}>{t('specialites.specialties.pediatrics')}</button>
+                    <button className={`specialites__button__item ${currentIndex === 0 ? 'active' : ''}`} onClick={() => setCurrentIndex(0)} style={{width:'100%', cursor:'pointer'}}>{t('specialites.specialties.pediatrics')}</button>
+                    <button className={`specialites__button__item ${currentIndex === 1 ? 'active' : ''}`} onClick={() => setCurrentIndex(1)} style={{width:'100%', cursor:'pointer'}}>{t('specialites.specialties.gynecology')}</button>
+                    <button className={`specialites__button__item ${currentIndex === 2 ? 'active' : ''}`} onClick={() => setCurrentIndex(2)} style={{width:'100%', cursor:'pointer'}}>{t('specialites.specialties.pediatrics')}</button>
+                    <button className={`specialites__button__item ${currentIndex === 3 ? 'active' : ''}`} onClick={() => setCurrentIndex(3)} style={{width:'100%', cursor:'pointer'}}>{t('specialites.specialties.ophthalmology')}</button>
+                    <button className={`specialites__button__item ${currentIndex === 4 ? 'active' : ''}`} onClick={() => setCurrentIndex(4)} style={{width:'100%', cursor:'pointer'}}>{t('specialites.specialties.pediatrics')}</button>
                 </div>
                 <hr style={{width:'100%'}} />
                 <div className="specialites__content" style={{width:'100%',height:'fit-content',gap:'2rem',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}>
@@ -88,7 +88,7 @@ const MobileSpecialitesPage = () => {
                 <p style={{fontSize:'1rem'}}>{t('specialites.video.description')}</p>
             </div>
             <div className="highlights" style={{flexDirection:'column',width:'100%',height:'fit-content',gap:'1rem',justifyContent:'center',alignItems:'center'}}>
-                <div className="highlights__item" style={{flexDirection: isRTL ? 'row-reverse' : 'row'}}>
+                <div className="highlights__item" style={{flexDirection: isRTL ? 'row-reverse' : 'row', width:'90%'}}>
                     <div className="highlights__item__icon">
                         <img loading="lazy" src="/highlight/clock.svg" alt="Image" />
                     </div>
@@ -96,7 +96,7 @@ const MobileSpecialitesPage = () => {
                         {t('specialites.highlights.experience')}
                     </div>
                 </div>
-                <div className="highlights__item" style={{flexDirection: isRTL ? 'row-reverse' : 'row'}}>
+                <div className="highlights__item" style={{flexDirection: isRTL ? 'row-reverse' : 'row', width:'90%'}}>
                     <div className="highlights__item__icon">
                         <img loading="lazy" src="/highlight/check.svg" alt="Image" />
                     </div>
@@ -104,7 +104,7 @@ const MobileSpecialitesPage = () => {
                         {t('specialites.highlights.service')}
                     </div>
                 </div>
-                <div className="highlights__item" style={{flexDirection: isRTL ? 'row-reverse' : 'row'}}>
+                <div className="highlights__item" style={{flexDirection: isRTL ? 'row-reverse' : 'row', width:'90%'}}>
                     <div className="highlights__item__icon">
                         <img loading="lazy" src="/highlight/care.svg" alt="Image" />
                     </div>

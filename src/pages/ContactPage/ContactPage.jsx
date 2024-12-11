@@ -189,8 +189,10 @@ const ContactPage = () => {
             ))}
           </div>
         </div>
-      <div className="back__to__top" style={{bottom:'0'}} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-        <FontAwesomeIcon icon={faArrowUp} size="lg" />
+      <div style={{width:'100%',display:'flex',justifyContent:'flex-end'}}>
+        <div className="back__to__top" style={{bottom:'0'}} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <FontAwesomeIcon icon={faArrowUp} size="lg" />
+        </div>
       </div>
       </Header>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>

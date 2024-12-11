@@ -34,7 +34,6 @@
     color: var(--primary-color);
     position: relative;
     padding: .5rem; /* Add padding for spacing */
-    margin-bottom: 1rem;
 }
 
 .card__board__mobile[dir='rtl'] .card__board__mobile__title {

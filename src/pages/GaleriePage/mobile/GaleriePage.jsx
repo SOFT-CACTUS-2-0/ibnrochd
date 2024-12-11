@@ -109,7 +109,7 @@ const MobileGaleriePage = () => {
                     }}
                 />
                 <div style={{marginBlock:'4rem'}}>
-                    <div className="image__galerie__grid" style={{gridTemplateAreas:'"item1 item1 item1 item1 item2 item2 item2 item2" "item3 item3 item3 item3 item4 item4 item4 item4" "item5 item5 item5 item5 item6 item6 item6 item6"'}}>
+                    <div className="image__galerie__grid" style={{gridTemplateAreas:'"item1 item1 item1 item1 item2 item2 item2 item2" "item3 item3 item3 item3 item4 item4 item4 item4" "item5 item5 item5 item5 item6 item6 item6 item6"', paddingInline:'0', gap:'0.5rem'}}>
                         {images.map((src, index) => (
                             <div
                                 key={index}

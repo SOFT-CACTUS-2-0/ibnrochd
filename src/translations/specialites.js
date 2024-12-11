@@ -8,7 +8,7 @@ const specialites = {
             ophthalmology: "Ophtalmologie"
         },
         description: {
-            title: "LOREM IPSUM DOLOR",
+            title: "A PROPOS DE NOUS SERVICES",
             firstParagraph: "Notre objectif est de fournir des soins de qualité de manière courtoise, respectueuse et compatissante. Nous espérons que vous nous permettrez",
             secondParagraph: "prendre soin de vous et de nous efforcer d'être le premier et le meilleur choix en matière de soins de santé."
         },
@@ -60,7 +60,7 @@ const specialites = {
             ophthalmology: "Ophthalmology"
         },
         description: {
-            title: "LOREM IPSUM DOLOR",
+            title: "ABOUT OUR SERVICES",
             firstParagraph: "Our goal is to provide quality care in a courteous, respectful, and compassionate manner. We hope you will allow us",
             secondParagraph: "to care for you and strive to be the first and best choice for healthcare."
         },

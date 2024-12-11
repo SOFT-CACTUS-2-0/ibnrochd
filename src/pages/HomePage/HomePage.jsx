@@ -288,6 +288,7 @@ const Specialties = () => {
         <SpecialtyButtons
           specialties={specialties}
           activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
         />
         {/* Pass handlers to NavigationControls */}
         <NavigationControls onNext={handleNext} onPrev={handlePrev} activeIndex={activeIndex} totalButtons={specialties.length} />
@@ -296,13 +297,15 @@ const Specialties = () => {
 };
 
 // SpecialtyButtons Component
-const SpecialtyButtons = ({ specialties, activeIndex }) => {
+const SpecialtyButtons = ({ specialties, activeIndex, setActiveIndex }) => {
   return (
     <div className="button__group">
       {specialties.map((specialty, index) => (
         <div
           key={index}
           className={`button__item ${index === activeIndex ? 'active' : ''}`}
+          onClick={() => setActiveIndex(index)}
+          style={{cursor:'pointer'}}
         >
           {index === activeIndex && (
             <div className="button__item__arrow">
@@ -352,6 +355,16 @@ const ClinicWings = () => {
         '/b8dabe7f11276a7a5a058c97166b0c15.webp',
         '/f800cfb2aa8238b84077530434eb11c5.webp',
         '/300726901718ac044bf52aa78933c642.webp',
+      ],
+      videos: [
+        '/wings/1.mp4',
+        '/wings/2.mp4',
+        '/wings/3.mp4',
+        '/wings/4.mp4',
+        '/wings/5.mp4',
+        '/wings/6.mp4',
+        '/wings/7.mp4',
+        '/wings/8.mp4'
       ]
     },
     // You can add more clinic wing data here if needed

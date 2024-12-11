@@ -201,6 +201,7 @@ const Specialties = () => {
       <SpecialtyButtons
         specialties={specialties}
         activeIndex={activeIndex}
+        setActiveIndex={setActiveIndex}
       />
       <NavigationControls onNext={handleNext} onPrev={handlePrev} activeIndex={activeIndex} totalButtons={specialties.length} />
     </>
@@ -235,14 +236,15 @@ const NavigationControls = ({ onNext, onPrev, activeIndex, totalButtons }) => (
 );
 
 // SpecialtyButtons Component
-const SpecialtyButtons = ({ specialties, activeIndex }) => {
+const SpecialtyButtons = ({ specialties, activeIndex, setActiveIndex }) => {
   return (
     <div className="button__group" style={{width:'100%',display:'block',paddingInline:'0'}}>
       {specialties.map((specialty, index) => (
         <div
           key={index}
           className={`button__item ${index === activeIndex ? 'active' : ''}`}
-          style={{paddingInline:'1rem'}}
+          style={{paddingInline:'1rem', cursor:'pointer'}}
+          onClick={() => setActiveIndex(index)}
         >
           {index === activeIndex && (
             <div className="button__item__arrow">
@@ -267,8 +269,12 @@ const ClinicWing = ({ number, title, description, images }) => {
   const imageContainerRef = useRef(null);
   const imageWidth = Math.min(window.innerWidth * 0.85, 400);
   const gap = 32;
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const swipeThreshold = 50; // minimum distance for a swipe
+
   // Clone first and last images
-  const extendedImages = [images[images.length - 1], ...images, images[0]];
+  const extendedImages = [images[images.length - 1], ...images, ...images];
 
   const [currentContentIndex, setCurrentContentIndex] = useState(0);
 
@@ -289,7 +295,7 @@ const ClinicWing = ({ number, title, description, images }) => {
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex < images.length ? prevIndex + 1 : prevIndex
+      prevIndex < clinicWingData[0].images.length ? prevIndex + 1 : prevIndex
     );
     setCurrentContentIndex((prevIndex) =>
       prevIndex < 5 - 1 ? prevIndex + 1 : 0
@@ -305,33 +311,66 @@ const ClinicWing = ({ number, title, description, images }) => {
     );
   };
 
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > swipeThreshold;
+    const isRightSwipe = distance < -swipeThreshold;
+
+    if (isLeftSwipe) {
+      handleNext();
+    } else if (isRightSwipe) {
+      handlePrev();
+    }
+  };
+
   const currentWing = clinicWingData[0];
 
     useEffect(() => {
+        console.log('Current Index:', currentIndex);
         const imageContainer = imageContainerRef.current;
 
+        if (!imageContainer) return;
+
         const handleTransitionEnd = () => {
-                if (currentIndex === -1) {
-                // Move to the last real slide without transition
-                    imageContainer.style.transition = 'none';
-                    setCurrentIndex(images.length - 1);
-                    imageContainer.style.transform = `translateX(-${(imageWidth + gap) * (images.length)}px)`;
-            } else if (currentIndex === images.length) {
-                    // Move to the first real slide without transition
-                    imageContainer.style.transition = 'none';
-                setCurrentIndex(0);
-                    imageContainer.style.transform = `translateX(0px)`;
-            }
+          if (currentIndex === -1) {
+            console.log('Transitioning to last slide');
+            imageContainer.style.transition = 'none';
+            const lastSlidePosition = (imageWidth + gap) * (images.length);
+            imageContainer.style.transform = `translateX(-${lastSlidePosition}px)`;
+            setCurrentIndex(images.length - 1);
+            // Force a reflow to ensure the transition is removed
+            imageContainer.offsetHeight;
+          } else if (currentIndex === clinicWingData[0].images.length) {
+            console.log('Transitioning to first slide');
+            imageContainer.style.transition = 'none';
+            imageContainer.style.transform = `translateX(-${(imageWidth + gap)}px)`;
+            setCurrentIndex(0);
+            // Force a reflow to ensure the transition is removed
+            imageContainer.offsetHeight;
+          }
         };
 
-    imageContainer.style.transition = 'transform 0.5s ease-in-out';
-        imageContainer.style.transform = `translateX(-${currentIndex * (imageWidth + gap)}px)`;
+        // Set initial transform with transition
+        imageContainer.style.transition = 'transform 0.5s ease-in-out';
+        const translateX = (currentIndex + 1) * (imageWidth + gap);
+        imageContainer.style.transform = `translateX(-${translateX}px)`;
 
         imageContainer.addEventListener('transitionend', handleTransitionEnd);
         return () => {
-            imageContainer.removeEventListener('transitionend', handleTransitionEnd);
-        }
-    }, [currentIndex, images, imageWidth, gap]);
+          imageContainer.removeEventListener('transitionend', handleTransitionEnd);
+        };
+    }, [currentIndex, images.length, imageWidth, gap]);
 
   return (
     <>
@@ -347,22 +386,37 @@ const ClinicWing = ({ number, title, description, images }) => {
         </div>
       </div>
       <div className="image-carousel__container-mobile" style={{alignSelf:'flex-start',width:'100%'}}>
-                <div className="image-carousel-mobile" ref={imageContainerRef}
-                    style={{
-                        display: 'flex',
-                        transition: 'transform 0.5s ease-in-out',
-                        width: '100%',
-                        gap: '2rem',
-                }}>
+                <div 
+                  className="image-carousel-mobile" 
+                  ref={imageContainerRef}
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                  style={{
+                    display: 'flex',
+                    transition: 'transform 0.5s ease-in-out',
+                    width: '100%',
+                    gap: '2rem',
+                  }}
+                >
                     {extendedImages.map((src, index) => (
-            <div key={index} className="image-carousel__card" style={{width:'min(85vw,400px)',aspectRatio:'254 / 359',height:'unset'}}>
-                <img loading="lazy" src={src} alt={`Image ${index + 1}`} style={{width:'100%'}}/>
-                            {index === currentIndex && (
-                  <div className="play-icon">
-                                    <FontAwesomeIcon icon={faPlay} />
-                  </div>
-                )}
-              </div>
+                      <div key={index} className="image-carousel__card" style={{width:'min(85vw,400px)',aspectRatio:'254 / 359',height:'unset'}}>
+                          <img loading="lazy" src={src} alt={`Image ${index + 1}`} style={{width:'100%'}}/>
+                            {
+                              index - 1 === currentIndex && (
+                                <div className="play-icon">
+                                  <FontAwesomeIcon icon={faPlay} />
+                                </div>
+                              )
+                            }
+                            {
+                              index + 2 === currentIndex && (
+                                <div className="play-icon">
+                                  <FontAwesomeIcon icon={faPlay} />
+                                </div>
+                              )
+                            }
+                        </div>
                     ))}
         </div>
         <ImageNavigation currentIndex={currentIndex} totalImages={images.length} onNext={handleNext} onPrev={handlePrev} />

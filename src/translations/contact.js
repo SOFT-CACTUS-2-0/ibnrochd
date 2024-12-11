@@ -1,7 +1,7 @@
 const contact = {
   FR: {
     stayInTouch: 'Rester en contact',
-    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.',
+    description: 'Renforcez Votre Connexion : Contactez-Nous pour un Support Exceptionnel, une Assistance Expert et des Solutions Rapides à Vos Questions',
     contactInfo: 'Contact Info :',
     service: 'H24/7 Service',
     email: 'contact@cliniqueibnrochdberkane.com',
@@ -18,7 +18,7 @@ const contact = {
     address: '44, Rue Tarek Ibn Ziyad Hay El Hassani Berkane',
     mobile: {
       title: 'Parlez-Nous de Vous',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore aliqua.',
+      description: 'Renforcez Votre Connexion : Contactez-Nous pour un Support Exceptionnel, une Assistance Expert et des Solutions Rapides à Vos Questions',
       form: {
         name: 'Nom et prénom',
         email: 'E-mail',
@@ -45,7 +45,7 @@ const contact = {
   },
   MA: {
     stayInTouch: 'ابق على تواصل',
-    description: 'لوريم ايبسوم دولار سيت أميت، كونسيكتيتور أديبيسينج إليت.',
+    description: 'عزز تواصلك: تواصل معنا للحصول على دعم متميز ومساعدة خبيرة وحلول سريعة لاستفساراتك',
     contactInfo: 'معلومات الاتصال :',
     service: 'خدمة 24/7',
     email: 'contact@cliniqueibnrochdberkane.com',
@@ -61,8 +61,8 @@ const contact = {
     copyright: 'جميع الحقوق محفوظة لشركة SOFT CACTUS 2024',
     address: '44، شارع طارق بن زياد حي الحسني بركان',
     mobile: {
-      title: 'تحدث معنا عن نفسك',
-      description: 'لوريم ايبسوم دولار سيت أميت، كونسيكتيتور أديبيسينج إليت، سيد دو إيوسمود تيمبور.',
+      title: 'تحدث معنا',
+      description: 'عزز تواصلك: تواصل معنا للحصول على دعم متميز ومساعدة خبيرة وحلول سريعة لاستفساراتك',
       form: {
         name: 'الاسم الكامل',
         email: 'البريد الإلكتروني',
@@ -89,7 +89,7 @@ const contact = {
   },
   GB: {
     stayInTouch: 'Stay in Touch',
-    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.',
+    description: 'Empower Your Connection: Reach Out to Us for Outstanding Support, Expert Assistance, and Swift Resolutions to Your Inquiries',
     contactInfo: 'Contact Info:',
     service: '24/7 Service',
     email: 'contact@cliniqueibnrochdberkane.com',
@@ -105,8 +105,8 @@ const contact = {
     copyright: 'All rights reserved for SOFT CACTUS 2024',
     address: '44, Tarek Ibn Ziyad Street, Hay El Hassani Berkane',
     mobile: {
-      title: 'Tell Us About Yourself',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore aliqua.',
+      title: 'Talk to Us',
+      description: 'Empower Your Connection: Reach Out to Us for Outstanding Support, Expert Assistance, and Swift Resolutions to Your Inquiries',
       form: {
         name: 'Full Name',
         email: 'Email',

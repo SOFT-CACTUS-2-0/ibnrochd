@@ -46,11 +46,11 @@ const SpecialitesPage = () => {
                         </div>
                     </div>
                     <div className="specialites__button__group">
-                        <button className={`specialites__button__item ${currentIndex === 0 ? 'active' : ''}`}>{t('specialites.specialties.pediatrics')}</button>
-                        <button className={`specialites__button__item ${currentIndex === 1 ? 'active' : ''}`}>{t('specialites.specialties.gynecology')}</button>
-                        <button className={`specialites__button__item ${currentIndex === 2 ? 'active' : ''}`}>{t('specialites.specialties.pediatrics')}</button>
-                        <button className={`specialites__button__item ${currentIndex === 3 ? 'active' : ''}`}>{t('specialites.specialties.ophthalmology')}</button>
-                        <button className={`specialites__button__item ${currentIndex === 4 ? 'active' : ''}`}>{t('specialites.specialties.pediatrics')}</button>
+                        <button className={`specialites__button__item ${currentIndex === 0 ? 'active' : ''}`} style={{cursor:'pointer'}} onClick={() => setCurrentIndex(0)}>{t('specialites.specialties.pediatrics')}</button>
+                        <button className={`specialites__button__item ${currentIndex === 1 ? 'active' : ''}`} style={{cursor:'pointer'}} onClick={() => setCurrentIndex(1)}>{t('specialites.specialties.gynecology')}</button>
+                        <button className={`specialites__button__item ${currentIndex === 2 ? 'active' : ''}`} style={{cursor:'pointer'}} onClick={() => setCurrentIndex(2)}>{t('specialites.specialties.pediatrics')}</button>
+                        <button className={`specialites__button__item ${currentIndex === 3 ? 'active' : ''}`} style={{cursor:'pointer'}} onClick={() => setCurrentIndex(3)}>{t('specialites.specialties.ophthalmology')}</button>
+                        <button className={`specialites__button__item ${currentIndex === 4 ? 'active' : ''}`} style={{cursor:'pointer'}} onClick={() => setCurrentIndex(4)}>{t('specialites.specialties.pediatrics')}</button>
                     </div>
                     <hr style={{width:'100%'}} />
                     <div className="specialites__content">
