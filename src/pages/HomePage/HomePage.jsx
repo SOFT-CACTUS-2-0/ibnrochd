@@ -11,6 +11,7 @@ import {
   faArrowRight,
   faPlay,
   faChevronLeft,
+  faPause
 } from '@fortawesome/free-solid-svg-icons';
 import Title from '@components/Title/Title';
 import CardBoard from '@components/CardBoard/CardBoard';
@@ -351,19 +352,14 @@ const ClinicWings = () => {
       number: t(`home.clinicWings.wings.${currentContentIndex}.number`),
       title: t(`home.clinicWings.wings.${currentContentIndex}.title`),
       description: t(`home.clinicWings.wings.${currentContentIndex}.description`, { returnObjects: true }),
-      images: [
-        '/b8dabe7f11276a7a5a058c97166b0c15.webp',
-        '/f800cfb2aa8238b84077530434eb11c5.webp',
-        '/300726901718ac044bf52aa78933c642.webp',
-      ],
       videos: [
         '/wings/1.mp4',
+        '/wings/6.mp4',
         '/wings/2.mp4',
+        '/wings/7.mp4',
         '/wings/3.mp4',
         '/wings/4.mp4',
         '/wings/5.mp4',
-        '/wings/6.mp4',
-        '/wings/7.mp4',
         '/wings/8.mp4'
       ]
     },
@@ -372,10 +368,10 @@ const ClinicWings = () => {
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex < clinicWingData[0].images.length ? prevIndex + 1 : prevIndex
+      prevIndex < clinicWingData[0].videos.length ? prevIndex + 1 : prevIndex
     );
     setCurrentContentIndex((prevIndex) =>
-      prevIndex < 5 - 1 ? prevIndex + 1 : 0
+      prevIndex < 7 ? prevIndex + 1 : 0
     );
   };
 
@@ -384,7 +380,7 @@ const ClinicWings = () => {
       prevIndex > -1 ? prevIndex - 1 : -1
     );
     setCurrentContentIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : 5 - 1
+      prevIndex > 0 ? prevIndex - 1 : 7
     );
   };
 
@@ -406,7 +402,7 @@ const ClinicWings = () => {
           number={currentWing.number}
           title={currentWing.title}
           description={currentWing.description}
-          images={currentWing.images}
+          videos={currentWing.videos}
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}
           onNext={handleNext}
@@ -421,22 +417,37 @@ const ClinicWing = ({
   number,
   title,
   description,
-  images,
+  videos,
   currentIndex,
   setCurrentIndex,
   onNext,
-  onPrev,
+  onPrev
 }) => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'MA';
-  const imageWidth = 40; // Width of each image card
-  const gap = 1; // Gap between image cards
-  const slideWidth = imageWidth + gap;
-  const totalSlides = images.length;
+  const videoWidth = 30; // Width of each video card
+  const gap = 1; // Gap between video cards
+  const slideWidth = videoWidth + gap;
+  const totalSlides = videos.length;
+  const videoRefs = useRef([]);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  // Clone first and last images
-  const extendedImages = [images[images.length - 1], ...images, ...images];
+  // Clone first and last videos
+  const extendedVideos = [videos[videos.length - 1], ...videos, ...videos];
   const trackRef = useRef(null);
+
+  const handlePlayClick = (index) => {
+    const videoElement = videoRefs.current[index];
+    if (videoElement) {
+      if (videoElement.paused) {
+        videoElement.play();
+        setIsPlaying(true);
+      } else {
+        videoElement.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
 
   // Calculate the translation amount
   const translateX = -((currentIndex + 1) * slideWidth);
@@ -449,19 +460,19 @@ const ClinicWing = ({
       if (currentIndex === -1) {
         // Move to the last real slide without transition
         track.style.transition = 'none';
-        track.style.transform = `translateX(-${slideWidth * totalSlides}%)`;
+        track.style.transform = `translateX(-${slideWidth * totalSlides}vw)`;
         setCurrentIndex(totalSlides - 1);
       } else if (currentIndex === totalSlides) {
         // Move to the first real slide without transition
         track.style.transition = 'none';
-        track.style.transform = `translateX(-${slideWidth}%)`;
+        track.style.transform = `translateX(-${slideWidth}vw)`;
         setCurrentIndex(0);
       }
     };
   
     // Apply the transform with transition
     track.style.transition = 'transform 0.5s ease';
-    track.style.transform = `translateX(${translateX}%)`;
+    track.style.transform = `translateX(${translateX}vw)`;
   
     // Add the transitionend event listener
     track.addEventListener('transitionend', handleTransitionEnd);
@@ -473,10 +484,17 @@ const ClinicWing = ({
   }, [translateX, currentIndex, totalSlides, slideWidth]);
 
   const handleNext = () => {
+    // Stop current video if playing
+    const currentVideo = videoRefs.current[currentIndex + 1];
+    if (currentVideo) {
+      currentVideo.pause();
+      setIsPlaying(false);
+    }
     onNext(currentIndex + 1);
   };
 
   const handlePrev = () => {
+    // Stop current video if playing
     onPrev(currentIndex - 1);
   };
 
@@ -503,33 +521,41 @@ const ClinicWing = ({
               display: 'flex',
             }}
           >
-            {extendedImages.map((src, index) => (
+            {extendedVideos.map((src, index) => (
               <div
                 key={index}
                 className="image-carousel__card"
                 style={{
-                  width: `${imageWidth}%`,
-                  aspectRatio: '253 / 359',
                   height: 'auto',
+                  width: `${videoWidth}vw`,
+                  aspectRatio: '253 / 359',
                   marginRight: `${gap}vw`,
                 }}
               >
-                <img
+                <video
+                  ref={el => videoRefs.current[index] = el}
                   loading="lazy"
-                  src={src}
-                  alt={`Image ${index}`}
+                  src={`${src}#t=1`}
+                  alt={`Video ${index}`}
                   style={{ width: '100%' }}
+                  onClick={() => {
+                    if (index - 1 === currentIndex) {
+                      handlePlayClick(index);
+                    }
+                  }}
+                  loop
+                  playsInline
                 />
                 {
                   index - 1 === currentIndex && (
-                    <div className="play-icon">
+                    <div className="play-icon" onClick={() => handlePlayClick(index)} style={{opacity: isPlaying ? 0 : 1}}>
                       <FontAwesomeIcon icon={faPlay} />
                     </div>
                   )
                 }
                 {
                   index + 2 === currentIndex && (
-                    <div className="play-icon">
+                    <div className="play-icon" onClick={() => handlePlayClick(index)} style={{opacity: isPlaying ? 0 : 1}}>
                       <FontAwesomeIcon icon={faPlay} />
                     </div>
                   )
@@ -567,7 +593,7 @@ const ImageNavigation = ({ currentIndex, totalImages, onNext, onPrev }) => (
         }
       </span>
       <div className="indicator__container" style={{position: 'relative'}}>
-        <div className="indicator" style={{width:'33%',transform: `translateX(calc(100% * ${((currentIndex + totalImages) % totalImages)}))`, position: 'absolute'}}></div>
+        <div className="indicator" style={{width:`${100 / totalImages}%`,transform: `translateX(calc(100% * ${((currentIndex + totalImages) % totalImages)}))`, position: 'absolute'}}></div>
       </div>
       <span className="navigation-controls__number">
         {String(totalImages).padStart(2, '0')}

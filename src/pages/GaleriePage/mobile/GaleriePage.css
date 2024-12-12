@@ -20,6 +20,8 @@
 
 .video__galerie {
     width: 100%;
+    aspect-ratio: unset;
+    height: fit-content;
 }
 
 .video__item {

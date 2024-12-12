@@ -108,29 +108,44 @@ const MobileGaleriePage = () => {
                         container: {marginBlock: '1rem',width:'100%'}
                     }}
                 />
-                <div style={{marginBlock:'4rem'}}>
-                    <div className="image__galerie__grid" style={{gridTemplateAreas:'"item1 item1 item1 item1 item2 item2 item2 item2" "item3 item3 item3 item3 item4 item4 item4 item4" "item5 item5 item5 item5 item6 item6 item6 item6"', paddingInline:'0', gap:'0.5rem'}}>
+                <div style={{ marginBlock: '4rem' }}>
+                    <div
+                        className="image__galerie__grid"
+                        style={{
+                        gridTemplateAreas: `
+                            "item1 item1 item1 item1 item2 item2 item2 item2"
+                            "item3 item3 item3 item3 item4 item4 item4 item4"
+                            "item5 item5 item5 item5 item6 item6 item6 item6"
+                        `,
+                        paddingInline: '0',
+                        gap: '0.5rem',
+                        }}
+                    >
                         {images.map((src, index) => (
-                            <div
-                                key={index}
-                                style={{ '--i': `item${index + 1}` }}
-                                className="image__galerie__item"
-                            >
-                                <img loading="lazy" src={src} alt={`${t('gallery.images.alt')} ${index + 1}`} />
-                            </div>
+                        <div
+                            key={index}
+                            style={{ gridArea: `item${index + 1}` }}
+                            className="image__galerie__item"
+                        >
+                            <img
+                            loading="lazy"
+                            src={src}
+                            alt={`${t('gallery.images.alt')} ${index + 1}`}
+                            />
+                        </div>
                         ))}
                     </div>
                     <div className="image__galerie__pagination">
                         {paginationItems.map((item) => (
-                            <div
-                                key={item}
-                                className={`image__galerie__pagination__item ${
-                                item === currentIndex ? 'active' : ''
-                                }`}
-                                onClick={() => setCurrentIndex(item)}
-                            >
-                                {`0${item}`}
-                            </div>
+                        <div
+                            key={item}
+                            className={`image__galerie__pagination__item ${
+                            item === currentIndex ? 'active' : ''
+                            }`}
+                            onClick={() => setCurrentIndex(item)}
+                        >
+                            {`0${item}`}
+                        </div>
                         ))}
                     </div>
                 </div>

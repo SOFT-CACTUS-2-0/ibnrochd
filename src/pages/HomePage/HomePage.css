@@ -565,11 +565,22 @@ body {
 .image-carousel {
     display: flex;
     gap: 1rem;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
 }
-  
+
+.image-carousel__track {
+    display: flex;
+    width: 100%;
+    transform-origin: left center;
+    will-change: transform;
+}
+
 .image-carousel__container {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
   
 .image-carousel__card {
