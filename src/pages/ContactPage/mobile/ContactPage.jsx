@@ -22,7 +22,7 @@ const SOCIAL_LINKS = [
     icon: faFacebookF,
   },
   {
-    href: 'https://www.linkedin.com/company/cliniqueibnrochdberkane',
+    href: '#',
     icon: faLinkedinIn,
   },
 ];

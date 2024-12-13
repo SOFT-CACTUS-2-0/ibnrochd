@@ -51,7 +51,7 @@ const Contact = () => {
   };
 
   return (
-    <div className='contact__container' style={{position:'relative',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'1rem',height:'1000px',paddingInline:'2rem',borderRadius: 0, direction: isRTL ? 'rtl' : 'ltr'}}>
+    <div className='contact__container' style={{position:'relative',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'1rem',height:'fit-content',paddingInline:'2rem',borderRadius: 0, direction: isRTL ? 'rtl' : 'ltr'}}>
       <div className="contact__info__footer" style={{width:'100%',height:'fit-content',gap:'1rem'}}>
         <h1 className="footer__title">
             {t('contact.stayInTouch')}
@@ -84,7 +84,7 @@ const Contact = () => {
           <a target='_blank' href="https://facebook.com/profile.php?id=61554170039546" style={{ color: "#4CB9C1", textDecoration: "none", width:'38px', height:'38px', background:'white', borderRadius: '50%', display: 'flex', justifyContent:'center', alignItems:'center' }}>
             <FontAwesomeIcon icon={faFacebookF} style={{fontSize:'1.5rem'}} />
           </a>
-          <a target='_blank' href="https://www.linkedin.com/company/cliniqueibnrochdberkane" style={{ color: "#4CB9C1", textDecoration: "none", width:'38px', height:'38px', background:'white', borderRadius: '50%', display: 'flex', justifyContent:'center', alignItems:'center' }}>
+          <a target='_blank' href="#" style={{ color: "#4CB9C1", textDecoration: "none", width:'38px', height:'38px', background:'white', borderRadius: '50%', display: 'flex', justifyContent:'center', alignItems:'center' }}>
             <FontAwesomeIcon icon={faLinkedinIn} style={{fontSize:'1.5rem'}} />
           </a>
         </div>
@@ -145,7 +145,7 @@ const Contact = () => {
           {t('contact.send')}
         </button>
       </form>
-      <div className="copyright" style={{ position: "absolute", bottom: "1rem", width: "100%", textAlign: "center", color: "white", fontSize: "12px" }}>
+      <div className="copyright" style={{ position: "absolute", bottom: "1rem", width: "100%", textAlign: "center", color: "white", fontSize: "12px",left:'0' }}>
         {t('contact.copyright')}
       </div>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>

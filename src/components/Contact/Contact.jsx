@@ -141,7 +141,7 @@ const Contact = () => {
           <a target='_blank' href="https://facebook.com/profile.php?id=61554170039546" style={{ color: "#4CB9C1", textDecoration: "none", width:'38px', height:'38px', background:'white', borderRadius: '50%', display: 'flex', justifyContent:'center', alignItems:'center' }}>
             <FontAwesomeIcon icon={faFacebookF} style={{fontSize:'1.5rem'}} />
           </a>
-          <a target='_blank' href="https://www.linkedin.com/company/cliniqueibnrochdberkane" style={{ color: "#4CB9C1", textDecoration: "none", width:'38px', height:'38px', background:'white', borderRadius: '50%', display: 'flex', justifyContent:'center', alignItems:'center' }}>
+          <a target='_blank' href="#" style={{ color: "#4CB9C1", textDecoration: "none", width:'38px', height:'38px', background:'white', borderRadius: '50%', display: 'flex', justifyContent:'center', alignItems:'center' }}>
             <FontAwesomeIcon icon={faLinkedinIn} style={{fontSize:'1.5rem'}} />
           </a>
         </div>
