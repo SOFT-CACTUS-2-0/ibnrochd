@@ -26,7 +26,7 @@ const MobileSpecialitesPage = () => {
                         title: {fontSize: '24px',lineHeight:'28px'},
                         subtitle: {fontSize: '24px',lineHeight:'28px'},
                         description: {fontSize: '16px',lineHeight:'20px'},
-                        container: {marginBlock: '1rem',width:'100%'}
+                        container: {marginBlock: '1rem'}
                     }}
                 />
                 <div className="back__next__container" style={{width:'100%',paddingInline:'0'}}>

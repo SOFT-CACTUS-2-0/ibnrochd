@@ -24,12 +24,7 @@
 }
   
 .video__item {
-    flex: 1;
     position: relative;
-}
-  
-.video__item.active {
-    flex: 2;
 }
   
 .video__item img {

@@ -21,7 +21,7 @@
     height: 1px;
     background-color: #18466F80;
     flex-grow: 1;
-    margin-inline: 1rem;
+    margin-left: 1rem;
 }
 
 .title__description{
@@ -38,14 +38,14 @@
     max-width: 490px;
 }
 
-.title__container{
+.title__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
     position: relative;
     width: 100%;
     margin: 3rem auto;
-    padding-inline: 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    margin-left: 4rem;
 }
 
 .title__container::before{
@@ -66,7 +66,7 @@
 
 @media screen and (max-width: 1164px) {
     .title__container{
-        padding-inline: 0;
-        padding-inline-start: 2rem;
+        margin-left: 2rem;
+        width: calc(100% - 2rem);;
     }
 }

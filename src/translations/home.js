@@ -66,6 +66,27 @@ const home = {
       wings: [
         {
           number: "-1",
+          title: "Sous sol",
+          description: [
+            "UNITÉ D'OPHTALMOLOGIE",
+            "UNITE DE RADIOLOGIE",
+            "RÉFECTOIRE",
+            "SALLE DE PRIÈRE"
+          ]
+        },
+        {
+          number: "00",
+          title: "Rez de chaussée",
+          description: [
+            "ADMINISTRATION",
+            "ACCUEIL",
+            "SALLE DE CONSULTATION",
+            "BUREAU DU DIRECTEUR MÉDICAL",
+            "URGENCES"
+          ]
+        },
+        {
+          number: "01",
           title: "1er étage",
           description: [
             "Accueil",
@@ -75,17 +96,7 @@ const home = {
           ]
         },
         {
-          number: "-1",
-          title: "1er étage",
-          description: [
-            "Accueil",
-            "Suite DAR DMANA",
-            "Les chambres des patients",
-            "Une salle d'attente"
-          ]
-        },
-        {
-          number: "0",
+          number: "02",
           title: "2ème étage",
           description: [
             "Accueil",
@@ -94,16 +105,7 @@ const home = {
           ]
         },
         {
-          number: "0",
-          title: "2ème étage",
-          description: [
-            "Accueil",
-            "Suite LA TULIPE",
-            "Les chambres des patients"
-          ]
-        },
-        {
-          number: "1",
+          number: "03",
           title: "3ème étage",
           description: [
             "Accueil",
@@ -114,35 +116,14 @@ const home = {
           ]
         },
         {
-          number: "2",
+          number: "04",
           title: "4ème étage",
           description: [
             "Salle de stérilisation",
             "Blocs opératoires",
             "Salle de réveil"
           ]
-        },
-        {
-          number: "3",
-          title: "Sous sol",
-          description: [
-            "UNITÉ D'OPHTALMOLOGIE",
-            "UNITE DE RADIOLOGIE",
-            "RÉFECTOIRE",
-            "SALLE DE PRIÈRE"
-          ]
-        },
-        {
-          number: "4",
-          title: "Rez de chaussée",
-          description: [
-            "ADMINISTRATION",
-            "ACCUEIL",
-            "SALLE DE CONSULTATION",
-            "BUREAU DU DIRECTEUR MÉDICAL",
-            "URGENCES"
-          ]
-        },
+        }
       ]
     },
     doctors: {
@@ -270,44 +251,46 @@ const home = {
       wings: [
         {
           number: "-1",
-          title: "الطابق الأول",
+          title: "الطابق السفلي",
           description: [
-            "الاستقبال",
-            "جناح دار ضمانة",
-            "غرف المرضى",
-            "قاعة الانتظار"
-          ]
-        },
-        {
-          number: "-1",
-          title: "الطابق الأول",
-          description: [
-            "الاستقبال",
-            "جناح دار ضمانة",
-            "غرف المرضى",
-            "قاعة الانتظار"
+            "وحدة طب العيون",
+            "وحدة الأشعة",
+            "المطعم",
+            "قاعة الصلاة"
           ]
         },
         {
           number: "0",
-          title: "الطابق الثاني",
+          title: "الطابق الأرضي",
           description: [
+            "الإدارة",
             "الاستقبال",
-            "جناح التوليب",
-            "غرف المرضى"
-          ]
-        },
-        {
-          number: "0",
-          title: "الطابق الثاني",
-          description: [
-            "الاستقبال",
-            "جناح التوليب",
-            "غرف المرضى"
+            "قاعة الاستشارة",
+            "مكتب المدير الطبي",
+            "الطوارئ"
           ]
         },
         {
           number: "1",
+          title: "الطابق الأول",
+          description: [
+            "الاستقبال",
+            "جناح دار ضمانة",
+            "غرف المرضى",
+            "قاعة الانتظار"
+          ]
+        },
+        {
+          number: "2",
+          title: "الطابق الثاني",
+          description: [
+            "الاستقبال",
+            "جناح التوليب",
+            "غرف المرضى"
+          ]
+        },
+        {
+          number: "3",
           title: "الطابق الثالث",
           description: [
             "الاستقبال",
@@ -318,35 +301,14 @@ const home = {
           ]
         },
         {
-          number: "2",
+          number: "4",
           title: "الطابق الرابع",
           description: [
             "قاعة التعقيم",
             "غرف العمليات",
             "قاعة الإفاقة"
           ]
-        },
-        {
-          number: "3",
-          title: "الطابق السفلي",
-          description: [
-            "وحدة طب العيون",
-            "وحدة الأشعة",
-            "المطعم",
-            "قاعة الصلاة"
-          ]
-        },
-        {
-          number: "4",
-          title: "الطابق الأرضي",
-          description: [
-            "الإدارة",
-            "الاستقبال",
-            "قاعة الاستشارة",
-            "مكتب المدير الطبي",
-            "الطوارئ"
-          ]
-        },
+        }
       ]
     },
     doctors: {
@@ -473,6 +435,27 @@ const home = {
       wings: [
         {
           number: "-1",
+          title: "Basement",
+          description: [
+            "OPHTHALMOLOGY UNIT",
+            "RADIOLOGY UNIT",
+            "REFECTORY",
+            "PRAYER ROOM"
+          ]
+        },
+        {
+          number: "00",
+          title: "Ground Floor",
+          description: [
+            "ADMINISTRATION",
+            "RECEPTION",
+            "CONSULTATION ROOM",
+            "MEDICAL DIRECTOR'S OFFICE",
+            "EMERGENCIES"
+          ]
+        },
+        {
+          number: "01",
           title: "1st Floor",
           description: [
             "Reception",
@@ -482,17 +465,7 @@ const home = {
           ]
         },
         {
-          number: "-1",
-          title: "1st Floor",
-          description: [
-            "Reception",
-            "DAR DMANA Suite",
-            "Patient Rooms",
-            "Waiting Room"
-          ]
-        },
-        {
-          number: "0",
+          number: "02",
           title: "2nd Floor",
           description: [
             "Reception",
@@ -501,16 +474,7 @@ const home = {
           ]
         },
         {
-          number: "0",
-          title: "2nd Floor",
-          description: [
-            "Reception",
-            "LA TULIPE Suite",
-            "Patient Rooms"
-          ]
-        },
-        {
-          number: "1",
+          number: "03",
           title: "3rd Floor",
           description: [
             "Reception",
@@ -521,35 +485,14 @@ const home = {
           ]
         },
         {
-          number: "2",
+          number: "04",
           title: "4th Floor",
           description: [
             "Sterilization Room",
             "Operating Theaters",
             "Recovery Room"
           ]
-        },
-        {
-          number: "3",
-          title: "Basement",
-          description: [
-            "OPHTHALMOLOGY UNIT",
-            "RADIOLOGY UNIT",
-            "REFECTORY",
-            "PRAYER ROOM"
-          ]
-        },
-        {
-          number: "4",
-          title: "Ground Floor",
-          description: [
-            "ADMINISTRATION",
-            "RECEPTION",
-            "CONSULTATION ROOM",
-            "MEDICAL DIRECTOR'S OFFICE",
-            "EMERGENCIES"
-          ]
-        },
+        }
       ]
     },
     doctors: {

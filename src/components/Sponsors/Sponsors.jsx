@@ -9,7 +9,7 @@ const Sponsors = () => {
     const isRTL = i18n.language === 'MA';
 
   return (
-    <div className='sponsors__container'>
+    <div className='sponsors__container' style={{display:'block'}}>
         <div className="sponsors__header">
             <img loading="lazy" src="/logo.webp" alt={t('sponsors.logo')} />
         </div>

@@ -49,7 +49,7 @@ const MobileAproposPage = () => {
                     title: {fontSize: '24px',lineHeight:'28px'},
                     subtitle: {fontSize: '24px',lineHeight:'28px'},
                     description: {fontSize: '16px',lineHeight:'20px'},
-                    container: {marginBlock: '1rem',width:'100%'}
+                    container: {marginBlock: '1rem'}
                 }}
             />
             <div className="section__phone__container"  style={{marginBlock:'4rem',width:'100%',flexDirection:'column',alignItems:'center',justifyContent:'center',height:'fit-content',display:'flex',gap:'2rem'}}>
@@ -109,7 +109,7 @@ const MobileAproposPage = () => {
                     title: {fontSize: '24px',lineHeight:'28px'},
                     subtitle: {fontSize: '24px',lineHeight:'28px'},
                     description: {fontSize: '16px',lineHeight:'20px'},
-                    container: {marginBlock: '1rem',width:'100%'}
+                    container: {marginBlock: '1rem'}
                 }}
             />
         </div>
