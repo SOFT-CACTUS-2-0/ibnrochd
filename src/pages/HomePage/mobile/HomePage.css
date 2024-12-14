@@ -229,6 +229,7 @@ form {
 .home__video__mobile__container {
     position: relative;
     width: 100%; 
+    aspect-ratio: 16 / 9;
     margin: auto;
     border-radius: 15px;
     overflow: hidden;
@@ -249,6 +250,10 @@ form {
     );
     border-radius: 15px;
     z-index: 1;
+}
+
+.home__video__mobile__container[data-video-status="true"]::before {
+    content: unset;
 }
 
 .home__video__mobile__container img {

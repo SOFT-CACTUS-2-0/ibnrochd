@@ -209,14 +209,33 @@ const Specialties = () => {
 }
 
 // HomeVideo Component
-const HomeVideo = () => (
-    <div className="home__video__mobile__container">
-      <img loading="lazy" src="/background.webp" alt="Home" />
-      <div className="play-icon">
-        <FontAwesomeIcon icon={faPlay} />
-      </div>
+const HomeVideo = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  return (
+    <div className="home__video__mobile__container" data-video-status={isPlaying}>
+      {!isPlaying ? (
+        <>
+          <img loading="lazy" src="/background.webp" alt="Home" />
+          <div className="play-icon" onClick={() => setIsPlaying(true)}>
+            <FontAwesomeIcon icon={faPlay} />
+          </div>
+        </>
+      ) : (
+        <iframe 
+          width="100%" 
+          height="100%" 
+          src="https://www.youtube.com/embed/ZgUA8t4lr5Q?si=iswGaE4zljLUcnQQ&autoplay=1" 
+          title="YouTube video player" 
+          frameBorder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerPolicy="strict-origin-when-cross-origin" 
+          allowFullScreen
+        />
+      )}
     </div>
   );
+};
 
 // NavigationControls Component
 const NavigationControls = ({ onNext, onPrev, activeIndex, totalButtons }) => (
@@ -273,8 +292,6 @@ const ClinicWing = ({ number, title, description, images }) => {
   const [touchEnd, setTouchEnd] = useState(null);
   const swipeThreshold = 50; // minimum distance for a swipe
 
-  // Clone first and last images
-  const extendedImages = [images[images.length - 1], ...images, ...images];
 
   const [currentContentIndex, setCurrentContentIndex] = useState(0);
 
@@ -283,31 +300,52 @@ const ClinicWing = ({ number, title, description, images }) => {
       number: t(`home.clinicWings.wings.${currentContentIndex}.number`),
       title: t(`home.clinicWings.wings.${currentContentIndex}.title`),
       description: t(`home.clinicWings.wings.${currentContentIndex}.description`, { returnObjects: true }),
-      images: [
-        '/b8dabe7f11276a7a5a058c97166b0c15.webp',
-        '/f800cfb2aa8238b84077530434eb11c5.webp',
-        '/300726901718ac044bf52aa78933c642.webp',
+      videos: [
+        '/wings/1.mp4',
+        '/wings/6.mp4',
+        '/wings/2.mp4',
+        '/wings/7.mp4',
+        '/wings/3.mp4',
+        '/wings/4.mp4',
+        '/wings/5.mp4',
+        '/wings/8.mp4'
       ]
     },
     // You can add more clinic wing data here if needed
   ];
 
+  // Clone first and last images
+  const extendedImages = [clinicWingData[0].videos[clinicWingData[0].videos.length - 1], ...clinicWingData[0].videos, ...clinicWingData[0].videos];
 
   const handleNext = () => {
+    // Stop current video if playing
+    const currentVideo = videoRefs.current[currentIndex + 1];
+    if (currentVideo) {
+      currentVideo.pause();
+      setIsPlaying(false);
+    }
+
     setCurrentIndex((prevIndex) => 
-      prevIndex < clinicWingData[0].images.length ? prevIndex + 1 : prevIndex
+      prevIndex < clinicWingData[0].videos.length ? prevIndex + 1 : prevIndex
     );
     setCurrentContentIndex((prevIndex) =>
-      prevIndex < 5 - 1 ? prevIndex + 1 : 0
+      prevIndex < 7 ? prevIndex + 1 : 0
     );
   };
 
   const handlePrev = () => {
+    // Stop current video if playing
+    const currentVideo = videoRefs.current[currentIndex + 1];
+    if (currentVideo) {
+      currentVideo.pause();
+      setIsPlaying(false);
+    }
+
     setCurrentIndex((prevIndex) => 
       prevIndex > -1 ? prevIndex - 1 : -1
     );
     setCurrentContentIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : 5 - 1
+      prevIndex > 0 ? prevIndex - 1 : 7
     );
   };
 
@@ -351,7 +389,7 @@ const ClinicWing = ({ number, title, description, images }) => {
             setCurrentIndex(images.length - 1);
             // Force a reflow to ensure the transition is removed
             imageContainer.offsetHeight;
-          } else if (currentIndex === clinicWingData[0].images.length) {
+          } else if (currentIndex === clinicWingData[0].videos.length) {
             console.log('Transitioning to first slide');
             imageContainer.style.transition = 'none';
             imageContainer.style.transform = `translateX(-${(imageWidth + gap)}px)`;
@@ -371,6 +409,22 @@ const ClinicWing = ({ number, title, description, images }) => {
           imageContainer.removeEventListener('transitionend', handleTransitionEnd);
         };
     }, [currentIndex, images.length, imageWidth, gap]);
+
+  const videoRefs = useRef({});
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlayClick = (index) => {
+    const video = videoRefs.current[index];
+    if (video) {
+      if (video.paused) {
+        video.play();
+        setIsPlaying(true);
+      } else {
+        video.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
 
   return (
     <>
@@ -401,25 +455,38 @@ const ClinicWing = ({ number, title, description, images }) => {
                 >
                     {extendedImages.map((src, index) => (
                       <div key={index} className="image-carousel__card" style={{width:'min(85vw,400px)',aspectRatio:'254 / 359',height:'unset'}}>
-                          <img loading="lazy" src={src} alt={`Image ${index + 1}`} style={{width:'100%'}}/>
-                            {
-                              index - 1 === currentIndex && (
-                                <div className="play-icon">
-                                  <FontAwesomeIcon icon={faPlay} />
-                                </div>
-                              )
-                            }
-                            {
-                              index + 2 === currentIndex && (
-                                <div className="play-icon">
-                                  <FontAwesomeIcon icon={faPlay} />
-                                </div>
-                              )
-                            }
+                          <video
+                            ref={el => videoRefs.current[index] = el}
+                            loading="lazy"
+                            src={`${src}#t=1`}
+                            alt={`Video ${index}`}
+                            style={{ width: '100%' }}
+                            onClick={() => {
+                              if (index - 1 === currentIndex) {
+                                handlePlayClick(index);
+                              }
+                            }}
+                            loop
+                            playsInline
+                          />
+                          {
+                            index - 1 === currentIndex && (
+                              <div className="play-icon" onClick={() => handlePlayClick(index)} style={{opacity: isPlaying ? 0 : 1}}>
+                                <FontAwesomeIcon icon={faPlay} />
+                              </div>
+                            )
+                          }
+                          {
+                            index + 2 === currentIndex && (
+                              <div className="play-icon" onClick={() => handlePlayClick(index)} style={{opacity: isPlaying ? 0 : 1}}>
+                                <FontAwesomeIcon icon={faPlay} />
+                              </div>
+                            )
+                          }
                         </div>
                     ))}
         </div>
-        <ImageNavigation currentIndex={currentIndex} totalImages={images.length} onNext={handleNext} onPrev={handlePrev} />
+        <ImageNavigation currentIndex={currentIndex} totalImages={clinicWingData[0].videos.length} onNext={handleNext} onPrev={handlePrev} />
       </div>
     </>
   );

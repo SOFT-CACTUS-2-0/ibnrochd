@@ -141,3 +141,21 @@
       padding-block: 0;
     }
   }
+
+  @media screen and (max-width: 1280px) {
+    .form__group {
+      width: 100%;
+    }
+
+    .form__input {
+      width: 100%;
+    }
+
+    .footer__contact__li p{
+      font-size: 12px;
+    }
+
+    .contact__container .copyright{
+      font-size: 12px;
+    }
+  }

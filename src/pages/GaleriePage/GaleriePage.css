@@ -25,6 +25,11 @@
   
 .video__item {
     position: relative;
+    flex: 1;
+}
+
+.video__item.active{
+    flex: 2;
 }
   
 .video__item img {

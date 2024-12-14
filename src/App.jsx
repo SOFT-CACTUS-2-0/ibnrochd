@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react'
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
 import './App.css';
 
@@ -13,6 +13,17 @@ const MobileAproposPage = React.lazy(() => import('./pages/AproposPage/mobile/Ap
 const MobileSpecialitesPage = React.lazy(() => import('./pages/SpecialitesPage/mobile/SpecialitesPage'));
 const MobileGaleriePage = React.lazy(() => import('./pages/GaleriePage/mobile/GaleriePage'));
 const MobileContactPage = React.lazy(() => import('./pages/ContactPage/mobile/ContactPage'));
+
+// ScrollToTop component to handle scrolling on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
@@ -32,10 +43,12 @@ function App() {
     // Cleanup the event listener
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
   return (
     <Router>
       <LanguageProvider>
         <Suspense fallback={<div></div>}>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={isMobile ? <MobileHomePage /> : <HomePage />} />
             <Route path="/contact" element={isMobile ? <MobileContactPage /> : <ContactPage />} />

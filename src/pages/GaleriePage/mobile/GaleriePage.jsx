@@ -9,21 +9,14 @@ import Contact from '@components/Contact/mobile/Contact';
 import '../GaleriePage.css';
 import './GaleriePage.css';
 
-const images = [
-    '8b09f8c296a829da5d22736046e64f84.webp',
-    'dac531343433d67ad1859b5e8b22ec7a.webp',
-    '10d4d7f0a517f8c0a8f9fdcd34db140b.webp',
-    '6bdc55373d4fded98f68d8fe79870be0.webp',
-    '18825dfe41ba83b88eb5a963cbb2e712.webp',
-    '981e14ca60d564e39dcf65faf5036dee.webp',
-];
-  
-const paginationItems = [1, 2, 3];
+const galleryImages = Array.from({ length: 18 }, (_, i) => `/gallery/ (${i + 1}).png`);
 
 const MobileGaleriePage = () => {
     const { t, i18n } = useTranslation();
     const isRTL = i18n.language === 'MA';
-    const [currentIndex, setCurrentIndex] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
+    const imagesPerPage = 6;
+    const totalPages = Math.ceil(galleryImages.length / imagesPerPage);
     const [videos, setVideos] = useState([
         {
             src: '/dac531343433d67ad1859b5e8b22ec7a.webp',
@@ -61,6 +54,11 @@ const MobileGaleriePage = () => {
         updateVideoTitles();
     }, [i18n.language, t]);
 
+    // Get current images
+    const indexOfLastImage = currentPage * imagesPerPage;
+    const indexOfFirstImage = indexOfLastImage - imagesPerPage;
+    const currentImages = galleryImages.slice(indexOfFirstImage, indexOfLastImage);
+
     return (
         <div className='galerie__page__mobile page__mobile'>
             <Navbar />
@@ -92,9 +90,11 @@ const MobileGaleriePage = () => {
                         >
                             <img loading="lazy" src={video.src} alt={`${t('gallery.videos.alt')} ${index + 1}`} />
                             <div className="video__title">{video.title}</div>
-                            <div className="play-icon">
-                                <FontAwesomeIcon icon={faPlay} />
-                            </div>
+                            {video.active && (
+                                <div className="play-icon">
+                                    <FontAwesomeIcon icon={faPlay} />
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>
@@ -110,27 +110,26 @@ const MobileGaleriePage = () => {
                     }}
                 />
                 <div style={{marginBlock:'4rem',display:'block'}}>
-                    <div className="image__galerie__grid" style={{gridTemplateAreas:'"item1 item1 item1 item1 item2 item2 item2 item2" "item3 item3 item3 item3 item4 item4 item4 item4" "item5 item5 item5 item5 item6 item6 item6 item6"', paddingInline:'0', gap:'0.5rem'}}>
-                        {images.map((src, index) => (
+                    <div className="image__galerie__grid" style={{paddingInline:'0', gap:'0.5rem',gridTemplateAreas:'unset'}}>
+                        {currentImages.map((src, index) => (
                             <div
-                                key={index}
-                                style={{ '--i': `item${index + 1}` }}
+                                key={indexOfFirstImage + index}
                                 className="image__galerie__item"
                             >
-                                <img loading="lazy" src={src} alt={`${t('gallery.images.alt')} ${index + 1}`} />
+                                <img loading="lazy" src={src} alt={`${t('gallery.images.alt')} ${indexOfFirstImage + index + 1}`} />
                             </div>
                         ))}
                     </div>
                     <div className="image__galerie__pagination">
-                        {paginationItems.map((item) => (
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                             <div
-                                key={item}
+                                key={page}
                                 className={`image__galerie__pagination__item ${
-                                item === currentIndex ? 'active' : ''
+                                    page === currentPage ? 'active' : ''
                                 }`}
-                                onClick={() => setCurrentIndex(item)}
+                                onClick={() => setCurrentPage(page)}
                             >
-                                {`0${item}`}
+                                {`0${page}`}
                             </div>
                         ))}
                     </div>

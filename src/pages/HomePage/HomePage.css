@@ -244,6 +244,10 @@ body {
     border-radius: 33.89px;
     z-index: 1;
 }
+
+.home__video__container[data-video-status="true"]::before {
+    content: unset;
+}
   
 .home__video__container img {
     position: absolute;

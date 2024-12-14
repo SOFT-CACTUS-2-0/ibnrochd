@@ -21,7 +21,7 @@
     height: 1px;
     background-color: #18466F80;
     flex-grow: 1;
-    margin-left: 1rem;
+    margin-inline: 1rem;
 }
 
 .title__description{
@@ -43,7 +43,7 @@
     grid-template-columns: 1fr;
     align-items: center;
     position: relative;
-    width: 100%;
+    width: calc(100% - 4rem);
     margin: 3rem auto;
     margin-left: 4rem;
 }
@@ -68,5 +68,14 @@
     .title__container{
         margin-left: 2rem;
         width: calc(100% - 2rem);;
+    }
+
+    .title__container[data-direction="rtl"]{
+        margin-left: 0;
+        margin-right: 2rem;
+    }
+
+    .title__subtitle::after {
+        margin-right: 0;
     }
 }
