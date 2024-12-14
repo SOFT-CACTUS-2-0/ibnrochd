@@ -9,7 +9,7 @@ import Contact from '@components/Contact/mobile/Contact';
 import '../GaleriePage.css';
 import './GaleriePage.css';
 
-const galleryImages = Array.from({ length: 18 }, (_, i) => `/gallery/ (${i + 1}).png`);
+const galleryImages = Array.from({ length: 18 }, (_, i) => `/gallery/ (${i + 1}).webp`);
 
 const MobileGaleriePage = () => {
     const { t, i18n } = useTranslation();
