@@ -16,9 +16,51 @@ body {
 
 .home__page .header__container {
     background: linear-gradient(180deg, transparent 9.91%, transparent 24.67%, rgba(76, 185, 193) 82.33%, #4CB9C1 100.9%);
-    /* background: linear-gradient(to bottom, transparent 0%, #4CB9C1), url(/header.svg); */
     background-repeat: no-repeat;
     background-size: contain;
+}
+
+.home__page .header__container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 577px;
+    background: url('/header.svg') no-repeat center center;
+    background-size: 100% 100%;
+    /* Mask properties */
+    -webkit-mask-image: linear-gradient(black, transparent);
+    mask-image: linear-gradient(black, transparent);
+    -webkit-mask-size: 90% 100px;
+    mask-size: 90% 100px;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position:top center;
+    mask-position:top center;
+    z-index: 1000;
+}
+
+.stroke__home{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0.1px solid #CCCCCC;
+    border-radius: 40px;
+    z-index: 1
+}
+
+.stroke__home::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 90%;
+    height: 10px;
+    background: white;
 }
   
 /* Hero Section */

@@ -147,6 +147,7 @@ const HeaderContent = () => {
   const isRTL = i18n.language === 'MA';
   return (
     <>
+      <div className="stroke__home"></div>
       <div className="hero__background" data-direction={isRTL ? 'rtl' : 'ltr'}>
         <img loading="lazy" src="/13f00b97db4641b3ed6c7b387b771752.webp" alt="Background" />
       </div>
