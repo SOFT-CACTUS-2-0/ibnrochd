@@ -574,6 +574,7 @@ body {
 .image-carousel__container {
     display: flex;
     flex-direction: column;
+    width: calc(100% - 400px);
 }
   
 .image-carousel__card {

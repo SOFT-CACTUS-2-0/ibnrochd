@@ -48,6 +48,11 @@
     margin-left: 4rem;
 }
 
+.title__container[data-direction="rtl"]{
+    margin-left: 0;
+    margin-right: 4rem;
+}
+
 .title__container::before{
     content: '';
     width: 7px;
