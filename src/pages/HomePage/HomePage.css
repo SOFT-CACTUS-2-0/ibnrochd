@@ -39,6 +39,7 @@ body {
     -webkit-mask-position:top center;
     mask-position:top center;
     z-index: 1000;
+    pointer-events: none;
 }
 
 .stroke__home{
@@ -49,7 +50,8 @@ body {
     height: 100%;
     border: 0.1px solid #CCCCCC;
     border-radius: 40px;
-    z-index: 1
+    z-index: 1;
+    pointer-events: none;
 }
 
 .stroke__home::before{
@@ -61,6 +63,7 @@ body {
     width: 90%;
     height: 10px;
     background: white;
+    pointer-events: none;
 }
   
 /* Hero Section */
