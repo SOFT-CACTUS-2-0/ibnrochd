@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ContactInfo from '@components/ContactInfo/ContactInfo';
 import Header from '@components/Header/Header';
@@ -39,6 +39,17 @@ const AproposPage = () => {
   
   // Get bulletPoints as a string and split it
   const bulletPoints = t('apropos.bulletPoints', { returnObjects: true });
+
+  // Add if link end in #id scroll to id
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.getElementById(hash.substring(1));
+      if (element) {
+        element.scrollIntoView();
+      }
+    }
+  }, []);
 
   return (
     <> 
@@ -105,23 +116,24 @@ const AproposPage = () => {
   )
 }
 
-const DOCTORS = [
-  {
-    name: 'Mohammed RSN',
-    speciality: 'Urologie',
-    image: '/b9e277e296051862983be9a23fd769b7.webp',
-  },
-  {
-    name: 'Mohammed Likan',
-    speciality: 'Urologie',
-    image: '/b9e277e296051862983be9a23fd769b7.webp',
-  },
-]
+// const DOCTORS = [
+//   {
+//     name: 'Mohammed RSN',
+//     speciality: 'Urologie',
+//     image: '/b9e277e296051862983be9a23fd769b7.webp',
+//   },
+//   {
+//     name: 'Mohammed Likan',
+//     speciality: 'Urologie',
+//     image: '/b9e277e296051862983be9a23fd769b7.webp',
+//   },
+// ]
 
 const DoctorTeam = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'MA';  
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(window.localStorage.getItem('doctorIndex') || 0);
+  const DOCTORS = t('home.doctors.team', { returnObjects: true });
   const handleNext = () => {
     setCurrentIndex((prevIndex) => 
       prevIndex < DOCTORS.length - 1 ? (prevIndex + 1) % DOCTORS.length : 0
@@ -137,11 +149,11 @@ const DoctorTeam = () => {
     });
   };
   return (
-    <div className="apropos__doctor__team" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
+    <div id="apropos__doctor__team" className="apropos__doctor__team" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
       <div className="doctor__team__item doctor__team__content">
         <div className="doctor__cardboard" data-direction={isRTL ? 'rtl' : 'ltr'}>
           <div className="doctor__name">{DOCTORS.at(currentIndex).name}</div>
-          <div className="doctor__speciality" style={{textAlign: isRTL ? 'right' : 'left'}}>{DOCTORS.at(currentIndex).speciality}</div>
+          <div className="doctor__speciality" style={{textAlign: isRTL ? 'right' : 'left'}}>{DOCTORS.at(currentIndex).specialty}</div>
         </div>
         <div className="doctor__team__title" style={{textAlign: isRTL ? 'right' : 'left'}}>
           {t('apropos.doctorTeam.title')}

@@ -153,27 +153,27 @@ const home = {
         {
           name: 'Dr EL GHAZI Jamal',
           specialty: 'gynécologue',
-          image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
+          image: '/369c23f673e3b7905f45c75b032368bf_50.webp'
         },
         {
           name: 'Dr MOUADDEN Abdessamad',
           specialty: 'gynécologue',
-          image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
+          image: '/e28e96c8e5209ee72d8c08f9e0f3c4e5_2_40.webp'
         },
         {
           name: 'Dr LAASSOU Khalid',
           specialty: 'urologue',
-          image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
+          image: '/369c23f673e3b7905f45c75b032368bf_50.webp'
         },
         {
           name: 'Dr EL MEJDOUBI Yasser',
           specialty: 'chirurgie générale',
-          image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
+          image: '/e28e96c8e5209ee72d8c08f9e0f3c4e5_2_40.webp'
         },
         {
           name: 'Dr AHMAIDI Houssam',
           specialty: 'réanimateur anesthésiste',
-          image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
+          image: '/369c23f673e3b7905f45c75b032368bf_50.webp'
         }
       ]
     },
@@ -357,27 +357,27 @@ const home = {
         {
           name: 'د. الغازي جمال',
           specialty: 'طبيب النساء والتوليد',
-          image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
+          image: '/369c23f673e3b7905f45c75b032368bf_50.webp'
         },
         {
           name: 'د. موذن عبد الصمد',
           specialty: 'طبيب النساء والتوليد',
-          image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
+          image: '/e28e96c8e5209ee72d8c08f9e0f3c4e5_2_40.webp'
         },
         {
           name: 'د. لعسو خالد',
           specialty: 'طبيب المسالك البولية',
-          image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
+          image: '/369c23f673e3b7905f45c75b032368bf_50.webp'
         },
         {
           name: 'د. المجدوبي ياسر',
           specialty: 'الجراحة العامة',
-          image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
+          image: '/e28e96c8e5209ee72d8c08f9e0f3c4e5_2_40.webp'
         },
         {
           name: 'د. احميدي حسام',
           specialty: 'طبيب التخدير والإنعاش',
-          image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
+          image: '/369c23f673e3b7905f45c75b032368bf_50.webp'
         }
       ]
     },
@@ -560,27 +560,27 @@ const home = {
         {
           name: 'Dr EL GHAZI Jamal',
           specialty: 'Gynecologist',
-          image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
+          image: '/369c23f673e3b7905f45c75b032368bf_50.webp'
         },
         {
           name: 'Dr MOUADDEN Abdessamad',
           specialty: 'Gynecologist',
-          image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
+          image: '/e28e96c8e5209ee72d8c08f9e0f3c4e5_2_40.webp'
         },
         {
           name: 'Dr LAASSOU Khalid',
           specialty: 'Urologist',
-          image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
+          image: '/369c23f673e3b7905f45c75b032368bf_50.webp'
         },
         {
           name: 'Dr EL MEJDOUBI Yasser',
           specialty: 'General Surgery',
-          image: '/8eca4d911be4f2553f59cf9923b5fb0d.webp'
+          image: '/e28e96c8e5209ee72d8c08f9e0f3c4e5_2_40.webp'
         },
         {
           name: 'Dr AHMAIDI Houssam',
           specialty: 'Anesthesiologist',
-          image: '/6f0db22bb3bd80edeba55fc061be9d3a.webp'
+          image: '/369c23f673e3b7905f45c75b032368bf_50.webp'
         }
       ]
     },

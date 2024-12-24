@@ -647,7 +647,7 @@ const Team = () => {
             }}
           >
         {extendedMembers.map((member, index) => (
-          <TeamMember key={index} {...member} memberHeight={`${memberHeight}px`} gap={`${gap}px`}/>
+          <TeamMember key={index} {...member} memberHeight={`${memberHeight}px`} gap={`${gap}px`} index={index}/>
         ))}
         </div>
       </div>
@@ -670,7 +670,7 @@ const Team = () => {
 };
 
 // TeamMember Component
-const TeamMember = ({ name, specialty, image, memberHeight, gap }) => {
+const TeamMember = ({ name, specialty, image, memberHeight, gap, index }) => {
   function degreesToRadians(degrees) {
     return degrees * Math.PI / 180;
   }
@@ -697,8 +697,13 @@ const TeamMember = ({ name, specialty, image, memberHeight, gap }) => {
           style={{
             '--cos': angles.cos,
             '--sin': angles.sin,
+            cursor: 'pointer',
           }}
           className="team__member__arrow"
+          onClick={() => {
+            window.localStorage.setItem('doctorIndex', index - 1);
+            location.href = "/apropos#apropos__doctor__team";
+          }}
         >
           <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: '1rem', transform: 'rotate(-45deg)' }} />
         </div>

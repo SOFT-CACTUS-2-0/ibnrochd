@@ -65,6 +65,27 @@ body {
     background: white;
     pointer-events: none;
 }
+
+.team__item__image{
+    position: relative;
+}
+
+.team__item__image::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 126px;
+    height: 126px;
+    background: linear-gradient(201.23deg, #4CB9C1 14.44%, #18466F 88.12%);
+    border-radius: 50%;
+    z-index: 1;
+}
+.team__item__image img{
+    z-index: 2;
+    object-position: 0 25%;
+}
   
 /* Hero Section */
 .hero__container {

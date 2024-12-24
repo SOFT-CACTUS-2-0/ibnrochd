@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import '../AproposPage.css';
 import './AproposPage.css'
@@ -37,6 +37,17 @@ const MobileAproposPage = () => {
     const { t, i18n } = useTranslation();
     const isRTL = i18n.language === 'MA';
   const bulletPoints = t('apropos.bulletPoints', { returnObjects: true });
+
+   // Add if link end in #id scroll to id
+    useEffect(() => {
+      const hash = window.location.hash;
+      if (hash) {
+        const element = document.getElementById(hash.substring(1));
+        if (element) {
+          window.scrollTo(0, element.offsetTop - 100);
+        }
+      }
+    }, []);
 
   return (
     <div className="apropos__page__mobile page__mobile">
@@ -122,23 +133,11 @@ const MobileAproposPage = () => {
   )
 }
 
-const DOCTORS = [
-    {
-      name: 'Mohammed RSN',
-      speciality: 'Urologie',
-      image: '/b9e277e296051862983be9a23fd769b7.webp',
-    },
-    {
-      name: 'Mohammed Likan',
-      speciality: 'Urologie',
-      image: '/b9e277e296051862983be9a23fd769b7.webp',
-    },
-]
-
 const DoctorTeam = () => {
     const { t, i18n } = useTranslation();
     const isRTL = i18n.language === 'MA';   
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(window.localStorage.getItem('doctorIndex') || 0);
+    const DOCTORS = t('home.doctors.team', { returnObjects: true });
     const handleNext = () => {
         setCurrentIndex((prevIndex) => 
         prevIndex < DOCTORS.length - 1 ? (prevIndex + 1) % DOCTORS.length : 0
@@ -154,7 +153,7 @@ const DoctorTeam = () => {
         });
     };
     return (
-        <div className="apropos__doctor__team" style={{width:'100%',height:'fit-content',gap:'2rem',flexDirection:'column',justifyContent:'center',alignItems:'center',direction: isRTL ? 'rtl' : 'ltr'}}>
+        <div id='apropos__doctor__team' className="apropos__doctor__team" style={{width:'100%',height:'fit-content',gap:'2rem',flexDirection:'column',justifyContent:'center',alignItems:'center',direction: isRTL ? 'rtl' : 'ltr', overflow:'visible'}}>
         <div className="doctor__team__item doctor__team__content" style={{width:'100%',height:'fit-content'}}>
             <div className="doctor__cardboard" data-direction={isRTL ? 'rtl' : 'ltr'}>
             <div className="doctor__name" style={{fontSize:'1.5rem'}}>{DOCTORS.at(currentIndex).name}</div>
@@ -181,7 +180,7 @@ const DoctorTeam = () => {
         </div>
         <div className="doctor__team__item doctor__team__image" style={{width:'100%'}}>
             <img style={{width:'100%',height:'100%',objectFit:'contain'}} loading="lazy" src={DOCTORS.at(currentIndex).image} alt="Image" />
-            <div className="background" style={{width:'100%',height:'100%',right:'unset', transform:'translate(-50%,-50%)',left:'50%',bottom:'0',top:'50%'}}></div>
+            <div className="background__mobile" style={{width:'90vw',aspectRatio:'1/1', transform:'translate(-50%,-50%)',left:'50%',top:'50%',position:'absolute',background: 'linear-gradient(180deg, #4CB9C1 0%, #24575B 100%)', borderRadius:'50%', zIndex:'-1'}}></div>
         </div>
         </div>
     )

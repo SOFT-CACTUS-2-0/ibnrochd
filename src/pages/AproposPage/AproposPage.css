@@ -12,6 +12,18 @@
     height: auto;
 }
 
+.apropos__page .doctor__team__item.doctor__team__image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5rem;
+}
+
+#root[data-direction="rtl"] .apropos__page .doctor__team__item.doctor__team__image{
+    padding-left: 0;
+    padding-right: 5rem;
+}
+
 .section__container{
     width: 935px;
     height: 415.08px;
@@ -293,11 +305,11 @@
     content: '';
     position: absolute;
     width: 5.35px;
-    height: 53.46px;
+    height: 100%;
     border-radius: 40.09px;
     background: #4CB9C1;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(calc(-50% + 2px));
     left: -1.5rem;
 }
 
