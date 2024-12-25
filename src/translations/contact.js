@@ -6,7 +6,7 @@ const contact = {
     service: 'H24/7 Service',
     email: 'contact@cliniqueibnrochdberkane.com',
     emailPlaceholder: 'Votre email',
-    phone1: '+212 - 536  614  446',
+    phone1: '+212 - 536  613  033',
     phone2: '+212 - 616  569  193',
     contactUs: 'Contactez-nous',
     fullName: 'Nom complet',
@@ -33,7 +33,7 @@ const contact = {
         },
         fax: {
           label: 'FAX',
-          value: '+212 - 536  614  446'
+          value: '+212 - 536  613  033'
         },
         email: {
           label: 'E-MAIL',
@@ -50,7 +50,7 @@ const contact = {
     service: 'خدمة 24/7',
     email: 'contact@cliniqueibnrochdberkane.com',
     emailPlaceholder: 'بريدك الإلكتروني',
-    phone1: '+212 - 536  614  446',
+    phone1: '+212 - 536  613  033',
     phone2: '+212 - 616  569  193',
     contactUs: 'اتصل بنا',
     fullName: 'الاسم الكامل',
@@ -77,7 +77,7 @@ const contact = {
         },
         fax: {
           label: 'الفاكس',
-          value: '+212 - 536  614  446'
+          value: '+212 - 536  613  033'
         },
         email: {
           label: 'البريد الإلكتروني',
@@ -94,7 +94,7 @@ const contact = {
     service: '24/7 Service',
     email: 'contact@cliniqueibnrochdberkane.com',
     emailPlaceholder: 'Your Email',
-    phone1: '+212 - 536  614  446',
+    phone1: '+212 - 536  613  033',
     phone2: '+212 - 616  569  193',
     contactUs: 'Contact Us',
     fullName: 'Full Name',
@@ -121,7 +121,7 @@ const contact = {
         },
         fax: {
           label: 'FAX',
-          value: '+212 - 536  614  446'
+          value: '+212 - 536  613  033'
         },
         email: {
           label: 'EMAIL',

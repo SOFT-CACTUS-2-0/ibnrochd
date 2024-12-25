@@ -1,2 +1,2 @@
-const BaseURL = 'http://127.0.0.1:8000/api'
+const BaseURL = 'http://api.softcactus.ma/api'
 export default BaseURL
