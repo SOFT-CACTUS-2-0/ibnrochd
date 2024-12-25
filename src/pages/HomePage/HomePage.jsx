@@ -18,6 +18,7 @@ import CardBoard from '@components/CardBoard/CardBoard';
 import Contact from '@components/Contact/Contact';
 import Sponsors from '@components/Sponsors/Sponsors';
 import { useTranslation } from 'react-i18next';
+import api from '../../services/api';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -79,6 +80,50 @@ export default HomePage;
 const BookingForm = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'MA';
+
+  const [formData, setFormData] = useState({
+    email: '',
+    phone: '',
+    appointment_date: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Convert the date to include the time
+      const appointmentDateTime = new Date(formData.appointment_date);
+      appointmentDateTime.setHours(9, 0, 0); // Set default time to 9:00 AM
+
+      const submitData = {
+        ...formData,
+        appointment_date: appointmentDateTime.toISOString(),
+        status: 'pending'
+      };
+
+      await api.post('/appointments', submitData);
+
+      console.log('success')
+
+      // Reset form
+      setFormData({
+        email: '',
+        phone: '',
+        appointment_date: ''
+      });
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
   return (
     <div className="render__vous__form" data-direction={isRTL ? 'rtl' : 'ltr'} style={{direction: isRTL ? 'rtl' : 'ltr'}}>
       <form>
@@ -110,6 +155,8 @@ const BookingForm = () => {
                   type="email"
                   id="email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder={t('home.bookingForm.emailPlaceholder')}
                   style={{direction: isRTL ? 'rtl' : 'ltr'}}
                   required
@@ -120,17 +167,27 @@ const BookingForm = () => {
                   type="tel"
                   id="phone"
                   name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   placeholder={t('home.bookingForm.phonePlaceholder')}
                   style={{direction: isRTL ? 'rtl' : 'ltr'}}
                   required
                 />
               </td>
               <td>
-                <input type="date" id="date" name="date" style={{direction: isRTL ? 'rtl' : 'ltr'}} required />
+                <input 
+                  type="date" 
+                  id="appointment_date" 
+                  name="appointment_date"
+                  value={formData.appointment_date}
+                  onChange={handleChange}
+                  style={{direction: isRTL ? 'rtl' : 'ltr'}} 
+                  required 
+                />
               </td>
               <td style={{ width: '167px' }}>
                 <div className="form-submit">
-                  <button type="submit">{t('home.bookingForm.submit')}</button>
+                  <button type="submit" onClick={handleSubmit}>{t('home.bookingForm.submit')}</button>
                 </div>
               </td>
             </tr>

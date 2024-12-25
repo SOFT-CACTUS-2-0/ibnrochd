@@ -9,10 +9,54 @@ import Sponsors from '@components/Sponsors/Sponsors';
 import Contact from '@components/Contact/mobile/Contact';
 import { faArrowLeft, faArrowRight, faCalendarAlt, faChevronLeft, faChevronRight, faEnvelopeOpen, faPhone, faPlay } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from 'react-i18next';
+import api from '../../../services/api';
 
 const MobileHomePage = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'MA';
+
+  const [formData, setFormData] = useState({
+    email: '',
+    phone: '',
+    appointment_date: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Convert the date to include the time
+      const appointmentDateTime = new Date(formData.appointment_date);
+      appointmentDateTime.setHours(9, 0, 0); // Set default time to 9:00 AM
+
+      const submitData = {
+        ...formData,
+        appointment_date: appointmentDateTime.toISOString(),
+        status: 'pending'
+      };
+
+      await api.post('/appointments', submitData);
+
+      console.log('success')
+
+      // Reset form
+      setFormData({
+        email: '',
+        phone: '',
+        appointment_date: ''
+      });
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   return (
     <div className='home__page__mobile page__mobile'>
@@ -50,6 +94,8 @@ const MobileHomePage = () => {
                         type="email"
                         id="email"
                         name="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         placeholder={t('home.bookingForm.emailPlaceholder')}
                         required
                         style={{direction: isRTL ? 'rtl' : 'ltr'}}
@@ -63,6 +109,8 @@ const MobileHomePage = () => {
                         type="tel"
                         id="phone"
                         name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
                         placeholder={t('home.bookingForm.phonePlaceholder')}
                         required
                         style={{direction: isRTL ? 'rtl' : 'ltr'}}
@@ -72,10 +120,10 @@ const MobileHomePage = () => {
                     <label htmlFor="date">
                         <FontAwesomeIcon icon={faCalendarAlt} /> {t('home.bookingForm.date')}
                     </label>
-                    <input type="date" id="date" name="date" required style={{direction: isRTL ? 'rtl' : 'ltr'}} />
+                    <input type="date" id="date" name="date" value={formData.appointment_date} onChange={handleChange} required style={{direction: isRTL ? 'rtl' : 'ltr'}} />
                     </div>
                     <div className="form-submit">
-                    <button type="submit">{t('home.bookingForm.submit')}</button>
+                    <button type="submit" onClick={handleSubmit}>{t('home.bookingForm.submit')}</button>
                     </div>
                 </div>
             </form>

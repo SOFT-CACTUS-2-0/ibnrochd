@@ -13,6 +13,7 @@ import {
     faArrowUp
 } from '@fortawesome/free-solid-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+import api from '../../services/api';
 import './ContactPage.css';
 
 const SOCIAL_LINKS = [
@@ -45,16 +46,7 @@ const ContactPage = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: 'dccd1cb8-9a98-429d-bbc9-8fff6b1da741',
-          ...formData
-        })
-      });
+      const response = await api.post('/contact', formData)
 
       if (response.ok) {
         setIsModalOpen(true);

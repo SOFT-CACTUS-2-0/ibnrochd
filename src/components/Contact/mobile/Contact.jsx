@@ -6,6 +6,7 @@ import Modal from '../../Modal/Modal';
 import './Contact.css';
 import { useTranslation } from 'react-i18next';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+import api from '../../../services/api';
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
@@ -22,16 +23,7 @@ const Contact = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: 'dccd1cb8-9a98-429d-bbc9-8fff6b1da741',
-          ...formData
-        })
-      });
+      const response = await api.post('/contact', formData)
 
       if (response.ok) {
         setIsModalOpen(true);
