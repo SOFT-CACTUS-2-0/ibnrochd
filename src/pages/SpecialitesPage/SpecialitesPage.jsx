@@ -75,7 +75,7 @@ const SpecialitesPage = () => {
                     </div>
                 </div>
                 <CardBoard />
-                <div className="specialite__video__container" style={{height:'90vh',width:'auto'}}>
+                <div className="specialite__video__container" style={{width:'85vw', margin:'auto', marginBottom: '2rem'}}>
                     <img loading="lazy" src='/5b1f53d6487884b0e49356f74c483a3e.webp' alt="Home Video" />
                     <div className="play-icon" style={{zIndex: '1000'}}>
                         <FontAwesomeIcon icon={faPlay} />

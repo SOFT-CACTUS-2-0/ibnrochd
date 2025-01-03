@@ -1,1 +1,0 @@
-import{j as r}from"./index-s0_EMyFW.js";import{u as i}from"./api-BIjLQBx8.js";const d=()=>{const{t:a,i18n:s}=i(),t=s.language==="MA";return r.jsx("div",{className:"card__board",style:{direction:t?"rtl":"ltr"},children:r.jsx("div",{className:"card__board__title",children:a("specialites.cardBoard.title")})})};export{d as C};
