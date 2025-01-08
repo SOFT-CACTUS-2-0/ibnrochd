@@ -1,2 +1,2 @@
-const BaseURL = 'https://cliniqueibnrochd.ma/api'
+const BaseURL = 'https://api.cliniqueibnrochd.ma/api'
 export default BaseURL
