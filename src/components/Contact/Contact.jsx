@@ -24,8 +24,7 @@ const Contact = () => {
     
     try {
       const response = await api.post('/contact', formData)
-
-      if (response.ok) {
+      if (response.status === 200) {
         setIsModalOpen(true);
         setFormData({ name: '', email: '', phone: '', message: '' });
       }
