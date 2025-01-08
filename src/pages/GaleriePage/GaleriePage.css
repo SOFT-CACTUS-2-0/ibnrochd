@@ -52,7 +52,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--font-size-lg);
+    font-size: 1rem;
     font-weight: 500;
     color: var(--medium-gray);
     text-align: center;
@@ -117,3 +117,9 @@
     color: var(--white);
     border: none;
 }  
+
+@media screen and (max-width: 1700px) {
+    .video__title{
+        font-size: 12px;
+    }
+}
