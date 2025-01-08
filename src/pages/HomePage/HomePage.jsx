@@ -21,6 +21,8 @@ import { useTranslation } from 'react-i18next';
 import api from '../../services/api';
 import { Link } from 'react-router-dom';
 import './HomePage.css';
+import Modal from '../../components/Modal/Modal';
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -81,6 +83,7 @@ export default HomePage;
 const BookingForm = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'MA';
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -110,7 +113,14 @@ const BookingForm = () => {
         status: 'pending'
       };
 
-      await api.post('/appointments', submitData);
+      const response = await api.post('/appointments', submitData);
+
+      if (response.status === 200) {
+        setIsModalOpen(true);
+        setFormData({ email: '',
+          phone: '',
+          appointment_date: '' });
+      }
 
       console.log('success')
 
@@ -193,6 +203,10 @@ const BookingForm = () => {
               </td>
             </tr>
           </tbody>
+          <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+            <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
+            <h2 className="success-message">{t('contact.appointmentSuccessMessage')}</h2>
+          </Modal>
         </table>
       </form>
       <h1 className='quote__title'>

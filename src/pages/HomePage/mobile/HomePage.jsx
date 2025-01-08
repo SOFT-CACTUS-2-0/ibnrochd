@@ -11,10 +11,13 @@ import { faArrowLeft, faArrowRight, faCalendarAlt, faChevronLeft, faChevronRight
 import { useTranslation } from 'react-i18next';
 import api from '../../../services/api';
 import { Link } from 'react-router-dom';
+import Modal from '../../../components/Modal/Modal';
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 
 const MobileHomePage = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'MA';
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -44,16 +47,15 @@ const MobileHomePage = () => {
         status: 'pending'
       };
 
-      await api.post('/appointments', submitData);
+      const response = await api.post('/appointments', submitData);
 
-      console.log('success')
-
-      // Reset form
-      setFormData({
-        email: '',
-        phone: '',
-        appointment_date: ''
-      });
+      if (response.status === 200) {
+        setIsModalOpen(true);
+        setFormData({ email: '',
+          phone: '',
+          appointment_date: '' 
+        });
+      }
     } catch (error) {
       console.log(error)
     }
@@ -124,12 +126,16 @@ const MobileHomePage = () => {
                     <label htmlFor="date">
                         <FontAwesomeIcon icon={faCalendarAlt} /> {t('home.bookingForm.date')}
                     </label>
-                    <input type="date" id="date" name="date" value={formData.appointment_date} onChange={handleChange} required style={{direction: isRTL ? 'rtl' : 'ltr'}} />
+                    <input type="date" id="date" name="appointment_date" value={formData.appointment_date} onChange={handleChange} required style={{direction: isRTL ? 'rtl' : 'ltr'}} />
                     </div>
                     <div className="form-submit">
                     <button type="submit" onClick={handleSubmit}>{t('home.bookingForm.submit')}</button>
                     </div>
                 </div>
+                <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                  <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
+                  <h2 className="success-message">{t('contact.appointmentSuccessMessage')}</h2>
+                </Modal>
             </form>
             <h1 className='quote__title'>
               “<span>{t('home.quote')}</span>“
