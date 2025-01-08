@@ -19,6 +19,7 @@ import Contact from '@components/Contact/Contact';
 import Sponsors from '@components/Sponsors/Sponsors';
 import { useTranslation } from 'react-i18next';
 import api from '../../services/api';
+import { Link } from 'react-router-dom';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -219,16 +220,20 @@ const HeaderContent = () => {
       <div className="hero__quote">
         {t('home.hero.description')}
         <div className="hero__cta">
-          <button className="hero__cta__button">{t('home.hero.button')}</button>
-          <div className="hero__arrow">
-            {
-              isRTL ? (
-                <FontAwesomeIcon style={{ fontSize: '1.5rem' }} icon={faArrowLeft} />
-              ) : (
-                <FontAwesomeIcon style={{ fontSize: '1.5rem' }} icon={faArrowRight} />
-              )
-            }
+          <Link to="/apropos" style={{all: 'unset',cursor:'pointer'}}>
+            <button className="hero__cta__button" style={{cursor:'pointer'}}>{t('home.hero.button')}</button>
+          </Link>
+          <Link to="/apropos" style={{all: 'unset',cursor:'pointer'}}>
+            <div className="hero__arrow" style={{cursor:'pointer'}}>
+              {
+                isRTL ? (
+                  <FontAwesomeIcon style={{ fontSize: '1.5rem' }} icon={faArrowLeft} />
+                ) : (
+                  <FontAwesomeIcon style={{ fontSize: '1.5rem' }} icon={faArrowRight} />
+                )
+              }
           </div>
+          </Link>
         </div>
       </div>
     </>

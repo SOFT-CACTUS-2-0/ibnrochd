@@ -10,6 +10,7 @@ import Contact from '@components/Contact/mobile/Contact';
 import { faArrowLeft, faArrowRight, faCalendarAlt, faChevronLeft, faChevronRight, faEnvelopeOpen, faPhone, faPlay } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from 'react-i18next';
 import api from '../../../services/api';
+import { Link } from 'react-router-dom';
 
 const MobileHomePage = () => {
   const { t, i18n } = useTranslation();
@@ -70,12 +71,16 @@ const MobileHomePage = () => {
                     {t('home.hero.description')}
                 </p>
                 <div className="hero__mobile__cta">
-                    <button className="hero__cta__mobile__button">
-                        {t('home.hero.button')}
-                    </button>
-                    <div className="hero__arrow__mobile">
-                        <FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={isRTL ? faArrowLeft : faArrowRight} />
-                    </div>
+                    <Link to="/apropos" style={{all: 'unset',cursor:'pointer'}}>
+                      <button className="hero__cta__mobile__button" style={{cursor:'pointer'}}>
+                          {t('home.hero.button')}
+                      </button>
+                    </Link>
+                    <Link to="/apropos" style={{all: 'unset',cursor:'pointer'}}>
+                      <div className="hero__arrow__mobile" style={{cursor:'pointer'}}>
+                          <FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={isRTL ? faArrowLeft : faArrowRight} />
+                      </div>
+                    </Link>
                 </div>
             </div>
             <div className="hero__mobile__image">
