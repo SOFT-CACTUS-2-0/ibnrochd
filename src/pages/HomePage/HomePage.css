@@ -95,7 +95,7 @@ body {
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
     margin-top: 35px;
 }
 
@@ -104,22 +104,48 @@ body {
 }
   
 .hero__title {
-    font-size: 53.04px;
+    font-size: 38.48px;
     font-weight: 800;
     line-height: 56px;
     text-align: left;
     font-family: var(--main-font);
+    text-transform: uppercase;
+    position: relative;
+}
+
+.hero__title::before{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: -2rem;
+    width: 22.95px;
+    height: 17.22px;
+    background: url("/quote.svg");
+    background-size: cover;
+    transform: scaleX(-1) scaleY(-1) translateY(100%);
+}
+
+.hero__title::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -2rem;
+    width: 22.95px;
+    height: 17.22px;
+    background: url("/quote.svg");
+    background-size: cover;
+}
+
+img.default{
+    padding: 1rem;
+    object-fit: contain!important;
+    object-position: center!important;
 }
 
 .hero__container[data-direction="rtl"] .hero__title {
     text-align: right;
 }
 
-.hero__background[data-direction="rtl"] img {
-    right: auto;
-    left: -7rem;
-}
-  
 .hero__description {
     position: relative;
     margin: 10px 30px;
@@ -128,6 +154,10 @@ body {
     line-height: 23.78px;
     color: var(--tertiary-color);
     width: 442px;
+}
+
+#root[data-direction="rtl"] .hero__quote{
+    direction: rtl;
 }
   
 .hero__description::before {
@@ -151,7 +181,6 @@ body {
 .hero__cta {
     display: flex;
     align-items: center;
-    gap: 1rem;
 }
   
 .hero__cta__button {
@@ -198,11 +227,27 @@ body {
     font-size: 20px;
     font-weight: 400;
     line-height: 26px;
-    color: var(--tertiary-color);
+    color: #2E486C;
+    font-family: Manrope;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding-inline: 2rem;
     z-index: 1000;
+}
+
+.quote__title{
+    font-family: Manrope;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 26px;
+    text-align: center;
+    margin-block: 2rem;
+    color: #2E486C;
+}
+
+.quote__title span{
+    font-weight: 400;
 }
   
 /* Background Image */
@@ -217,7 +262,8 @@ body {
   
 .hero__background img {
     position: absolute;
-    right: -7rem;
+    left: 50%;
+    transform: translateX(-50%);
     bottom: 0;
     width: 70%;
     height: auto;

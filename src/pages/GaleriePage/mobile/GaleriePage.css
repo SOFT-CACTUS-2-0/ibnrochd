@@ -57,7 +57,8 @@
 
 .galerie__page__mobile .video__title {
     font-size: 14px;
-    height: 35px;
+    padding-block: 10px;
+    padding-inline: 10px;
 }
 
 .galerie__page__mobile .play-icon {

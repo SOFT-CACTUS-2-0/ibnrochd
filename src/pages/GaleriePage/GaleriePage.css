@@ -29,10 +29,10 @@
 }
 
 .video__item.active{
-    flex: 2;
+    flex: 5;
 }
   
-.video__item img {
+.video__item video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -45,9 +45,10 @@
     left: 50%;
     transform: translateX(-50%);
     width: 95%;
-    height: 45px;
+    padding-block: 10px;
+    padding-inline: 10px;
     background: var(--white);
-    border-radius: 45px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;

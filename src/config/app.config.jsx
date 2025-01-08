@@ -1,2 +1,2 @@
-const BaseURL = 'http://api.softcactus.ma/api'
+const BaseURL = 'https://cliniqueibnrochd.ma/api'
 export default BaseURL

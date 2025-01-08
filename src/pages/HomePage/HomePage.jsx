@@ -194,6 +194,9 @@ const BookingForm = () => {
           </tbody>
         </table>
       </form>
+      <h1 className='quote__title'>
+      “<span>{t('home.quote')}</span>“
+      </h1>
     </div>
   );
 };
@@ -206,17 +209,15 @@ const HeaderContent = () => {
     <>
       <div className="stroke__home"></div>
       <div className="hero__background" data-direction={isRTL ? 'rtl' : 'ltr'}>
-        <img loading="lazy" src="/13f00b97db4641b3ed6c7b387b771752.webp" alt="Background" />
+        <img loading="lazy" src="/21699d032d59eb23405a4c8f3e2df35b.webp" alt="Background" />
       </div>
       <div className="hero__container" data-direction={isRTL ? 'rtl' : 'ltr'}>
         <h1 className="hero__title">
-          {t('home.hero.title')},
-          <br />
-          {t('home.hero.subtitle')}
+          {t('home.hero.title')}, {t('home.hero.subtitle')}
         </h1>
-        <p className="hero__description" data-direction={isRTL ? 'rtl' : 'ltr'}>
-          {t('home.hero.description')}
-        </p>
+      </div>
+      <div className="hero__quote">
+        {t('home.hero.description')}
         <div className="hero__cta">
           <button className="hero__cta__button">{t('home.hero.button')}</button>
           <div className="hero__arrow">
@@ -229,9 +230,6 @@ const HeaderContent = () => {
             }
           </div>
         </div>
-      </div>
-      <div className="hero__quote">
-        {t('home.quote')}
       </div>
     </>
   );
@@ -776,7 +774,7 @@ const Team = () => {
 };
 
 // TeamMember Component
-const TeamMember = ({ name, specialty, image, memberWidth, gap, index }) => {
+const TeamMember = ({ name, specialty, image, isDefault, memberWidth, gap, index }) => {
   function degreesToRadians(degrees) {
     return degrees * Math.PI / 180;
   }
@@ -798,7 +796,7 @@ const TeamMember = ({ name, specialty, image, memberWidth, gap, index }) => {
       marginRight: gap,
     }}>
       <div className="team__item__image">
-        <img loading="lazy" src={image} alt={name} />
+        <img loading="lazy" src={image} alt={name} className={`${isDefault ? 'default' : null}`} />
         <div
           style={{
             '--cos': angles.cos,

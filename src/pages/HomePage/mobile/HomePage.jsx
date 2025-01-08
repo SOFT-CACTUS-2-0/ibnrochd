@@ -63,9 +63,8 @@ const MobileHomePage = () => {
         <Navbar />
         <div className="home__mobile__hero">
             <div className="hero__mobile__content" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
-                <h1 className="hero__mobile__title">
-                    {t('home.hero.title')}<br />
-                    {t('home.hero.subtitle')}
+                <h1 className="hero__mobile__title" style={{textAlign:'center'}}>
+                  {t('home.hero.title')}, {t('home.hero.subtitle')}
                 </h1>
                 <p className="hero__mobile__description" data-direction={isRTL ? 'rtl' : 'ltr'}>
                     {t('home.hero.description')}
@@ -80,7 +79,7 @@ const MobileHomePage = () => {
                 </div>
             </div>
             <div className="hero__mobile__image">
-                <img src="/13f00b97db4641b3ed6c7b387b771752.webp" alt="Hero" />
+                <img src="/21699d032d59eb23405a4c8f3e2df35b.webp" alt="Hero" />
             </div>
         </div>
         <div className="booking__form__mobile" style={{direction: isRTL ? 'rtl' : 'ltr'}}>
@@ -127,6 +126,9 @@ const MobileHomePage = () => {
                     </div>
                 </div>
             </form>
+            <h1 className='quote__title'>
+              “<span>{t('home.quote')}</span>“
+            </h1>
         </div>
         <div className="video__mobile__section">
             <Title
@@ -718,7 +720,7 @@ const Team = () => {
 };
 
 // TeamMember Component
-const TeamMember = ({ name, specialty, image, memberHeight, gap, index }) => {
+const TeamMember = ({ name, specialty, image, isDefault, memberHeight, gap, index }) => {
   function degreesToRadians(degrees) {
     return degrees * Math.PI / 180;
   }
@@ -740,7 +742,7 @@ const TeamMember = ({ name, specialty, image, memberHeight, gap, index }) => {
       marginBottom: gap,
     }}>
       <div className="team__item__image">
-        <img loading="lazy" src={image} alt={name} />
+        <img loading="lazy" src={image} alt={name} className={`${isDefault ? 'default' : null}`} />
         <div
           style={{
             '--cos': angles.cos,
