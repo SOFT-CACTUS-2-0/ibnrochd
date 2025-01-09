@@ -200,6 +200,10 @@
     border-radius: 33.89px;
 }
 
+.specialite__video__container[data-gradient=true]::before{
+    content: unset;
+}
+
 .specialite__video__container img{
     position: absolute;
     left: 50%;

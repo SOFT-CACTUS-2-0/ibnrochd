@@ -14,6 +14,7 @@ const SpecialitesPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'MA';
+  const [isPlaying, setIsPlaying] = useState(false);
 
   return (
     <>
@@ -75,11 +76,27 @@ const SpecialitesPage = () => {
                     </div>
                 </div>
                 <CardBoard />
-                <div className="specialite__video__container" style={{width:'85vw', margin:'auto', marginBottom: '2rem'}}>
-                    <img loading="lazy" src='/5b1f53d6487884b0e49356f74c483a3e.webp' alt="Home Video" />
-                    <div className="play-icon" style={{zIndex: '1000'}}>
-                        <FontAwesomeIcon icon={faPlay} />
-                    </div>
+                <div className="specialite__video__container" data-gradient={isPlaying} style={{width:'85vw', margin:'auto', marginBottom: '2rem'}}>
+                    {!isPlaying ? (
+                        <>
+                            <img loading="lazy" src={'/5b1f53d6487884b0e49356f74c483a3e.webp'} alt="Home Video"/>
+                            <div className="play-icon" onClick={() => setIsPlaying(true)}>
+                            <FontAwesomeIcon icon={faPlay} />
+                            </div>
+                        </>
+                        ) : (
+                        <iframe 
+                            width="100%" 
+                            height="100%" 
+                            style={{borderRadius: '25px'}}
+                            src="https://www.youtube.com/embed/ZgUA8t4lr5Q?si=iswGaE4zljLUcnQQ&autoplay=1" 
+                            title="YouTube video player" 
+                            frameBorder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerPolicy="strict-origin-when-cross-origin" 
+                            allowFullScreen
+                        />
+                    )}
                     <div className="border__top"></div>
                     <div className="border__bottom"></div>
                 </div>

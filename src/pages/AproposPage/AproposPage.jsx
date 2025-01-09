@@ -27,15 +27,12 @@ const videos = [
     src: '/981e14ca60d564e39dcf65faf5036dee.webp',
     alt: 'Vidéo 1',
   },
-  {
-    src: '/aa2af345e93eeea0eeb7efb594b2b6a6.webp',
-    alt: 'Vidéo 2',
-  },
 ];
 
 const AproposPage = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'MA';
+  const [isPlaying, setIsPlaying] = useState(false);
   
   // Get bulletPoints as a string and split it
   const bulletPoints = t('apropos.bulletPoints', { returnObjects: true });
@@ -96,11 +93,27 @@ const AproposPage = () => {
                 </div>
                 <div className="apropos__video__container">
                   {videos.map((video, index) => (
-                    <div key={index} className="apropos__video__item">
-                      <img loading="lazy" src={video.src} alt={t(`apropos.images.video${index + 1}`)} />
-                      <div className="play-icon">
-                        <FontAwesomeIcon icon={faPlay} />
-                      </div>
+                    <div key={index} className="apropos__video__item" style={{aspectRatio: '16 / 9'}}>
+                      {!isPlaying ? (
+                        <>
+                          <img loading="lazy" src={video.src} alt={t(`apropos.images.video${index + 1}`)} />
+                          <div className="play-icon" onClick={() => setIsPlaying(true)}>
+                            <FontAwesomeIcon icon={faPlay} />
+                          </div>
+                        </>
+                      ) : (
+                        <iframe 
+                          width="100%" 
+                          height="100%" 
+                          style={{borderRadius: '25px'}}
+                          src="https://www.youtube.com/embed/ZgUA8t4lr5Q?si=iswGaE4zljLUcnQQ&autoplay=1" 
+                          title="YouTube video player" 
+                          frameBorder="0" 
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                          referrerPolicy="strict-origin-when-cross-origin" 
+                          allowFullScreen
+                        />
+                      )}
                     </div>
                   ))}
                 </div>

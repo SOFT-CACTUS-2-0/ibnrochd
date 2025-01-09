@@ -26,16 +26,13 @@ const videos = [
     {
         src: '/981e14ca60d564e39dcf65faf5036dee.webp',
         alt: 'Vidéo 1',
-    },
-    {
-        src: '/aa2af345e93eeea0eeb7efb594b2b6a6.webp',
-        alt: 'Vidéo 2',
-    },
+    }
 ];
 
 const MobileAproposPage = () => {
     const { t, i18n } = useTranslation();
     const isRTL = i18n.language === 'MA';
+    const [isPlaying, setIsPlaying] = useState(false);
   const bulletPoints = t('apropos.bulletPoints', { returnObjects: true });
 
    // Add if link end in #id scroll to id
@@ -100,13 +97,29 @@ const MobileAproposPage = () => {
                     </ul>
                     </div>
                 </div>
-                <div className="apropos__video__container" style={{marginBlock:'2rem',height:'fit-content',width:'fit-content',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'1rem'}}>
+                <div className="apropos__video__container" style={{marginBlock:'2rem',aspectRatio: '16 / 9',width:'100%'}}>
                     {videos.map((video, index) => (
                         <div key={index} className="apropos__video__item">
-                        <img loading="lazy" src={video.src} alt={t(`apropos.images.video${index + 1}`)} />
-                        <div className="play-icon">
-                            <FontAwesomeIcon icon={faPlay} />
-                        </div>
+                        {!isPlaying ? (
+                            <>
+                                <img loading="lazy" style={{width:'100%',height:'100%'}} src={video.src} alt={t(`apropos.images.video${index + 1}`)} />
+                                <div className="play-icon" onClick={() => setIsPlaying(true)}>
+                                <FontAwesomeIcon icon={faPlay} />
+                                </div>
+                            </>
+                            ) : (
+                            <iframe 
+                                style={{borderRadius: '25px'}}
+                                width="100%"
+                                height="100%"
+                                src="https://www.youtube.com/embed/ZgUA8t4lr5Q?si=iswGaE4zljLUcnQQ&autoplay=1" 
+                                title="YouTube video player" 
+                                frameBorder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerPolicy="strict-origin-when-cross-origin" 
+                                allowFullScreen
+                            />
+                        )}
                         </div>
                     ))}
                 </div>

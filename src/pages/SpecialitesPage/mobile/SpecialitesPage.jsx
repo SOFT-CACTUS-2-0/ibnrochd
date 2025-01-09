@@ -14,6 +14,7 @@ const MobileSpecialitesPage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const { t, i18n } = useTranslation();
     const isRTL = i18n.language === 'MA';
+    const [isPlaying, setIsPlaying] = useState(false);
 
     return (
         <div className='specialites__page__mobile page__mobile' data-direction={isRTL ? 'rtl' : 'ltr'}>
@@ -77,11 +78,27 @@ const MobileSpecialitesPage = () => {
                 </div>
             </div>
             <CardBoard />
-            <div className="specialite__video__container" style={{width:'90%',margin:'auto'}}>
-                <img loading="lazy" src='/5b1f53d6487884b0e49356f74c483a3e.webp' alt="Home Video" />
-                <div className="play-icon">
-                    <FontAwesomeIcon icon={faPlay} />
-                </div>
+            <div className="specialite__video__container" data-gradient={isPlaying} style={{width:'90%',margin:'auto'}}>
+                {!isPlaying ? (
+                    <>
+                        <img loading="lazy" src={'/5b1f53d6487884b0e49356f74c483a3e.webp'} alt="Home Video"/>
+                        <div className="play-icon" onClick={() => setIsPlaying(true)}>
+                        <FontAwesomeIcon icon={faPlay} />
+                        </div>
+                    </>
+                    ) : (
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        style={{borderRadius: '25px'}}
+                        src="https://www.youtube.com/embed/ZgUA8t4lr5Q?si=iswGaE4zljLUcnQQ&autoplay=1" 
+                        title="YouTube video player" 
+                        frameBorder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerPolicy="strict-origin-when-cross-origin" 
+                        allowFullScreen
+                    />
+                )}
             </div>
             <div className="video__description" style={{width:'90%',margin:'2rem',marginBlock:'2rem', direction: isRTL ? 'rtl' : 'ltr', textAlign: isRTL ? 'right' : 'left'}}>
                 <h2 style={{fontSize:'1.5rem'}}>{t('specialites.video.title')}</h2>
