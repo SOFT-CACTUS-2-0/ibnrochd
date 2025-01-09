@@ -61,7 +61,7 @@ const Contact = () => {
             </div>
             <div className="footer__contact__li">
                 <div className="footer__icon__container"><img loading="lazy" src="/contact/openEnvelope.svg" alt="Image" /></div>
-                <p>contact@cliniqueibnrochdberkane.com</p>
+                <p>contact@cliniqueibnrochd.ma</p>
             </div>
             <div className="footer__contact__li">
                 <div className="footer__icon__container"><img loading="lazy" src="/contact/phone.svg" alt="Image" /></div>

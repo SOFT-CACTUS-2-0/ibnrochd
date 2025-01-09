@@ -25,7 +25,7 @@ const ContactInfo = () => {
       </li>
       <li className="separator"></li>
       <li>
-        <a className='contact__info__item' style={{textDecoration:'none',color:'white',cursor:'pointer',display:'flex',justifyContent:'center',alignItems:'center'}} href="mailto:contact@cliniqueibnrochdberkane.com">
+        <a className='contact__info__item' style={{textDecoration:'none',color:'white',cursor:'pointer',display:'flex',justifyContent:'center',alignItems:'center'}} href="mailto:contact@cliniqueibnrochd.ma">
           <FontAwesomeIcon style={{fontSize: '1.5rem'}} icon={faEnvelope} /> {t('contact.email')}
         </a>
       </li>
