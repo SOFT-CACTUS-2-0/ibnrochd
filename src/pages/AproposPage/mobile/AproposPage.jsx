@@ -73,7 +73,7 @@ const MobileAproposPage = () => {
                     ))}
                     <div className="phone__number" style={{top:'50%',left:'50%',transform:'translate(-50%, -50%)'}}>
                     <div className="icon__container">
-                        <img loading="lazy" src="/contact/phone.svg" alt={t('apropos.images.phoneIcon')} /></div>
+                        <img loading="lazy" src="/contacts/phone.svg" alt={t('apropos.images.phoneIcon')} /></div>
                         <p>+212-536-614446</p>
                     </div>
                 </div>
@@ -110,6 +110,7 @@ const MobileAproposPage = () => {
                             ) : (
                             <iframe 
                                 style={{borderRadius: '25px'}}
+                                loading="lazy"
                                 width="100%"
                                 height="100%"
                                 src="https://www.youtube.com/embed/ZgUA8t4lr5Q?si=iswGaE4zljLUcnQQ&autoplay=1" 
@@ -192,7 +193,7 @@ const DoctorTeam = () => {
             </div>
         </div>
         <div className="doctor__team__item doctor__team__image" style={{width:'100%'}}>
-            <img style={{width:'100%',height:'100%',objectFit:'contain'}} loading="lazy" src={DOCTORS.at(currentIndex).image} alt="Image" />
+            <img loading="lazy" style={{width:'100%',height:'100%',objectFit:'contain'}} src={DOCTORS.at(currentIndex).image} alt="Image" />
             <div className="background__mobile" style={{width:'90vw',aspectRatio:'1/1', transform:'translate(-50%,-50%)',left:'50%',top:'50%',position:'absolute',background: 'linear-gradient(180deg, #4CB9C1 0%, #24575B 100%)', borderRadius:'50%', zIndex:'-1'}}></div>
         </div>
         </div>

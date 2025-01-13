@@ -66,7 +66,7 @@ const AproposPage = () => {
                       ))}
                       <div className="phone__number">
                         <div className="icon__container">
-                          <img loading="lazy" src="/contact/phone.svg" alt={t('apropos.images.phoneIcon')} /></div>
+                          <img loading="lazy" src="/contacts/phone.svg" alt={t('apropos.images.phoneIcon')} /></div>
                           <p>+212-536-614446</p>
                       </div>
                     </div>
@@ -105,6 +105,7 @@ const AproposPage = () => {
                         <iframe 
                           width="100%" 
                           height="100%" 
+                          loading="lazy"
                           style={{borderRadius: '25px'}}
                           src="https://www.youtube.com/embed/ZgUA8t4lr5Q?si=iswGaE4zljLUcnQQ&autoplay=1" 
                           title="YouTube video player" 

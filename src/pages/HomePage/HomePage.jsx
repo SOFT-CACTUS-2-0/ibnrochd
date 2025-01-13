@@ -268,6 +268,7 @@ const HomeVideo = () => {
           </>
         ) : (
           <iframe 
+            loading="lazy"
             width="100%" 
             height="100%" 
             src="https://www.youtube.com/embed/ZgUA8t4lr5Q?si=iswGaE4zljLUcnQQ&autoplay=1" 

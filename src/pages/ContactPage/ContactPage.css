@@ -263,8 +263,8 @@ body {
 /* Custom Icon */
 .blueish {
     background-color: #4CB9C1;
-    -webkit-mask: url('/contact/openEnvelope.svg') no-repeat center;
-    mask: url('/contact/openEnvelope.svg') no-repeat center;
+    -webkit-mask: url('/contacts/openEnvelope.svg') no-repeat center;
+    mask: url('/contacts/openEnvelope.svg') no-repeat center;
     width: 28.92px;
     height: 28.92px;
     background-size: contain;

@@ -67,12 +67,12 @@ const ContactPage = () => {
 
   const CONTACT_INFO = [
     {
-      iconSrc: '/contact/phoneOutline.svg',
+      iconSrc: '/contacts/phoneOutline.svg',
       label: t('contact.mobile.info.phone.label'),
       description: t('contact.mobile.info.phone.value'),
     },
     {
-      iconSrc: '/contact/fax.svg',
+      iconSrc: '/contacts/fax.svg',
       label: t('contact.mobile.info.fax.label'),
       description: t('contact.mobile.info.fax.value'),
     },

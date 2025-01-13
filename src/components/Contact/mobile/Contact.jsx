@@ -56,15 +56,15 @@ const Contact = () => {
             <h2 style={{paddingBlock:'1rem'}}>{t('contact.contactInfo')}</h2>
             {/* icon item*/}
             <div className="footer__contact__li">
-                <div className="footer__icon__container"><img loading="lazy" src="/contact/support.svg" alt="Image" /></div>
+                <div className="footer__icon__container"><img loading="lazy" src="/contacts/support.svg" alt="Image" /></div>
                 <p>{t('contact.service')}</p>
             </div>
             <div className="footer__contact__li">
-                <div className="footer__icon__container"><img loading="lazy" src="/contact/openEnvelope.svg" alt="Image" /></div>
+                <div className="footer__icon__container"><img loading="lazy" src="/contacts/openEnvelope.svg" alt="Image" /></div>
                 <p>contact@cliniqueibnrochd.ma</p>
             </div>
             <div className="footer__contact__li">
-                <div className="footer__icon__container"><img loading="lazy" src="/contact/phone.svg" alt="Image" /></div>
+                <div className="footer__icon__container"><img loading="lazy" src="/contacts/phone.svg" alt="Image" /></div>
                 <p style={{direction:'ltr'}}>{t('contact.phone1')}<br />
                 {t('contact.phone2')}</p>
             </div>

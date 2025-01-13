@@ -58,7 +58,7 @@ const SpecialitesPage = () => {
                         <div className="specialites__image">
                             <img loading="lazy" src="/38b8fac457189fc27f3de71b38e89e02.webp" alt="Image" />
                             <div className="phone__number">
-                                <div className="icon__container"><img loading="lazy" src="/contact/phone.svg" alt="Image" /></div>
+                                <div className="icon__container"><img loading="lazy" src="/contacts/phone.svg" alt="Image" /></div>
                                 <p>+212-536-614446</p>
                             </div>
                         </div>
@@ -86,6 +86,7 @@ const SpecialitesPage = () => {
                         </>
                         ) : (
                         <iframe 
+                            loading="lazy"
                             width="100%" 
                             height="100%" 
                             style={{borderRadius: '25px'}}
