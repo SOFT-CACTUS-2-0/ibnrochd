@@ -649,7 +649,7 @@ const ClinicWing = ({
                   />
                 ) : (
                   <img
-                    src={src.replace('videos', 'thumbnails').replace('.mp4', '.webp')} // Assuming thumbnails are available as JPG
+                    src={src.replace('videos', 'thumbnails').replace('.mp4', '.webp')}
                     alt={`Thumbnail ${index}`}
                     style={{ width: '100%', cursor: 'pointer' }}
                     onClick={() => handleThumbnailClick(index)}

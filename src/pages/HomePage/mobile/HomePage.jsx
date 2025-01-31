@@ -352,7 +352,8 @@ const ClinicWing = ({ number, title, description, images }) => {
   const gap = 32;
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
-  const swipeThreshold = 50; // minimum distance for a swipe
+  const swipeThreshold = 50;
+  const [activeVideo, setActiveVideo] = useState(null);
 
 
   const [currentContentIndex, setCurrentContentIndex] = useState(0);
@@ -363,14 +364,14 @@ const ClinicWing = ({ number, title, description, images }) => {
       title: t(`home.clinicWings.wings.${currentContentIndex}.title`),
       description: t(`home.clinicWings.wings.${currentContentIndex}.description`, { returnObjects: true }),
       videos: [
-        '/wings/1.mp4',
-        '/wings/6.mp4',
-        '/wings/2.mp4',
-        '/wings/7.mp4',
-        '/wings/3.mp4',
-        '/wings/4.mp4',
-        '/wings/5.mp4',
-        '/wings/8.mp4'
+        '/wings/videos/1_etage.mp4',
+        '/wings/videos/suite_dar_dmana.mp4',
+        '/wings/videos/2_etage.mp4',
+        '/wings/videos/suite_la_tulipe.mp4',
+        '/wings/videos/3_etage.mp4',
+        '/wings/videos/4_etage.mp4',
+        '/wings/videos/bloc_operatoire.mp4',
+        '/wings/videos/suite_majorelle.mp4'
       ]
     },
     // You can add more clinic wing data here if needed
@@ -379,6 +380,16 @@ const ClinicWing = ({ number, title, description, images }) => {
   // Clone first and last images
   const extendedImages = [clinicWingData[0].videos[clinicWingData[0].videos.length - 1], ...clinicWingData[0].videos, ...clinicWingData[0].videos];
 
+  const handleThumbnailClick = (index) => {
+    setActiveVideo(index);
+    setTimeout(() => {
+      if (videoRefs.current[index]) {
+        videoRefs.current[index].play();
+        setIsPlaying(true);
+      }
+    }, 50);
+  };
+  
   const handleNext = () => {
     // Stop current video if playing
     const currentVideo = videoRefs.current[currentIndex + 1];
@@ -517,6 +528,7 @@ const ClinicWing = ({ number, title, description, images }) => {
                 >
                     {extendedImages.map((src, index) => (
                       <div key={index} className="image-carousel__card" style={{width:'min(85vw,400px)',aspectRatio:'254 / 359',height:'unset'}}>
+                        {activeVideo === index ? (
                           <video
                             ref={el => videoRefs.current[index] = el}
                             loading="lazy"
@@ -531,16 +543,24 @@ const ClinicWing = ({ number, title, description, images }) => {
                             loop
                             playsInline
                           />
+                          ) : (
+                            <img
+                              src={src.replace('videos', 'thumbnails').replace('.mp4', '.webp')}
+                              alt={`Thumbnail ${index}`}
+                              style={{ width: '100%', cursor: 'pointer' }}
+                              onClick={() => handleThumbnailClick(index)}
+                            />
+                          )}
                           {
                             index - 1 === currentIndex && (
-                              <div className="play-icon" onClick={() => handlePlayClick(index)} style={{opacity: isPlaying ? 0 : 1}}>
+                              <div className="play-icon" onClick={() => activeVideo === index ? handlePlayClick(index) : handleThumbnailClick(index)} style={{opacity: isPlaying ? 0 : 1}}>
                                 <FontAwesomeIcon icon={faPlay} />
                               </div>
                             )
                           }
                           {
                             index + 2 === currentIndex && (
-                              <div className="play-icon" onClick={() => handlePlayClick(index)} style={{opacity: isPlaying ? 0 : 1}}>
+                              <div className="play-icon" onClick={() => activeVideo === index ? handlePlayClick(index) : handleThumbnailClick(index)} style={{opacity: isPlaying ? 0 : 1}}>
                                 <FontAwesomeIcon icon={faPlay} />
                               </div>
                             )
