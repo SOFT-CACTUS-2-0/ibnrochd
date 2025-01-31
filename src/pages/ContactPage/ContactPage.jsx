@@ -70,17 +70,20 @@ const ContactPage = () => {
       iconSrc: '/contacts/phoneOutline.svg',
       label: t('contact.mobile.info.phone.label'),
       description: t('contact.mobile.info.phone.value'),
+      phone: `tel::${t('contact.mobile.info.phone.value')}`
     },
     {
       iconSrc: '/contacts/fax.svg',
       label: t('contact.mobile.info.fax.label'),
       description: t('contact.mobile.info.fax.value'),
+      fax: `tel:${t('contact.mobile.info.fax.value')}`
     },
     {
       iconSrc: null,
       label: t('contact.mobile.info.email.label'),
       description: t('contact.mobile.info.email.value'),
       customIcon: <div className="blueish" />,
+      email: `mailto:${t('contact.mobile.info.email.value')}`
     },
   ];
 
@@ -174,7 +177,9 @@ const ContactPage = () => {
                 <div className="contact__item__text">
                   <div className="contact__item__label" style={{textAlign: isRTL ? 'right' : 'left'}}>{item.label}</div>
                   <div className="contact__item__description" style={{direction: 'ltr'}}>
-                    {item.description}
+                    <a href={item.phone || item.fax || item.email}>
+                      {item.description}
+                    </a>
                   </div>
                 </div>
               </div>

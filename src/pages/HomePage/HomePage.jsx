@@ -447,14 +447,14 @@ const ClinicWings = () => {
       title: t(`home.clinicWings.wings.${currentContentIndex}.title`),
       description: t(`home.clinicWings.wings.${currentContentIndex}.description`, { returnObjects: true }),
       videos: [
-        '/wings/1.mp4',
-        '/wings/6.mp4',
-        '/wings/2.mp4',
-        '/wings/7.mp4',
-        '/wings/3.mp4',
-        '/wings/4.mp4',
-        '/wings/5.mp4',
-        '/wings/8.mp4'
+        '/wings/videos/1_etage.mp4',
+        '/wings/videos/suite_dar_dmana.mp4',
+        '/wings/videos/2_etage.mp4',
+        '/wings/videos/suite_la_tulipe.mp4',
+        '/wings/videos/3_etage.mp4',
+        '/wings/videos/4_etage.mp4',
+        '/wings/videos/bloc_operatoire.mp4',
+        '/wings/videos/suite_majorelle.mp4'
       ]
     },
     // You can add more clinic wing data here if needed
@@ -519,16 +519,27 @@ const ClinicWing = ({
 }) => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'MA';
-  const videoWidth = 30; // Width of each video card
+  const videoWidth = 30;
   const gap = 1; // Gap between video cards
   const slideWidth = videoWidth + gap;
   const totalSlides = videos.length;
   const videoRefs = useRef([]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [activeVideo, setActiveVideo] = useState(null);
 
   // Clone first and last videos
   const extendedVideos = [videos[videos.length - 1], ...videos, ...videos];
   const trackRef = useRef(null);
+
+  const handleThumbnailClick = (index) => {
+    setActiveVideo(index);
+    setTimeout(() => {
+      if (videoRefs.current[index]) {
+        videoRefs.current[index].play();
+        setIsPlaying(true);
+      }
+    }, 50);
+  };
 
   const handlePlayClick = (index) => {
     const videoElement = videoRefs.current[index];
@@ -592,9 +603,10 @@ const ClinicWing = ({
     onPrev(currentIndex - 1);
   };
 
+
   return (
     <>
-      <div className="header-section" data-direction={isRTL ? 'rtl' : 'ltr'} style={{direction: isRTL ? 'rtl' : 'ltr'}}>
+      <div className="header-section" data-direction={isRTL ? 'rtl' : 'ltr'} style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
         <div className="header-section__number">{parseInt(number) + 2}</div>
         <div className="header-section__content">
           <h1 className="header-section__title">{title}</h1>
@@ -611,9 +623,7 @@ const ClinicWing = ({
           <div
             className="image-carousel__track"
             ref={trackRef}
-            style={{
-              display: 'flex',
-            }}
+            style={{ display: 'flex' }}
           >
             {extendedVideos.map((src, index) => (
               <div
@@ -626,34 +636,41 @@ const ClinicWing = ({
                   marginRight: `${gap}vw`,
                 }}
               >
-                <video
-                  ref={el => videoRefs.current[index] = el}
-                  loading="lazy"
-                  src={`${src}#t=1`}
-                  alt={`Video ${index}`}
-                  style={{ width: '100%' }}
-                  onClick={() => {
-                    if (index - 1 === currentIndex) {
-                      handlePlayClick(index);
-                    }
-                  }}
-                  loop
-                  playsInline
-                />
-                {
-                  index - 1 === currentIndex && (
-                    <div className="play-icon" onClick={() => handlePlayClick(index)} style={{opacity: isPlaying ? 0 : 1}}>
-                      <FontAwesomeIcon icon={faPlay} />
-                    </div>
-                  )
-                }
-                {
-                  index + 2 === currentIndex && (
-                    <div className="play-icon" onClick={() => handlePlayClick(index)} style={{opacity: isPlaying ? 0 : 1}}>
-                      <FontAwesomeIcon icon={faPlay} />
-                    </div>
-                  )
-                }
+                {activeVideo === index ? (
+                  <video
+                    ref={el => videoRefs.current[index] = el}
+                    loading="lazy"
+                    src={`${src}#t=1`}
+                    alt={`Video ${index}`}
+                    style={{ width: '100%' }}
+                    onClick={() => handlePlayClick(index)}
+                    loop
+                    playsInline
+                  />
+                ) : (
+                  <img
+                    src={src.replace('videos', 'thumbnails').replace('.mp4', '.webp')} // Assuming thumbnails are available as JPG
+                    alt={`Thumbnail ${index}`}
+                    style={{ width: '100%', cursor: 'pointer' }}
+                    onClick={() => handleThumbnailClick(index)}
+                  />
+                )}
+                {(index - 1 === currentIndex || index + 2 === currentIndex) && (
+                  <div 
+                    className="play-icon"
+                    onClick={() => activeVideo === index ? handlePlayClick(index) : handleThumbnailClick(index)}
+                    style={{
+                      opacity: isPlaying && activeVideo === index ? 0 : 1,
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faPlay} />
+                  </div>
+                )}
               </div>
             ))}
           </div>

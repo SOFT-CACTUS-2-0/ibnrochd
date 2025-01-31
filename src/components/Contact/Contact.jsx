@@ -117,12 +117,24 @@ const Contact = () => {
             </div>
             <div className="footer__contact__li">
                 <div className="footer__icon__container"><img loading="lazy" src="/contacts/openEnvelope.svg" alt="Image" /></div>
-                <p>{t('contact.email')}</p>
+                <p>
+                  <a style={{textDecoration:'none',color:'white'}} href="mailto:contact@cliniqueibnrochd.ma">
+                    {t('contact.email')}
+                  </a>
+                </p>
             </div>
             <div className="footer__contact__li">
                 <div className="footer__icon__container"><img loading="lazy" src="/contacts/phone.svg" alt="Image" /></div>
-                <p style={{direction: 'ltr'}}>{t('contact.phone1')}<br />
-                {t('contact.phone2')}</p>
+                {/* <p style={{direction: 'ltr'}}>{t('contact.phone1')}<br />
+                {t('contact.phone2')}</p> */}
+                <p style={{direction: 'ltr'}}>
+                  <a className='contact__info__item' style={{textDecoration:'none',color:'white',cursor:'pointer',display:'flex',justifyContent:'center',alignItems:'center'}} href="tel:+212536613033">
+                    {t('contact.phone1')}
+                  </a>
+                  <a className='contact__info__item' style={{textDecoration:'none',color:'white',cursor:'pointer',display:'flex',justifyContent:'center',alignItems:'center'}} href="tel:+212616569193">
+                    {t('contact.phone2')}
+                  </a>
+                </p>
             </div>
         </div>
         <div className="social__links" style={{ display: "flex", gap: "10px", marginBlock: "1rem" }}>

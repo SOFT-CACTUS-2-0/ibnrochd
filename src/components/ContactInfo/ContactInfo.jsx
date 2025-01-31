@@ -19,7 +19,7 @@ const ContactInfo = () => {
       </li>
       <li className="separator"></li>
       <li>
-        <a className='contact__info__item' style={{textDecoration:'none',color:'white',cursor:'pointer',display:'flex',justifyContent:'center',alignItems:'center'}} href="tel:+212-536-614446">
+        <a className='contact__info__item' style={{textDecoration:'none',color:'white',cursor:'pointer',display:'flex',justifyContent:'center',alignItems:'center'}} href="tel:+212536613033">
           <FontAwesomeIcon style={{fontSize: '1.5rem'}} icon={faPhoneVolume} /> {t('contact.phone1')}
         </a>
       </li>

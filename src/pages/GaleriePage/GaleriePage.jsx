@@ -12,6 +12,8 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 import './GaleriePage.css';
 
+import {fetchVideos} from '../../services/instagram_api';
+
 const galleryImages = Array.from({ length: 18 }, (_, i) => `/gallery/ (${i + 1}).webp`);
 
 const GaleriePage = () => {
@@ -19,54 +21,73 @@ const GaleriePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const imagesPerPage = 6;
   const totalPages = Math.ceil(galleryImages.length / imagesPerPage);
+  
+  
+  // const [videos, setVideos] = useState([
+  //   {
+  //     src: '/gallery/videos/1.mp4',
+  //     title: t('gallery.videos.titles', { returnObjects: true })[0],
+  //     active: true,
+  //   },
+  //   {
+  //     src: '/gallery/videos/2.mp4',
+  //     title: t('gallery.videos.titles', { returnObjects: true })[1],
+  //     active: false,
+  //   },
+  //   {
+  //     src: '/gallery/videos/3.mp4',
+  //     title: t('gallery.videos.titles', { returnObjects: true })[2],
+  //     active: false,
+  //   },
+  //   {
+  //     src: '/gallery/videos/4.mp4',
+  //     title: t('gallery.videos.titles', { returnObjects: true })[3],
+  //     active: false,
+  //   },
+  //   {
+  //     src: '/gallery/videos/5.mp4',
+  //     title: t('gallery.videos.titles', { returnObjects: true })[4],
+  //     active: false,
+  //   },
+  //   {
+  //     src: '/gallery/videos/6.mp4',
+  //     title: t('gallery.videos.titles', { returnObjects: true })[5],
+  //     active: false,
+  //   },
+  //   {
+  //     src: '/gallery/videos/7.mp4',
+  //     title: t('gallery.videos.titles', { returnObjects: true })[6],
+  //     active:false,
+  //   },
+  //   {
+  //     src: '/gallery/videos/8.mp4',
+  //     title: t('gallery.videos.titles', { returnObjects: true })[7],
+  //     active:false,
+  //   },
+  //   {
+  //     src: '/gallery/videos/9.mp4',
+  //     title: t('gallery.videos.titles', { returnObjects: true })[8],
+  //     active:false,
+  //   },
+  // ]);
+  const [videos, setVideos] = useState([]);
 
-  const [videos, setVideos] = useState([
-    {
-      src: '/gallery/videos/1.mp4',
-      title: t('gallery.videos.titles', { returnObjects: true })[0],
-      active: true,
-    },
-    {
-      src: '/gallery/videos/2.mp4',
-      title: t('gallery.videos.titles', { returnObjects: true })[1],
-      active: false,
-    },
-    {
-      src: '/gallery/videos/3.mp4',
-      title: t('gallery.videos.titles', { returnObjects: true })[2],
-      active: false,
-    },
-    {
-      src: '/gallery/videos/4.mp4',
-      title: t('gallery.videos.titles', { returnObjects: true })[3],
-      active: false,
-    },
-    {
-      src: '/gallery/videos/5.mp4',
-      title: t('gallery.videos.titles', { returnObjects: true })[4],
-      active: false,
-    },
-    {
-      src: '/gallery/videos/6.mp4',
-      title: t('gallery.videos.titles', { returnObjects: true })[5],
-      active: false,
-    },
-    {
-      src: '/gallery/videos/7.mp4',
-      title: t('gallery.videos.titles', { returnObjects: true })[6],
-      active:false,
-    },
-    {
-      src: '/gallery/videos/8.mp4',
-      title: t('gallery.videos.titles', { returnObjects: true })[7],
-      active:false,
-    },
-    {
-      src: '/gallery/videos/9.mp4',
-      title: t('gallery.videos.titles', { returnObjects: true })[8],
-      active:false,
-    },
-  ]);
+  useEffect(() => {
+    const loadVideos = async () => {
+      const videoUrls = await fetchVideos();
+      const titles = t('gallery.videos.titles', { returnObjects: true });
+      if(videoUrls.length > 0 ){
+        const formattedVideos = videoUrls.map((url, index) => ({
+          src: url,
+          title: titles[index] || `Video ${index + 1}`,
+          active: index === 0,
+        }));
+        setVideos(formattedVideos);
+      }
+    };
+
+    loadVideos();
+  }, [t]);
 
   // on language change, update the videos
   useEffect(() => {
@@ -146,11 +167,9 @@ const GaleriePage = () => {
 
   const handleVideoPause = (index) => {
     // Only update state if the pause wasn't programmatic
-    if (!isProgrammaticallyPausing.current) {
-        if (playingVideoRef.current === index) {
-            setPlayingVideoIndex(null);
-            playingVideoRef.current = null;
-        }
+    if (!isProgrammaticallyPausing.current && playingVideoRef.current === index) {
+      setPlayingVideoIndex(null);
+      playingVideoRef.current = null;
     }
   };
 

@@ -1,0 +1,1 @@
+import{j as r}from"./index-CUhIl32h.js";import{u as a}from"./api-slzaSPxm.js";const s=()=>{const{t:s,i18n:t}=a(),i="MA"===t.language;return r.jsx("div",{className:"card__board",style:{direction:i?"rtl":"ltr"},children:r.jsx("div",{className:"card__board__title",children:s("specialites.cardBoard.title")})})};export{s as C};

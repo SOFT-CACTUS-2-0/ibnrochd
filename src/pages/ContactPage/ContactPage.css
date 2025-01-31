@@ -225,13 +225,14 @@ body {
     color: #4F4F4F;
 }
 
-.contact__item__description {
+.contact__item__description a{
     font-family: var(--main-font);
     font-size: 13.43px;
     font-weight: 500;
     line-height: 20.66px;
     letter-spacing: 0.02em;
     color: #4F4F4F;
+    text-decoration: none;
 }
 
 /* Footer */
