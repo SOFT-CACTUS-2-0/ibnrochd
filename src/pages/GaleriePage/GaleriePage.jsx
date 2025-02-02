@@ -196,7 +196,7 @@ const GaleriePage = () => {
                   src={video.src}
                   alt={`${t('gallery.videos.alt')} ${index + 1}`}
                   controls={false} // Hide default controls
-                  onPause={handleVideoPause}
+                  onPause={() => handleVideoPause(index)}
                   onEnded={() => setPlayingVideoIndex(null)}
                 />
                 <div className="video__title">{video.active ? video.title : t('gallery.videos.defaultTitle')}</div>

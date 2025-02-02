@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from './api';
 
 export const fetchVideos = async () => {
     try { 
@@ -8,20 +8,15 @@ export const fetchVideos = async () => {
             return JSON.parse(cachedData);
         }
 
-        const access_token = "IGAAQPxE3SwoFBZAE1GQWlJUFRrVkZAYcUh4azJVMFBQcFFfSFducHhTcnBZARm93ZA013ZAUMwZATZAPM0E4dFJ4Vjl1cUZAYc1JfTlExaEc2VEM4eURlcm5XZAnU4OXJEcGpjRHVpZAGV4TWJSRTB6SHg5amwxWm40QkgwU1FvQ2JqUzlGQQZDZD";
-    
-        const response = await axios.get(
-            'https://graph.instagram.com/me/media?fields=id,media_type,media_url&limit=6&access_token=' + access_token
-        );
-        
-        if (!response.data || !response.data.data) {
+        const response = await api.get("https://api.cliniqueibnrochd.ma/api/videos");
+
+        if (!response.data || !Array.isArray(response.data)) {
             console.warn('Instagram API response is empty or incorrect.');
             return []; 
         }
 
-        const allMedia = response.data.data; 
+        const allMedia = response.data; 
         const videoUrls = allMedia
-            .filter(media => media.media_type === 'VIDEO')
             .map(video => video.media_url);
     
         

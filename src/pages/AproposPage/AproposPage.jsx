@@ -148,6 +148,8 @@ const DoctorTeam = () => {
   const isRTL = i18n.language === 'MA';  
   const [currentIndex, setCurrentIndex] = useState(window.localStorage.getItem('doctorIndex') || 0);
   const DOCTORS = t('home.doctors.team', { returnObjects: true });
+  console.log(DOCTORS.at(currentIndex-1));
+  console.log(currentIndex);
   const handleNext = () => {
     setCurrentIndex((prevIndex) => 
       prevIndex < DOCTORS.length - 1 ? (prevIndex + 1) % DOCTORS.length : 0

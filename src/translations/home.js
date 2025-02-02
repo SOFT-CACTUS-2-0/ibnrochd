@@ -165,14 +165,14 @@ const home = {
         {
           name: "Dr EL GHAZI Jamal",
           specialty: "gynécologue",
-          image: "/369c23f673e3b7905f45c75b032368bf_50.webp",
-          isDefault: false,
+          image: "/default.svg",
+          isDefault: true,
         },
         {
           name: "Dr MOUADDEN Abdessamad",
           specialty: "gynécologue",
-          image: "/e28e96c8e5209ee72d8c08f9e0f3c4e5_2_40.webp",
-          isDefault: false,
+          image: "/default.svg",
+          isDefault: true,
         },
         {
           name: "Dr LAASSOU Khalid",
@@ -183,14 +183,14 @@ const home = {
         {
           name: "Dr EL MEJDOUBI Yasser",
           specialty: "chirurgie générale",
-          image: "/default.svg",
-          isDefault: true,
+          image: "/369c23f673e3b7905f45c75b032368bf_50.webp",
+          isDefault: false,
         },
         {
           name: "Dr AHMAIDI Houssam",
           specialty: "réanimateur anesthésiste",
-          image: "/default.svg",
-          isDefault: true,
+          image: "/e28e96c8e5209ee72d8c08f9e0f3c4e5_2_40.webp",
+          isDefault: false,
         },
       ],
     },

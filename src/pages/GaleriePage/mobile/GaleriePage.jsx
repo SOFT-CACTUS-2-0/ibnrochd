@@ -8,6 +8,7 @@ import Sponsors from '@components/Sponsors/Sponsors';
 import Contact from '@components/Contact/mobile/Contact';
 import '../GaleriePage.css';
 import './GaleriePage.css';
+import {fetchVideos} from './../../../services/instagram_api';
 
 const galleryImages = Array.from({ length: 18 }, (_, i) => `/gallery/ (${i + 1}).webp`);
 
@@ -17,46 +18,64 @@ const MobileGaleriePage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const imagesPerPage = 6;
     const totalPages = Math.ceil(galleryImages.length / imagesPerPage);
-    const [videos, setVideos] = useState([
-        {
-          src: '/gallery/videos/1.mp4',
-          title: t('gallery.videos.titles', { returnObjects: true })[0]
-        },
-        {
-          src: '/gallery/videos/2.mp4',
-          title: t('gallery.videos.titles', { returnObjects: true })[1],
-        },
-        {
-          src: '/gallery/videos/3.mp4',
-          title: t('gallery.videos.titles', { returnObjects: true })[2],
-        },
-        {
-          src: '/gallery/videos/4.mp4',
-          title: t('gallery.videos.titles', { returnObjects: true })[3],
-        },
-        {
-          src: '/gallery/videos/5.mp4',
-          title: t('gallery.videos.titles', { returnObjects: true })[4],
-        },
-        {
-          src: '/gallery/videos/6.mp4',
-          title: t('gallery.videos.titles', { returnObjects: true })[5],
-        },
-        {
-          src: '/gallery/videos/7.mp4',
-          title: t('gallery.videos.titles', { returnObjects: true })[6]
-        },
-        {
-          src: '/gallery/videos/8.mp4',
-          title: t('gallery.videos.titles', { returnObjects: true })[7]
-        },
-        {
-          src: '/gallery/videos/9.mp4',
-          title: t('gallery.videos.titles', { returnObjects: true })[8]
-        },
-    ]);
+    // const [videos, setVideos] = useState([
+    //     {
+    //       src: '/gallery/videos/1.mp4',
+    //       title: t('gallery.videos.titles', { returnObjects: true })[0]
+    //     },
+    //     {
+    //       src: '/gallery/videos/2.mp4',
+    //       title: t('gallery.videos.titles', { returnObjects: true })[1],
+    //     },
+    //     {
+    //       src: '/gallery/videos/3.mp4',
+    //       title: t('gallery.videos.titles', { returnObjects: true })[2],
+    //     },
+    //     {
+    //       src: '/gallery/videos/4.mp4',
+    //       title: t('gallery.videos.titles', { returnObjects: true })[3],
+    //     },
+    //     {
+    //       src: '/gallery/videos/5.mp4',
+    //       title: t('gallery.videos.titles', { returnObjects: true })[4],
+    //     },
+    //     {
+    //       src: '/gallery/videos/6.mp4',
+    //       title: t('gallery.videos.titles', { returnObjects: true })[5],
+    //     },
+    //     {
+    //       src: '/gallery/videos/7.mp4',
+    //       title: t('gallery.videos.titles', { returnObjects: true })[6]
+    //     },
+    //     {
+    //       src: '/gallery/videos/8.mp4',
+    //       title: t('gallery.videos.titles', { returnObjects: true })[7]
+    //     },
+    //     {
+    //       src: '/gallery/videos/9.mp4',
+    //       title: t('gallery.videos.titles', { returnObjects: true })[8]
+    //     },
+    // ]);
 
     // on language change, update the videos
+    
+    const [videos, setVideos] = useState([]);
+    useEffect(() => {
+        const loadVideos = async () => {
+          const videoUrls = await fetchVideos();
+          const titles = t('gallery.videos.titles', { returnObjects: true });
+          if(videoUrls.length > 0 ){
+            const formattedVideos = videoUrls.map((url, index) => ({
+              src: url,
+              title: titles[index] || `Video ${index + 1}`,
+            }));
+            setVideos(formattedVideos);
+          }
+        };
+    
+        loadVideos();
+      }, [t]);
+
     useEffect(() => {
         setVideos((prevVideos) => {
             return prevVideos.map((video, index) => ({
