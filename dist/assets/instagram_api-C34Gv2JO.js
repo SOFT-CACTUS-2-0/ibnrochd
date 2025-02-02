@@ -1,0 +1,1 @@
+import{j as a}from"./api-B4Qyorsv.js";const t=async()=>{try{const t=localStorage.getItem("instagramVideos");if(t)return JSON.parse(t);const r=await a.get("https://api.cliniqueibnrochd.ma/api/videos");if(!r.data||!Array.isArray(r.data))return[];const i=r.data.map((a=>a.media_url));return localStorage.setItem("instagramVideos",JSON.stringify(i)),i}catch(t){}};export{t as f};
